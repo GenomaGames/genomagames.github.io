@@ -36,7 +36,7 @@ author:
   type: organization # "person" (default), "organization"
   name: Genoma Games
   url: https://genomagames.com
-  avatar: # path or url of avatar image (square)
+  # avatar: # path or url of avatar image (square)
   bio: Indie Game Development Studio based in Madrid, Spain.
   email: info@genomagames.com
   facebook: GenomaGames # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
@@ -147,11 +147,11 @@ pageview:
 ## => Search
 ##############################
 search:
-  provider: default # "default" (default), false, "google", "custom"
+  provider: false # "default" (default), false, "google", "custom"
 
   ## Google Custom Search Engine
-  google:
-    custom_search_engine_id: # Google Custom Search Engine ID
+  # google:
+  #   custom_search_engine_id: # Google Custom Search Engine ID
 
 ## => Analytics
 ##############################
@@ -159,9 +159,9 @@ analytics:
   provider: false # false (default), "google", "custom"
 
   ## Google Analytics
-  google:
-    tracking_id: # Google Analytics id for the site
-    anonymize_ip: false # Anonymize IP tracking for Analytics
+  # google:
+  #   tracking_id: # Google Analytics id for the site
+  #   anonymize_ip: false # Anonymize IP tracking for Analytics
 
 ## => Build
 ##############################
