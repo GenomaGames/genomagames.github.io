@@ -30,9 +30,10 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 
-theme: minima
+theme: jekyll-text-theme
 
-## Minima Theme config ##
+## TeXt Theme config ##
+text_skin: dark
 title: Your awesome title
 description: >- # this means to ignore newlines until "baseurl:"
   Indie Game Development Studio located in Madrid, Spain.
@@ -46,3 +47,19 @@ defaults:
       type: posts
     values:
       layout: article
+
+
+## Minima Theme config ##
+# title: Your awesome title
+# description: >- # this means to ignore newlines until "baseurl:"
+#   Indie Game Development Studio located in Madrid, Spain.
+# email: info@genomagames.com
+# twitter_username: GenomaGames
+# github_username: GenomaGames
+
+# defaults:
+#   - scope:
+#       path: ""
+#       type: posts
+#     values:
+#       layout: article
