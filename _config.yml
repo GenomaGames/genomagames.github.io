@@ -19,10 +19,10 @@ theme: jekyll-text-theme # Gem-based Jekyll Themes
 ##############################
 text_skin: dark # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
 highlight_theme: tomorrow-night # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
-url: https://genomagames.github.io # the base hostname & protocol for your site e.g. https://www.someone.com
-baseurl: / # does not include hostname
+url: "" # the base hostname & protocol for your site e.g. https://www.someone.com
+baseurl: "" # does not include hostname
 title: Genoma Games
-description: > # this means to ignore newlines until "Language & timezone"
+description: >- # this means to ignore newlines until "Language & timezone"
   Indie Game Development Studio based in Madrid, Spain.
 
 ## => Language and Timezone
@@ -172,15 +172,15 @@ highlighter: rouge
 # https://jekyllrb.com/docs/permalinks/#global
 permalink: pretty
 
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE
-  - README.md
-  - package-lock.json
-  - package.json
-  - /node_modules
-  - /vendor
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - LICENSE
+#   - README.md
+#   - package-lock.json
+#   - package.json
+#   - /node_modules
+#   - /vendor
 
 defaults:
   - scope:
@@ -199,8 +199,8 @@ defaults:
 
 ## => Plugins
 ##############################
-plugins:
-  - jekyll-feed
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jemoji
+# plugins:
+#   - jekyll-feed
+#   - jekyll-paginate
+#   - jekyll-sitemap
+#   - jemoji
