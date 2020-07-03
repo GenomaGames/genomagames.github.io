@@ -8,7 +8,7 @@
 ## !USE TEXT THEME
 theme: jekyll-text-theme # Gem-based Jekyll Themes
 # remote_theme: kitian616/jekyll-TeXt-theme # Jekyll Remote Theme, see https://github.com/benbalter/jekyll-remote-theme for more information.
-# https://tianqi.name/jekyll-TeXt-theme/docs/en
+# https://tianqi.name/jekyll-TeXt-theme/docs/en/quick-start
 #
 # ,--------.      ,--.   ,--. ,--.
 # '--.  .--',---.  \  `.'  /,-'  '-.
@@ -19,8 +19,8 @@ theme: jekyll-text-theme # Gem-based Jekyll Themes
 ##############################
 text_skin: dark # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
 highlight_theme: tomorrow-night # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
-url: "" # the base hostname & protocol for your site e.g. https://www.someone.com
-baseurl: "" # does not include hostname
+url: https://genomagames.github.io # the base hostname & protocol for your site e.g. https://www.someone.com
+baseurl: / # does not include hostname
 title: Genoma Games
 description: > # this means to ignore newlines until "Language & timezone"
   Indie Game Development Studio based in Madrid, Spain.
@@ -103,8 +103,8 @@ sharing:
   provider: false # false (default), "addtoany", "addthis", "custom"
 
   ## AddThis
-  addthis:
-    id: # AddThis pubid, e.g. ra-5xxxxxxxxxxx
+  # addthis:
+  #   id: # AddThis pubid, e.g. ra-5xxxxxxxxxxx
 
 ## => Comments
 ##############################
@@ -124,7 +124,6 @@ comments:
   #   owner: # GitHub repo owner
   #   admin:# GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
   #     # - your GitHub Id
-
   ## Valine
   # please refer to https://valine.js.org/en/ for more info.
   # valine:
@@ -140,10 +139,10 @@ pageview:
   provider: false # false (default), "leancloud", "custom"
 
   ## Leancloud
-  leancloud:
-    app_id: # LeanCloud App id
-    app_key: # LeanCloud App key
-    app_class: # LeanCloud App class
+  # leancloud:
+  #   app_id: # LeanCloud App id
+  #   app_key: # LeanCloud App key
+  #   app_class: # LeanCloud App class
 
 ## => Search
 ##############################
