@@ -143,6 +143,12 @@ GEM
     jekyll-sitemap (1.4.0)
       jekyll (>= 3.7, < 5.0)
     jekyll-swiss (1.0.0)
+    jekyll-text-theme (2.2.6)
+      jekyll (>= 3.6, < 5.0)
+      jekyll-feed (~> 0.1)
+      jekyll-paginate (~> 1.1)
+      jekyll-sitemap (~> 1.0)
+      jemoji (~> 0.8)
     jekyll-theme-architect (0.1.1)
       jekyll (~> 3.5)
       jekyll-seo-tag (~> 2.0)
@@ -247,7 +253,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll-feed (~> 0.6)
-  minima (~> 2.0)
+  jekyll-text-theme
   tzinfo (~> 1.2)
   tzinfo-data
   wdm (~> 0.1.0)
