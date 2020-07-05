@@ -1,8 +1,16 @@
 ---
 key: 2020-07-02-how-to-install-unity-2020
-categories: tutorials unity
+categories:
+  - tutorials
+  - unity
+tags:
+  - unity
+  - tutorial
+  - beginner
 author: AlbertoFdzM
+date: 2020-07-05T00:29:21.627Z
 ---
+
 In this article you will **learn how to install Unity 2020.1.0b13 (Beta)** using UnityHub 2.3.2 in order to **start developing games**.
 
 ## Requirements
@@ -26,4 +34,6 @@ You will have to agreed to Microsoft Visual Studio Community 2019 License terms.
 After that you will see a box with a loading bar meaning that the installation of Unity and Visual Studio is in progress.
 ![04-UnityHub_2.3.2_Installs_Section_with_Unity_2020.1.0b13_(Beta)_being_installed](/assets/2020-07-02-how-to-install-unity-2020/04-UnityHub_2.3.2_Installs_Section_with_Unity_2020.1.0b13_(Beta)_being_installed.png)
 
-Once the installation complete you will be ready to open or start a new project with Unity 2020.
+Once the installation completes you will be ready to open or start a new project with Unity 2020.
+
+Happy Game Dev! :space_invader:
