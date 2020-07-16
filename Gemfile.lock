@@ -252,8 +252,12 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
+  jekyll-default-layout
   jekyll-feed (~> 0.6)
+  jekyll-optional-front-matter
+  jekyll-relative-links
   jekyll-text-theme
+  jekyll-titles-from-headings
   tzinfo (~> 1.2)
   tzinfo-data
   wdm (~> 0.1.0)

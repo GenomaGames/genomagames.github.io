@@ -49,7 +49,7 @@ author:
   # douban: # "user_name" the last part of your profile url, e.g. https://www.douban.com/people/user_name
   # linkedin: # "user_name" the last part of your profile url, e.g. https://www.linkedin.com/in/user_name
   github: GenomaGames # "user_name" the last part of your profile url, e.g. https://github.com/user_name
-  npm: genoma-games # "user_name" the last part of your profile url, e.g. https://www.npmjs.com/~user_name
+  # npm: genoma-games # "user_name" the last part of your profile url, e.g. https://www.npmjs.com/~user_name
 
 ## => GitHub Repository (if the site is hosted by GitHub)
 ##############################
@@ -188,6 +188,7 @@ defaults:
       type: posts
     values:
       layout: article
+      author: AlbertoFdzM
       sharing: false
       license: false
       aside:
@@ -199,8 +200,25 @@ defaults:
 
 ## => Plugins
 ##############################
+
+optional_front_matter:
+  remove_originals: true
+
+titles_from_headings:
+  enabled: true
+  strip_title: true
+  collections: true
+
+relative_links:
+  enabled: true
+  collections: false
+
 plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
   - jemoji
+  - jekyll-default-layout
+  - jekyll-optional-front-matter
+  - jekyll-titles-from-headings
+  - jekyll-relative-links
