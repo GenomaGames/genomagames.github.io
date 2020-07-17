@@ -8,7 +8,7 @@ tags:
   - beginner
 ---
 
-# How to Create a Unity 2D Project
+# How To Create a Unity 2D Project
 
 In this article you will **learn how to install create a Unity 2D PRoject** using UnityHub 2.3.2 in order to **start developing 2D games**.
 

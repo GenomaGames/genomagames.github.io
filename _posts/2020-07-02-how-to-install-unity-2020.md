@@ -6,6 +6,14 @@ tags:
   - unity
   - tutorial
   - beginner
+cover: /assets/2020-07-02-how-to-install-unity-2020/unity_2020_background.jpg
+article_header:
+  height: 20rem
+  type: overlay
+  theme: dark
+  background_image:
+    gradient: 'linear-gradient(135deg, rgb(47 21 50 / 0.80), rgb(17 30 37 / 0.70))'
+    src: /assets/2020-07-02-how-to-install-unity-2020/unity_2020_background.jpg
 ---
 
 # How To Install Unity 2020
