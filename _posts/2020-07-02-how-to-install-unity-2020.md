@@ -20,6 +20,8 @@ article_header:
 
 In this article you will **learn how to install Unity 2020.1.0b13 (Beta)** using UnityHub 2.3.2 in order to **start developing games**.
 
+<!--more-->
+
 ## Requirements
 
 To install Unity you will need to install first [UnityHub](https://unity3d.com/es/get-unity/download).
