@@ -22,6 +22,8 @@ In this article you will **learn how to install Unity 2020.1.0b13 (Beta)** using
 
 <!--more-->
 
+_**UPDATE:** [Unity 2020.1 is no longer in beta](https://blogs.unity3d.com/es/2020/07/23/unity-2020-1-is-now-available/) but you can still use this guide for stable releases_
+
 ## Requirements
 
 To install Unity you will need to install first [UnityHub](https://unity3d.com/es/get-unity/download).
