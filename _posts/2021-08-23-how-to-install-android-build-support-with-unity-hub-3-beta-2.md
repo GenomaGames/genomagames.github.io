@@ -39,7 +39,7 @@ Follow the next steps.
 1. Start Unity Hub and install all "Android Build Support" related items
 1. Once it is finished, you should found a `{UNITY_PATH}/Editor/Data/PlaybackEngines/AndroidPlayerTmp` folder with all the folders with the "id" names. If not, you can download the content from the property "downloadUrl" of the item (I had to do this with "android-sdk-platform-tools")
 1. Copy each item folder content back to its "AndroidPlayer" original destination (You have this info in your `modules.json.bk` file)
-1. Edit `Unity/Hub/Editor/2020.3.16f1/modules.json` android items again with their original paths
+1. Edit `Unity/Hub/Editor/2020.3.16f1/modules.json` android items file paths to their original value (You have this info in your `modules.json.bk` file)
 1. Unity should be able to compile your project for Android by now
 
 Happy Game Dev! :space_invader:
