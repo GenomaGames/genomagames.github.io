@@ -7,14 +7,14 @@ tags:
   - unity
   - tip
   - unity hub
-cover: /assets/assets/2020-07-02-how-to-install-unity-2020/unity_2020_background.jpg
+cover: /assets/2020-07-02-how-to-install-unity-2020/unity_2020_background.jpg
 article_header:
   height: 20rem
   type: overlay
   theme: dark
   background_image:
     gradient: 'linear-gradient(135deg, rgb(0 34 35 / 0.9), rgb(6 25 18 / 0.9))'
-    src: /assets/assets/2020-07-02-how-to-install-unity-2020/unity_2020_background.jpg
+    src: /assets/2020-07-02-how-to-install-unity-2020/unity_2020_background.jpg
 ---
 
 Recently I had to install Unity 2020.3.16f1 to update an old game developed with Unity 2017. This game was made for Android, and since I'm using Unity Hub 3.0.0-beta.2 (I'm only using it because it has a black theme), I had to install the required modules for "Android Build Support" to be able to compile the game and see if it worked with the new Unity version. It turns out that the installation of that modules is a bit buggy.
