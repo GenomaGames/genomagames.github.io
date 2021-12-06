@@ -1,17 +1,12 @@
-// More info: https://aka.ms/tsconfig.json
-// Reference: https://github.com/gatsbyjs/gatsby/blob/dc9cdfcfbd287428e1f5aebb35c592221e0b0224/examples/using-typescript/tsconfig.json
 {
-  "include": ["./src/**/*"],
   "compilerOptions": {
-    "target": "ES2021",
-    "module": "ES2020",
-    "lib": ["DOM", "ES2021"],
-    "jsx": "react",
-    "strict": true,
-    "esModuleInterop": true,
-    "moduleResolution": "Node",
-    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "lib": ["DOM", "ES2021"],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "noEmit": true,
     "plugins": [
       {
@@ -21,6 +16,9 @@
         }
       }
     ],
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2021"
+  },
+  "include": ["./src/**/*"]
 }
