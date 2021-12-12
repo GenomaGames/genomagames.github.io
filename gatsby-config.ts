@@ -2,7 +2,7 @@ import { GatsbyConfig } from "gatsby";
 
 const gatsbyConfig: GatsbyConfig = {
   siteMetadata: {
-    siteUrl: "https://test-gatsby.genomagames.com",
+    siteUrl: "https://genomagames.com",
     title: "Genoma Games",
   },
   plugins: [
