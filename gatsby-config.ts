@@ -50,6 +50,7 @@ const gatsbyConfig: GatsbyConfig = {
         gatsbyRemarkPlugins: ["gatsby-remark-images"],
       },
     },
+    "gatsby-plugin-catch-links",
     "gatsby-transformer-json",
   ],
 };
