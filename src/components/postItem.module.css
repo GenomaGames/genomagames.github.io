@@ -1,0 +1,44 @@
+.post-item {
+  background-color: var(--color-background-secondary);
+  border-left: 4px solid var(--color-background-tertiary);
+  border-radius: var(--size-xs-rem);
+  margin: var(--size-m-rem) 0 0;
+  padding: var(--size-m-rem) var(--size-m-rem) var(--size-m-rem)
+    var(--size-s-rem);
+}
+
+.post-title {
+  margin: 0;
+}
+
+.post-excerpt {
+  padding: var(--size-s-rem) 0;
+}
+
+.post-excerpt p {
+  margin: 0;
+}
+
+.post-footer {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 0;
+}
+
+.read-more-link {
+  margin-right: auto;
+}
+
+.author-icon {
+  margin-right: var(--size-s-rem);
+}
+
+.publish-date {
+  margin-left: var(--size-m-rem);
+}
+
+.calendar-icon {
+  margin-right: var(--size-s-rem);
+}
