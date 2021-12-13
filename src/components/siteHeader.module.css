@@ -4,19 +4,27 @@
 }
 
 .container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin: 0 auto;
   max-width: var(--width-l);
   padding: 0 var(--size-m-rem);
 }
 
 .site-header h1 {
-  margin: 0;
-  padding: var(--size-m-rem) 0 0;
   font-size: var(--size-l-rem);
+  margin: 0;
 }
 
 .site-header h1 a {
+  align-items: center;
   color: var(--color-text-primary);
+  display: inline-flex;
+  height: var(--size-xxxl-rem);
+  padding-right: var(--size-m-rem);
 }
 
 .site-header h1 a:hover {
@@ -29,6 +37,7 @@
 }
 
 .site-header .nav {
+  display: inline-block;
   font-size: var(--size-m-rem);
 }
 
