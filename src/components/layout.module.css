@@ -73,5 +73,5 @@ a:hover {
 .main {
   margin: 0 auto;
   max-width: var(--width-l);
-  padding: 0 var(--size-m-rem);
+  padding: 0 var(--size-m-rem) var(--size-xxxl-rem);
 }
