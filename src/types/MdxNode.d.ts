@@ -1,6 +1,8 @@
 import { Node } from "gatsby";
+import { ImageDataLike } from "gatsby-plugin-image";
 
 export interface MdxNode extends Node {
+  body: string;
   excerpt: string;
   frontmatter: {
     author?: {
@@ -9,6 +11,14 @@ export interface MdxNode extends Node {
     };
     date?: string;
     excerpt?: string;
+    hero_image?: {
+      src?: ImageDataLike;
+      alt?: string;
+      author?: {
+        name?: string;
+        url?: string;
+      };
+    };
     title?: string;
   };
   headings: {
