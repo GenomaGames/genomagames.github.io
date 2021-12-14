@@ -31,7 +31,7 @@ interface LayoutProps {
 }
 
 const Layout: React.FunctionComponent<LayoutProps> = (props) => {
-  const { children, pageTitle, isTitleHidden: titleHidden } = props;
+  const { children, pageTitle, isTitleHidden } = props;
 
   const data: LayoutData = useStaticQuery(graphql`
     query Layout {
@@ -91,7 +91,7 @@ const Layout: React.FunctionComponent<LayoutProps> = (props) => {
       ></SiteHeader>
 
       <main className={main}>
-        <h1 hidden={titleHidden}>{pageTitle}</h1>
+        {!isTitleHidden && (<h1>{pageTitle}</h1>)}
         {children}
       </main>
     </>
