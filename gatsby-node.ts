@@ -26,7 +26,7 @@ const gatsbyNode: GatsbyNode = {
               query: {
                 filter: {
                   nickname: {
-                    eq: source.author,
+                    eq: source.author || "AlbertoFdzM",
                   },
                 },
               },
