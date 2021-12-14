@@ -50,7 +50,7 @@ const transformMdxNodeToPostItemProps: (
     id: node.id,
     publishedAt: node.frontmatter.date,
     slug: node.slug,
-    title: node.frontmatter.title || node.headings[0]?.value,
+    title: node.headings[0]?.value,
   };
 
   return postItemProps;
