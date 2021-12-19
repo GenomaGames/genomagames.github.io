@@ -1,10 +1,10 @@
 .post-item {
   background-color: var(--color-background-secondary);
   border-left: 4px solid var(--color-background-tertiary);
-  border-radius: var(--size-xs-rem);
+  border-radius: var(--size-xxs-rem);
   margin: var(--size-m-rem) 0 0;
   padding: var(--size-m-rem) var(--size-m-rem) var(--size-m-rem)
-    var(--size-s-rem);
+    var(--size-xs-rem);
 }
 
 .post-title {
@@ -12,7 +12,7 @@
 }
 
 .post-excerpt {
-  padding: var(--size-s-rem) 0;
+  padding: var(--size-xs-rem) 0;
 }
 
 .post-excerpt p {
@@ -32,7 +32,7 @@
 }
 
 .author-icon {
-  margin-right: var(--size-s-rem);
+  margin-right: var(--size-xs-rem);
 }
 
 .publish-date {
@@ -40,5 +40,5 @@
 }
 
 .calendar-icon {
-  margin-right: var(--size-s-rem);
+  margin-right: var(--size-xs-rem);
 }

@@ -33,7 +33,7 @@
 }
 
 .site-header h1 span {
-  margin-left: var(--size-s-rem);
+  margin-left: var(--size-xs-rem);
 }
 
 .site-header .nav {
@@ -56,11 +56,11 @@
 
 .site-header .nav a {
   align-items: center;
-  border-radius: var(--size-xs-rem);
+  border-radius: var(--size-xxs-rem);
   color: var(--color-text-interactive-normal);
   display: flex;
   height: 100%;
-  padding: var(--size-s-rem) var(--size-m-rem);
+  padding: var(--size-xs-rem) var(--size-m-rem);
 }
 
 .site-header .nav a:hover {
