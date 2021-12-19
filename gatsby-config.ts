@@ -47,7 +47,17 @@ const gatsbyConfig: GatsbyConfig = {
       resolve: "gatsby-plugin-mdx",
       options: {
         extensions: [".mdx", ".md"],
-        gatsbyRemarkPlugins: ["gatsby-remark-images"],
+        gatsbyRemarkPlugins: [
+          "gatsby-remark-images",
+          "gatsby-remark-prismjs",
+          {
+            resolve: "gatsby-remark-autolink-headers",
+            options: {
+              isIconAfterHeader: true,
+            },
+          },
+        ],
+        remarkPlugins: [require("remark-emoji")],
       },
     },
     "gatsby-plugin-catch-links",
