@@ -65,6 +65,7 @@ h6 {
 
 a {
   color: var(--color-text-link);
+  fill: var(--color-text-link);
   text-decoration: none;
 }
 
