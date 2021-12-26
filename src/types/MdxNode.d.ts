@@ -1,5 +1,5 @@
 import * as gatsby from "gatsby";
-import { ImageDataLike } from "gatsby-plugin-image";
+import { FileSystemNode } from "gatsby-source-filesystem";
 
 export interface MdxNode extends gatsby.Node {
   body: string;
@@ -11,10 +11,10 @@ export interface MdxNode extends gatsby.Node {
     };
     date?: string;
     excerpt?: string;
-    hero_image?: {
-      src?: ImageDataLike;
+    cover_image?: {
+      src?: FileSystemNode;
       alt?: string;
-      author?: {
+      credit?: {
         name?: string;
         url?: string;
       };

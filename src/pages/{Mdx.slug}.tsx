@@ -15,14 +15,15 @@ export const query = graphql`
         }
         date(formatString: "YYYY-MM-DD")
         title
-        hero_image {
+        cover_image {
           src {
             childImageSharp {
               gatsbyImageData
             }
+            relativePath
           }
           alt
-          author {
+          credit {
             name
             url
           }

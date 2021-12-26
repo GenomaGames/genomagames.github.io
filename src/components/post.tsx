@@ -1,27 +1,20 @@
 import * as React from "react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import {
-  GatsbyImage,
-  getImage,
-  IGatsbyImageData,
-  ImageDataLike,
-} from "gatsby-plugin-image";
+import { GatsbyImage, getImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { Disqus, DisqusConfig } from "gatsby-plugin-disqus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCalendar,
-  faIdCard,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { FileSystemNode } from "gatsby-source-filesystem";
+import { faCalendar, faUser } from "@fortawesome/free-solid-svg-icons";
+
+import { MdxNode } from "../types/MdxNode";
 
 import {
   author,
   content,
-  heroImage,
+  coverImage,
   post,
   publishDate,
 } from "./post.module.css";
-import { MdxNode } from "../types/MdxNode";
 
 type PostProps = {
   mdx: MdxNode;
@@ -30,9 +23,10 @@ type PostProps = {
 
 const Post: React.FunctionComponent<PostProps> = ({ mdx, siteUrl }) => {
   const { frontmatter } = mdx;
-  const heroImageSrc: ImageDataLike | undefined = frontmatter.hero_image?.src;
-  const heroImageData: IGatsbyImageData | undefined =
-    heroImageSrc && getImage(heroImageSrc);
+  const coverImageSrc: FileSystemNode | undefined =
+    frontmatter.cover_image?.src;
+  const coverImageData: IGatsbyImageData | undefined =
+    coverImageSrc && getImage(coverImageSrc);
   const postUrl: string = `${siteUrl}/${mdx.slug}`;
   const disqusConfig: DisqusConfig = {
     identifier: mdx.id,
@@ -42,9 +36,6 @@ const Post: React.FunctionComponent<PostProps> = ({ mdx, siteUrl }) => {
 
   return (
     <article className={post}>
-      {/* <div>
-        <FontAwesomeIcon icon={faIdCard} /> <span>{id}</span>
-      </div> */}
       <div className={author}>
         <FontAwesomeIcon icon={faUser} />{" "}
         <span>{frontmatter.author?.nickname}</span>
@@ -53,11 +44,31 @@ const Post: React.FunctionComponent<PostProps> = ({ mdx, siteUrl }) => {
         <FontAwesomeIcon icon={faCalendar} /> <span>{frontmatter.date}</span>
       </div>
 
-      {heroImageData && (
+      {process.env.NODE_ENV === "development" ? (
+        <div>
+          <h2>Debugging</h2>
+          <ul>
+            <li>
+              <strong>ID:</strong> <span>{mdx.id}</span>
+            </li>
+            <li>
+              <strong>Slug:</strong> <span>{mdx.slug}</span>
+            </li>
+            <li>
+              <strong>Cover Image:</strong>{" "}
+              <span>{coverImageSrc?.relativePath}</span>
+            </li>
+          </ul>
+        </div>
+      ) : (
+        ""
+      )}
+
+      {coverImageData && (
         <GatsbyImage
-          image={heroImageData}
-          alt={frontmatter.hero_image?.alt || "Hero Image"}
-          className={heroImage}
+          image={coverImageData}
+          alt={frontmatter.cover_image?.alt || "Hero Image"}
+          className={coverImage}
         />
       )}
 

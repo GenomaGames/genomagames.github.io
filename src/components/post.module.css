@@ -17,7 +17,7 @@
   float: right;
 }
 
-.hero-image {
+.cover-image {
   border-radius: var(--size-xxs-rem);
   height: 100%;
   margin: var(--size-m-rem) 0;
@@ -48,9 +48,10 @@
   color: var(--color-text-muted);
 }
 
-/* .content code {
+.content :not(pre) > code {
   word-break: break-all;
-} */
+  white-space: pre-line;
+}
 
 .content blockquote {
   margin: 0 0 0 var(--size-xxs-rem);
