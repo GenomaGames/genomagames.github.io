@@ -29,6 +29,13 @@ const gatsbyConfig: GatsbyConfig = {
         path: `${__dirname}/src/blog`,
       },
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "static",
+        path: `${__dirname}/static`,
+      },
+    },
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-robots-txt",
