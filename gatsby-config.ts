@@ -40,6 +40,12 @@ const gatsbyConfig: GatsbyConfig = {
       },
     },
     "gatsby-plugin-image",
+    {
+      resolve: "gatsby-plugin-disqus",
+      options: {
+        shortname: "your-disqus-shortname",
+      },
+    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-remark-images",
