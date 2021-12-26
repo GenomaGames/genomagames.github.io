@@ -6,6 +6,7 @@ import {
   IGatsbyImageData,
   ImageDataLike,
 } from "gatsby-plugin-image";
+import { Disqus, DisqusConfig } from "gatsby-plugin-disqus";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
@@ -22,13 +23,22 @@ import {
 } from "./post.module.css";
 import { MdxNode } from "../types/MdxNode";
 
-type PostProps = MdxNode;
+type PostProps = {
+  mdx: MdxNode;
+  siteUrl: string;
+};
 
-const Post: React.FunctionComponent<PostProps> = (props) => {
-  const { body, frontmatter, headings, id } = props;
+const Post: React.FunctionComponent<PostProps> = ({ mdx, siteUrl }) => {
+  const { frontmatter } = mdx;
   const heroImageSrc: ImageDataLike | undefined = frontmatter.hero_image?.src;
   const heroImageData: IGatsbyImageData | undefined =
     heroImageSrc && getImage(heroImageSrc);
+  const postUrl: string = `${siteUrl}/${mdx.slug}`;
+  const disqusConfig: DisqusConfig = {
+    identifier: mdx.id,
+    url: postUrl,
+    title: frontmatter.title,
+  };
 
   return (
     <article className={post}>
@@ -52,8 +62,14 @@ const Post: React.FunctionComponent<PostProps> = (props) => {
       )}
 
       <div className={content}>
-        <MDXRenderer>{body}</MDXRenderer>
+        <MDXRenderer>{mdx.body}</MDXRenderer>
       </div>
+
+      <hr />
+
+      <footer>
+        <Disqus config={disqusConfig} />
+      </footer>
     </article>
   );
 };

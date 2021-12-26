@@ -4,6 +4,8 @@ const gatsbyConfig: GatsbyConfig = {
   siteMetadata: {
     siteUrl: "https://genomagames.com",
     title: "Genoma Games",
+    description:
+      "Independent indie game development studio based on Madrid, Spain",
   },
   plugins: [
     {
@@ -40,12 +42,6 @@ const gatsbyConfig: GatsbyConfig = {
       },
     },
     "gatsby-plugin-image",
-    {
-      resolve: "gatsby-plugin-disqus",
-      options: {
-        shortname: "your-disqus-shortname",
-      },
-    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-remark-images",
@@ -68,6 +64,12 @@ const gatsbyConfig: GatsbyConfig = {
     },
     "gatsby-plugin-catch-links",
     "gatsby-transformer-json",
+    {
+      resolve: "gatsby-plugin-disqus",
+      options: {
+        shortname: "genoma-games",
+      },
+    },
   ],
 };
 

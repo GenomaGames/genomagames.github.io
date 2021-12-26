@@ -4,6 +4,7 @@ import { graphql, PageProps } from "gatsby";
 import Layout from "../components/layout";
 import Post from "../components/post";
 import { MdxNode } from "../types/MdxNode";
+import { SiteNode } from "../types/SiteNode";
 
 export const query = graphql`
   query PostPage($id: String) {
@@ -33,12 +34,21 @@ export const query = graphql`
         value
       }
       id
+      slug
+    }
+    site {
+      siteMetadata {
+        description
+        title
+        siteUrl
+      }
     }
   }
 `;
 
 type PostPageData = {
   mdx: MdxNode;
+  site: SiteNode;
 };
 
 type PostPageProps = PageProps<PostPageData>;
@@ -54,7 +64,7 @@ const PostPage: React.FunctionComponent<PostPageProps> = ({ data }) => {
 
   return (
     <Layout pageTitle={pageTitle} isTitleHidden>
-      <Post {...data.mdx} />
+      <Post mdx={data.mdx} siteUrl={data.site.siteMetadata.siteUrl as string} />
     </Layout>
   );
 };
