@@ -1,7 +1,7 @@
-import { Node } from "gatsby";
+import * as gatsby from "gatsby";
 import { ImageDataLike } from "gatsby-plugin-image";
 
-export interface MdxNode extends Node {
+export interface MdxNode extends gatsby.Node {
   body: string;
   excerpt: string;
   frontmatter: {
