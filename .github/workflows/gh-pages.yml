@@ -9,6 +9,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-22.04
+    environment:
+      name: github-pages
+      url: https://genomagames.com
     permissions:
       contents: write
     concurrency:
