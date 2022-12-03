@@ -22,7 +22,7 @@
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
-    "gatsby": "^4.3.0",
+    "gatsby": "^4.24.8",
     "gatsby-plugin-catch-links": "^4.3.0",
     "gatsby-plugin-disqus": "^1.2.3",
     "gatsby-plugin-image": "^2.3.0",
