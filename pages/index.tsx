@@ -16,7 +16,7 @@ const IndexPage: React.JSXElementConstructor<Props> = ({ posts }: Props) => {
       <Head>
         <title>{process.env.NEXT_PUBLIC_SITE_NAME}</title>
       </Head>
-      <PostsList posts={posts} />
+      <PostsList className="max-w-sm sm:max-w-full" posts={posts} />
       <nav>
         <Link
           className="mb-4 block h-10 flex-1 rounded bg-emerald-600 text-center font-bold leading-10 text-slate-900 transition-colors ease-in-out hover:bg-emerald-400 focus:bg-emerald-400"

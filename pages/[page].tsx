@@ -36,7 +36,7 @@ const PaginatedPostsPage: React.JSXElementConstructor<Props> = ({
       <Head>
         <title>{process.env.NEXT_PUBLIC_SITE_NAME}</title>
       </Head>
-      <PostsList posts={posts} />
+      <PostsList className="max-w-sm sm:max-w-full" posts={posts} />
       <nav className="flex gap-4">
         {previousPage > 0 && (
           <Link

@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 
+import iconImage from "@/public/icon.png";
+
 const Header = () => {
   return (
     <header className="fixed top-0 left-0 z-10 h-16 w-full bg-gradient-to-br from-slate-800 to-gray-900 shadow-md shadow-black">
@@ -11,7 +13,7 @@ const Header = () => {
           <Link href="/" className="flex items-center">
             <Image
               className="inline-block h-auto w-8"
-              src="/icon.png"
+              src={iconImage}
               alt={`${process.env.NEXT_PUBLIC_SITE_NAME} logo`}
             />
             <span className="ml-2 inline-block text-xl font-bold">
