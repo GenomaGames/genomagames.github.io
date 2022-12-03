@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgenoma_games_website=self.webpackChunkgenoma_games_website||[]).push([[49],{8509:function(e,n,t){t.r(n);var a=t(7294),i=t(7415);n.default=function(){return a.createElement(i.Z,{pageTitle:"About"},a.createElement("p",null,"Independent indie game development studio based on Madrid, Spain."))}}}]);
-//# sourceMappingURL=component---src-pages-about-tsx-26863fdb7691cccb6162.js.map
