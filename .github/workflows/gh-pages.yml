@@ -40,6 +40,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Test environment
+        run: echo ${{ secrets.NEXT_PUBLIC_COPYRIGHT }}
+
       - name: Build
         run: npm run build
 
