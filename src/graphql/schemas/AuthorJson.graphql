@@ -1,8 +1,0 @@
-type AuthorJson implements Node @dontInfer {
-  email: String!
-  image: String!
-  name: String!
-  nickname: String!
-  twitterHandler: String!
-  url: String!
-}
