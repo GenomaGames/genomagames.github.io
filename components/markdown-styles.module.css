@@ -1,0 +1,91 @@
+.markdown {
+  @apply text-base text-slate-300;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply text-emerald-200;
+}
+
+.markdown h1 {
+  @apply mt-8 mb-4 text-3xl font-bold leading-snug;
+}
+
+.markdown h2 {
+  @apply mt-7 mb-4 text-2xl font-bold leading-snug;
+}
+
+.markdown h3 {
+  @apply mt-6 mb-4 text-xl font-bold leading-snug;
+}
+
+.markdown h4 {
+  @apply mt-4 mb-4 text-lg font-bold leading-snug;
+}
+
+.markdown h5 {
+  @apply mt-4 mb-4 text-base font-bold leading-snug;
+}
+
+.markdown h6 {
+  @apply mt-4 mb-4 text-sm font-bold leading-snug;
+}
+
+.markdown p,
+.markdown ul,
+.markdown ol,
+.markdown hr,
+.markdown blockquote,
+.markdown pre,
+.markdown pre[class*="language-"],
+.markdown pre[class*="lang-"],
+.markdown img {
+  @apply mb-4;
+}
+
+.markdown hr {
+  @apply rounded border-t-4 border-indigo-400;
+}
+
+.markdown blockquote {
+  @apply rounded-sm border-l-4 border-indigo-400 pl-4 pt-1 pb-0.5;
+}
+
+.markdown ul,
+.markdown ol {
+  @apply list-outside pl-6;
+}
+
+.markdown ul {
+  @apply list-disc;
+}
+
+.markdown ol {
+  @apply list-decimal;
+}
+
+.markdown li {
+  @apply mb-2;
+}
+
+.markdown ol li::marker,
+.markdown ul li::marker {
+  @apply text-sm font-bold text-indigo-400;
+}
+
+.markdown :not(pre) > code {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.markdown a {
+  @apply font-semibold text-emerald-500 hover:text-emerald-200 hover:underline hover:underline-offset-2;
+}
+
+.markdown img {
+  @apply mx-auto block rounded;
+}

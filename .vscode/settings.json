@@ -1,24 +1,3 @@
 {
-  "cSpell.words": [
-    "classname",
-    "Destructibles",
-    "devlog",
-    "fontawesome",
-    "fortawesome",
-    "frontmatter",
-    "gamedev",
-    "gameplay",
-    "Genoma",
-    "Imgur",
-    "msapplication",
-    "noindex",
-    "respawn",
-    "respawning",
-    "superadvanced",
-    "tileset",
-    "xxxl",
-    "xxxxl",
-    "xxxxxl"
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "cSpell.words": ["GENOMA", "globby", "mdast", "prismjs", "Rehype", "unist"]
 }
