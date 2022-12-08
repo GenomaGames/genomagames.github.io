@@ -1,0 +1,134 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "next",
+  "frontMatter.content.publicFolder": "public",
+  "frontMatter.content.autoUpdateDate": true,
+  "frontMatter.git.enabled": true,
+  "frontMatter.git.commitMessage": "Synced by Front Matter",
+  "frontMatter.preview.host": "http://localhost:3000",
+  "frontMatter.framework.startCommand": "npm run dev",
+  "frontMatter.taxonomy.dateFormat": "yyyy-MM-dd",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "blog",
+      "path": "[[workspace]]/public/blog",
+      "previewPath": "posts"
+    }
+  ],
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "pageBundle": true,
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "single": true
+        },
+        {
+          "title": "Description",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "Cover Image",
+          "name": "coverImage",
+          "type": "fields",
+          "fields": [
+            {
+              "title": "SRC",
+              "name": "src",
+              "type": "image",
+              "isPreviewImage": true
+            },
+            {
+              "title": "Title",
+              "name": "alt",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "title": "Publishing date",
+          "name": "date",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "title": "Last modified date",
+          "name": "lastmod",
+          "type": "datetime",
+          "isModifiedDate": true
+        },
+        {
+          "title": "Is in draft",
+          "name": "draft",
+          "type": "draft"
+        },
+        {
+          "title": "Author",
+          "name": "author",
+          "type": "dataFile",
+          "dataFileId": "authors",
+          "dataFileKey": "nickname",
+          "dataFileValue": "nickname"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "Categories",
+          "name": "categories",
+          "type": "categories"
+        }
+      ]
+    }
+  ],
+  "frontMatter.taxonomy.tags": [
+    "art",
+    "beginner",
+    "devlog",
+    "game-jam",
+    "games",
+    "pixel-art",
+    "project-p2d",
+    "tip",
+    "tutorial",
+    "unity",
+    "unity hub"
+  ],
+  "frontMatter.taxonomy.categories": [],
+  "frontMatter.data.files": [
+    {
+      "id": "authors",
+      "title": "Authors",
+      "file": "[[workspace]]/data/authors.json",
+      "fileType": "json",
+      "labelField": "nickname",
+      "schema": {
+        "title": "Authors",
+        "type": "object",
+        "required": ["name", "nickname"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "nickname": {
+            "type": "string",
+            "title": "Nickname"
+          },
+          "twitterUsername": {
+            "type": "string",
+            "title": "Twitter Username"
+          }
+        }
+      }
+    }
+  ]
+}
