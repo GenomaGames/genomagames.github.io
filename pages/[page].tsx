@@ -36,13 +36,14 @@ const PaginatedPostsPage: React.JSXElementConstructor<Props> = ({
       <Head>
         <title>{process.env.NEXT_PUBLIC_SITE_NAME}</title>
       </Head>
-      <PostsList className="max-w-sm sm:max-w-full" posts={posts} />
-      <nav className="flex gap-4">
+      <PostsList className="mx-auto max-w-sm sm:max-w-full" posts={posts} />
+      <nav className="mx-auto flex max-w-sm gap-4 sm:max-w-full">
         {previousPage > 0 && (
           <Link
             className="mb-4 block h-10 flex-1 rounded bg-emerald-600 text-center font-bold leading-10 text-slate-900 transition-colors ease-in-out hover:bg-emerald-400 focus:bg-emerald-400"
             as={previousPage === 1 ? "/" : `/${previousPage}`}
             href={previousPage === 1 ? "/" : "/[page]"}
+            rel="prev"
           >
             Prev
           </Link>
@@ -52,6 +53,7 @@ const PaginatedPostsPage: React.JSXElementConstructor<Props> = ({
             className="mb-4 block h-10 flex-1 rounded bg-emerald-600 text-center font-bold leading-10 text-slate-900 transition-colors ease-in-out hover:bg-emerald-400 focus:bg-emerald-400"
             as={`/${nextPage}`}
             href="/[page]"
+            rel="next"
           >
             Next
           </Link>

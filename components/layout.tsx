@@ -13,7 +13,7 @@ const Layout: React.JSXElementConstructor<Props> = ({ children }: Props) => {
       <Meta />
       <div id="top"></div>
       <Header />
-      <main className="mx-auto mt-16 px-5 pt-4 sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
+      <main className="mx-auto mt-16 w-full px-5 pt-4 sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
         {children}
       </main>
       <Footer />
