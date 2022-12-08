@@ -10,6 +10,7 @@ import { getPostBySlug, getPostSlugs } from "@/lib/api";
 import type PostType from "@/interfaces/post";
 import Post from "@/components/post";
 import { ParsedUrlQuery } from "querystring";
+import { format } from "date-fns";
 
 type Props = {
   post: PostType;
@@ -20,6 +21,11 @@ const PostPage: React.JSXElementConstructor<Props> = ({ post }: Props) => {
     <Layout>
       <Head>
         <title>{`${post.title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
+        <meta name="description" content={post.excerpt} />
+        <meta
+          property="article:published_time"
+          content={format(post.date, "yyyy-MM-dd")}
+        />
         {post.coverImage && (
           <meta property="og:image" content={post.coverImage.src} />
         )}
