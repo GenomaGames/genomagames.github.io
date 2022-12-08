@@ -28,7 +28,7 @@ const PostItem: React.JSXElementConstructor<Props> = ({
       >
         {draft && (
           <div
-            className="absolute top-0 right-0 w-8 rounded-tr-md rounded-bl-md bg-indigo-700 text-center"
+            className="absolute top-0 right-0 z-10 w-8 rounded-tr-md rounded-bl-md bg-indigo-700 text-center"
             title="Draft post"
           >
             <FontAwesomeIcon icon={faPersonDigging} />
