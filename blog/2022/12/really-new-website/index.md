@@ -1,11 +1,19 @@
 ---
 title: Really New Website
-description: null
-draft: true
-lastmod: 2022-12-08T16:07:24.788Z
-date: 2022-12-08T16:03:55.054Z
+description: We have launch a new website! This time developed using NextJS
+draft: false
+lastmod: 2022-12-08
+date: 2022-12-08
+coverImage:
+  src: ./Genoma Games Website 2022.png
+  alt: Genoma Games Website 2022
+author: AlbertoFdzM
 ---
 
 # Really New Website
 
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos consequatur, ipsa adipisci voluptate ipsam nobis natus labore, cumque deleniti alias recusandae ad, ab voluptatibus dolores animi in voluptatem consectetur at.
+We have launch a new website! This time developed using [NextJS](https://nextjs.org/).
+
+Why? Because the previous stack we were using ([gatsby](https://www.gatsbyjs.com/) and gatsby's plugins) was difficult to maintain and had to develop new stuff over it since its a framework more complex.
+
+Enjoy! 🚀
