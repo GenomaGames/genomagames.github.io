@@ -4,7 +4,7 @@
   "frontMatter.content.publicFolder": "public",
   "frontMatter.content.autoUpdateDate": true,
   "frontMatter.git.enabled": true,
-  "frontMatter.git.commitMessage": "Synced by Front Matter",
+  "frontMatter.git.commitMessage": "📝 synced by Front Matter",
   "frontMatter.preview.host": "http://localhost:3000",
   "frontMatter.framework.startCommand": "npm run dev",
   "frontMatter.taxonomy.dateFormat": "yyyy-MM-dd",
