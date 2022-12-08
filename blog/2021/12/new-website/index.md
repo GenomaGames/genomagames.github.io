@@ -1,12 +1,11 @@
 ---
-author: AlbertoFdzM
+title: New Genoma Games Website
 date: 2021-12-12
+lastmod: 2022-12-08
 coverImage:
   src: ./featured_image.png
   alt: Gatsby
-  credit:
-    name: Gatsby
-    url: https://www.gatsbyjs.com/
+author: AlbertoFdzM
 ---
 
 # New Genoma Games Website

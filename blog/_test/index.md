@@ -1,6 +1,12 @@
 ---
+title: Test Post
+description: This is a test post
 date: 9999-12-31
+lastmod: 2022-12-08
 draft: true
+coverImage:
+  alt: Test Cover Image
+  src: /blog/_test/cover-image.jpg
 ---
 
 # h1 Heading 8-)
