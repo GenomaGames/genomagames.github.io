@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import iconImage from "@/public/icon.png";
+import { faGamepad } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
@@ -21,8 +22,21 @@ const Header = () => {
             </span>
           </Link>
         </h1>
+        {process.env.NODE_ENV !== "production" && (
+          <Link
+            className="ml-auto flex h-8 w-8 items-center justify-self-end"
+            href="/games"
+          >
+            <FontAwesomeIcon
+              className="text-[#29b841]"
+              icon={faGamepad}
+              size="2xl"
+            />
+            <span className="sr-only">{`${process.env.NEXT_PUBLIC_SITE_NAME} Twitter`}</span>
+          </Link>
+        )}
         <Link
-          className="ml-auto flex h-8 w-8 items-center justify-self-end"
+          className="ml-8 flex h-8 w-8 items-center justify-self-end"
           href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`}
         >
           <FontAwesomeIcon
