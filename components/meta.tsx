@@ -44,6 +44,14 @@ const Meta = () => {
           name="description"
           content={process.env.NEXT_PUBLIC_SITE_DESCRIPTION}
         />
+
+        <meta name="twitter:card" content="summary" />
+        {process.env.NEXT_PUBLIC_TWITTER_USERNAME && (
+          <meta
+            name="twitter:site"
+            content={`@${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`}
+          />
+        )}
       </Head>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
