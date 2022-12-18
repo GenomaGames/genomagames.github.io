@@ -49,3 +49,7 @@ next-env.d.ts
 
 # env
 .env*
+
+# next-sitemap
+public/robots.txt
+public/sitemap*.xml
