@@ -21,7 +21,7 @@ const PostPage: React.JSXElementConstructor<Props> = ({ post }: Props) => {
     <Layout>
       <Head>
         <title>{`${post.title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
-        <meta name="description" content={post.excerpt} />
+        <meta name="description" content={post.summary} />
         <meta
           property="article:published_time"
           content={format(post.date, "yyyy-MM-dd")}

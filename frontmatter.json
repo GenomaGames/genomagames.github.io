@@ -28,8 +28,8 @@
           "single": true
         },
         {
-          "title": "Description",
-          "name": "description",
+          "title": "Summary",
+          "name": "summary",
           "type": "string"
         },
         {

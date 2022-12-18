@@ -5,5 +5,5 @@ export default interface PostItemType {
   coverImage: {
     src: string;
   };
-  excerpt: string;
+  summary: string;
 }

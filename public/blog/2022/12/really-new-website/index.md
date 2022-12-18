@@ -1,8 +1,8 @@
 ---
 title: Really New Website
-description: We have launch a new website! This time developed using NextJS
+summary: We have launch a new website! This time developed using NextJS
 draft: false
-lastmod: 2022-12-08
+lastmod: 2022-12-18
 date: 2022-12-08
 coverImage:
   src: ./Genoma Games Website 2022.png

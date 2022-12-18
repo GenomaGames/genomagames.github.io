@@ -5,7 +5,7 @@ export default interface PostType {
   } | null;
   date: number;
   draft: boolean;
-  excerpt: string;
+  summary: string;
   slug: string;
   title: string;
 }

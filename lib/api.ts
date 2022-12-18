@@ -88,10 +88,10 @@ export async function getPostByPath(postPath: string): Promise<PostType> {
     title = headings[0] || "";
   }
 
-  let excerpt: string | undefined = grayMatterFile.data.excerpt;
+  let summary: string | undefined = grayMatterFile.data.summary;
 
-  if (!excerpt) {
-    excerpt = (
+  if (!summary) {
+    summary = (
       await remark()
         .use(remarkSqueezeParagraphs)
         .use(stripMarkdown)
@@ -129,7 +129,7 @@ export async function getPostByPath(postPath: string): Promise<PostType> {
     coverImage,
     date,
     draft: grayMatterFile.data.draft || false,
-    excerpt,
+    summary: summary,
     slug,
     title,
   };

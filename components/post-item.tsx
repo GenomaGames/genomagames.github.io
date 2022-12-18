@@ -15,7 +15,7 @@ const PostItem: React.JSXElementConstructor<Props> = ({
   coverImage,
   date,
   draft,
-  excerpt,
+  summary,
   title,
   slug,
 }: Props) => {
@@ -51,7 +51,7 @@ const PostItem: React.JSXElementConstructor<Props> = ({
           </h2>
         </header>
         <div className="px-3 pb-4">
-          <p className="mb-2">{excerpt}</p>
+          <p className="mb-2">{summary}</p>
 
           <footer className="text-right text-sm leading-none text-slate-400">
             {/* <div className="inline-block mr-2">
