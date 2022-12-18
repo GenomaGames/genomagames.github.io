@@ -4,8 +4,9 @@
   </a>
 </p>
 <h1 align="center">
-  Genoma Games' website
+  Genoma Games' Website
 </h1>
+
 
 ## 🚀 Quick start
 
@@ -20,15 +21,16 @@
    Start project.
 
    ```shell
-   npm run dev
+   npm start
    ```
 
-1. **Open the code and start customizing!**
+   Running at http://localhost:3000
 
-   Project is running at http://localhost:3000
 
-1. **Generate a production build**
+1. **Test Production Build**
 
    ```shell
-   npm run build
+   npm run start:prod
    ```
+
+   Running at http://localhost:8080
