@@ -8,7 +8,7 @@ import { faGamepad } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 z-10 h-16 w-full bg-gradient-to-br from-slate-800 to-gray-900 shadow-md shadow-black">
+    <header className="fixed top-0 left-0 z-10 h-12 w-full bg-gradient-to-br from-slate-800 to-gray-900 shadow-md shadow-black">
       <div className="container mx-auto flex h-full max-w-5xl items-center px-4">
         <h1 className="flex h-full items-center">
           <Link href="/" className="flex items-center">
@@ -25,25 +25,25 @@ const Header = () => {
         <div className="ml-auto flex">
           {process.env.NODE_ENV !== "production" && (
             <Link
-              className="flex h-8 w-8 items-center justify-self-end"
+              className="flex h-12 w-12 items-center justify-center justify-self-end"
               href="/games"
             >
               <FontAwesomeIcon
-                className="text-[#29b841]"
+                className="text-[#8ae766]"
                 icon={faGamepad}
-                size="2xl"
+                size="xl"
               />
               <span className="sr-only">{`${process.env.NEXT_PUBLIC_SITE_NAME} Twitter`}</span>
             </Link>
           )}
           <Link
-            className="ml-8 flex h-8 w-8 items-center justify-self-end"
+            className="flex h-12 w-12 items-center justify-center justify-self-end"
             href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`}
           >
             <FontAwesomeIcon
               className="text-[#00acee]"
               icon={faTwitter}
-              size="2xl"
+              size="xl"
             />
             <span className="sr-only">{`${process.env.NEXT_PUBLIC_SITE_NAME} Twitter`}</span>
           </Link>
