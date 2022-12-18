@@ -19,10 +19,6 @@ interface Props {
   totalPages: number;
 }
 
-interface Params extends ParsedUrlQuery {
-  page: string;
-}
-
 const PaginatedPostsPage: React.JSXElementConstructor<Props> = ({
   currentPage,
   posts,
@@ -89,6 +85,10 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
 
   return result;
 };
+
+interface Params extends ParsedUrlQuery {
+  page: string;
+}
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
   const totalPages: number = await getTotalPages();
