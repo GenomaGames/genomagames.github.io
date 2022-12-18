@@ -7,7 +7,6 @@
   Genoma Games' Website
 </h1>
 
-
 ## 🚀 Quick start
 
 1. **Install npm dependencies**
@@ -26,7 +25,6 @@
 
    Running at http://localhost:3000
 
-
 1. **Test Production Build**
 
    ```shell
@@ -34,3 +32,7 @@
    ```
 
    Running at http://localhost:8080
+
+## References
+
+- [Hugo's Front Matter Variables](https://gohugo.io/content-management/front-matter/#front-matter-variables)
