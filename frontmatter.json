@@ -6,7 +6,7 @@
   "frontMatter.git.enabled": true,
   "frontMatter.git.commitMessage": "📝 synced by Front Matter",
   "frontMatter.preview.host": "http://localhost:3000",
-  "frontMatter.framework.startCommand": "npm run dev",
+  "frontMatter.framework.startCommand": "npm start",
   "frontMatter.taxonomy.dateFormat": "yyyy-MM-dd",
   "frontMatter.content.pageFolders": [
     {
