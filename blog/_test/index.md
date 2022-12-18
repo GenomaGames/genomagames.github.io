@@ -1,8 +1,8 @@
 ---
 title: Test Post
-description: This is a test post
+summary: This is a test post
 date: 9999-12-31
-lastmod: 2022-12-08
+lastmod: 2022-12-18
 draft: true
 coverImage:
   alt: Test Cover Image
