@@ -17,6 +17,7 @@ const nextConfig = () => {
     images: {
       unoptimized: true,
     },
+    reactStrictMode: true,
     webpack: (config, context) => {
       return config;
     },
