@@ -77,9 +77,59 @@
   @apply text-sm font-bold text-indigo-400;
 }
 
+.markdown pre {
+  @apply relative rounded px-0;
+}
+
+.markdown pre code {
+  @apply whitespace-pre-wrap;
+}
+
+.markdown :global(.code-line) {
+  @apply block border-l-4 border-transparent px-3;
+}
+
+.markdown :global(.code-line.inserted) {
+  @apply bg-emerald-700/20;
+}
+
+.markdown :global(.code-line.deleted) {
+  @apply bg-rose-700/20;
+}
+
+.markdown :global(.line-number) {
+  @apply ml-10 border-l-2 border-l-slate-500 pl-2;
+}
+
+.markdown :global(.line-number::before) {
+  @apply absolute left-0 inline-block w-10 pr-2 text-right text-slate-400;
+  content: attr(line);
+}
+
+.markdown :global(.line-number.inserted::before) {
+  @apply bg-emerald-700/20;
+}
+
+.markdown :global(.line-number.deleted::before) {
+  @apply bg-rose-700/20;
+}
+
+.markdown :global(.highlight-line),
+.markdown :global(.line-number.highlight-line) {
+  @apply border-l-slate-400 bg-gray-700/40;
+}
+
+.markdown :global(.line-number.highlight-line::before) {
+  @apply border-l-4 border-l-emerald-600 bg-gray-700/40;
+}
+
+.markdown pre[rel]:not([rel=""])::before {
+  @apply absolute top-0 right-2 z-10 text-lg font-bold text-emerald-400;
+  content: attr(rel);
+}
+
 .markdown :not(pre) > code {
-  word-break: break-all;
-  white-space: pre-wrap;
+  @apply whitespace-pre-wrap break-all;
 }
 
 .markdown a {
