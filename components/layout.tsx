@@ -3,7 +3,6 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 
 interface Props {
-  preview?: boolean;
   children: React.ReactNode;
 }
 

@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+
 import grayMatter from "gray-matter";
 import { globbySync } from "globby";
 import stripMarkdown from "strip-markdown";
@@ -7,9 +8,10 @@ import { visit } from "unist-util-visit";
 import { toString } from "mdast-util-to-string";
 import { remark } from "remark";
 import remarkSqueezeParagraphs from "remark-squeeze-paragraphs";
+
 import PostType from "@/interfaces/post";
 
-const postsDirectoryPath = path.join(process.cwd(), "public/blog");
+const postsDirectoryPath = path.join(process.cwd(), "public/posts");
 
 interface Cache {
   postPaths: Set<string>;
