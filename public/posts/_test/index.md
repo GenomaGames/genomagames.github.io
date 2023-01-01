@@ -2,7 +2,7 @@
 title: Test Post
 summary: This is a test post
 date: 9999-12-31
-lastmod: 2022-12-28
+lastmod: 2023-01-01
 draft: true
 coverImage:
   alt: Test Cover Image
@@ -112,6 +112,13 @@ var foo = function (bar) {
 };
 
 console.log(foo(5));
+```
+
+```diff showLineNumbers
+function addTwoNumbers (num1, num2) {
+-  return 1 + 2
++  return num1 + num2
+}
 ```
 
 ## Tables

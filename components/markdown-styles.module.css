@@ -78,7 +78,7 @@
 }
 
 .markdown pre {
-  @apply relative rounded px-0;
+  @apply relative rounded px-0 pt-4;
 }
 
 .markdown pre code {
@@ -124,8 +124,17 @@
 }
 
 .markdown pre[rel]:not([rel=""])::before {
-  @apply absolute top-0 right-2 z-10 text-lg font-bold text-emerald-400;
+  @apply absolute top-0 right-2 z-10 text-sm font-bold text-emerald-400;
   content: attr(rel);
+}
+
+.markdown pre[data-title]:not([data-title=""])::before {
+  @apply absolute top-0 right-0 z-10 flex h-7 w-full items-center bg-emerald-900 px-2 text-base font-bold text-emerald-200;
+  content: attr(data-title);
+}
+
+.markdown pre[data-title]:not([data-title=""]) {
+  @apply pt-9;
 }
 
 .markdown :not(pre) > code {

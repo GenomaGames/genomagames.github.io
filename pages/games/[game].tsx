@@ -10,6 +10,7 @@ import {
 import Layout from "@/components/layout";
 import PostsList from "@/components/posts-list";
 import PostType from "@/interfaces/post";
+import dynamic from "next/dynamic";
 
 interface Props {
   coverImage: {
@@ -28,11 +29,28 @@ const GamePage: React.JSXElementConstructor<Props> = ({
   summary,
   title,
 }: Props) => {
+  const ItsioWidget = dynamic(() => import("@/components/itchio-widget"), {
+    ssr: false,
+  });
+
   return (
     <Layout>
       <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
         {title}
       </h1>
+      <ItsioWidget
+        backgroundColor="1f2937"
+        borderColor="111827"
+        borderSize={5}
+        buttonColor="1de9a5"
+        className="mx-auto mb-4"
+        gameId={726484}
+        textColor="1de9a5"
+      >
+        <a href="https://genomagames.itch.io/genoma-invaders">
+          Genoma Invaders by Genoma Games
+        </a>
+      </ItsioWidget>
       <p>{summary}</p>
       <h2 className="mb-4 inline-block w-full self-center px-8 text-center text-xl font-bold md:text-2xl lg:text-3xl">
         Devlogs

@@ -7,6 +7,7 @@ import stripMarkdown from "strip-markdown";
 import { visit } from "unist-util-visit";
 import { toString } from "mdast-util-to-string";
 import { remark } from "remark";
+import remarkGfm from "remark-gfm";
 import remarkSqueezeParagraphs from "remark-squeeze-paragraphs";
 
 import PostType from "@/interfaces/post";
@@ -95,6 +96,7 @@ export async function getPostByPath(postPath: string): Promise<PostType> {
   if (!summary) {
     summary = (
       await remark()
+        .use(remarkGfm)
         .use(remarkSqueezeParagraphs)
         .use(stripMarkdown)
         .process(grayMatterFile.content)
