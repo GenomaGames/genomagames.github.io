@@ -15,7 +15,7 @@ We are two developers and co-workers in Madrid, Spain trying to shift our future
 
 ##### Matto Godoy
 
-![](/assets/ghost-posts-images/2016/02/Matto.png)
+![](/posts/assets/ghost-posts-images/2016/02/Matto.png)
 
 Developer of everything you put in front of him and professional hater.
 
@@ -24,7 +24,7 @@ Developer of everything you put in front of him and professional hater.
 
 ##### Alberto Fernandez
 
-![](/assets/ghost-posts-images/2016/02/Albert.png)
+![](/posts/assets/ghost-posts-images/2016/02/Albert.png)
 
 Developer, pixel artist and unsuccessful comedian.
 

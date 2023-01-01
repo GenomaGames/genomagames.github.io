@@ -35,7 +35,7 @@ Scroll down to see some screenshots and GIFs!
 
 This project has some past. Here is some old stuff I did time ago before sticking to something simpler:
 
-![Old Concept Art](/assets/ghost-posts-images/2018/04/Concept.png)
+![Old Concept Art](/posts/assets/ghost-posts-images/2018/04/Concept.png)
 
 I get to implement those tiles and the main character and some animations but the thing is that I last too much in finishing this assets and the feeling were of doing slow progress. So I decided to dump all the progress I did and start clean with a simpler idea and very basic mechanics.
 

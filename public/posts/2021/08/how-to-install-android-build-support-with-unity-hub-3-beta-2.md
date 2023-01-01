@@ -6,7 +6,7 @@ tags:
   - tip
   - unity hub
 coverImage:
-  src: /assets/2020-07-02-how-to-install-unity-2020/unity_2020_background.jpg
+  src: /posts/assets/2020-07-02-how-to-install-unity-2020/unity_2020_background.jpg
   alt: Unity 2020 Background
 lastmod: 2022-12-18
 ---

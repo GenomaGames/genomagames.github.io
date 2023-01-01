@@ -2,7 +2,7 @@
 title: Test Post
 summary: This is a test post
 date: 9999-12-31
-lastmod: 2022-12-18
+lastmod: 2022-12-28
 draft: true
 coverImage:
   alt: Test Cover Image
@@ -106,7 +106,7 @@ Sample text here...
 
 Syntax highlighting
 
-```js
+```js title="index.js" {1,3-4} showLineNumbers
 var foo = function (bar) {
   return bar++;
 };

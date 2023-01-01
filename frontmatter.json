@@ -11,7 +11,7 @@
   "frontMatter.content.pageFolders": [
     {
       "title": "blog",
-      "path": "[[workspace]]/public/blog",
+      "path": "[[workspace]]/public/posts",
       "previewPath": "posts"
     }
   ],

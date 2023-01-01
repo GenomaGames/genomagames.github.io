@@ -14,7 +14,7 @@ So this is the first post and the presentation of a new game **Arkapongout**, if
 
 Yup, pretty much that three words (And links to their definition if you still not knowing them) say everything about the game and its mechanics.
 
-![Arkapongout Prototype 1 Version](/assets/ghost-posts-images/2017/05/arkapongout-00.png)
+![Arkapongout Prototype 1 Version](/posts/assets/ghost-posts-images/2017/05/arkapongout-00.png)
 
 Up there you can see a picture with the current stage of the game, as you can see it is in a very simple **prototype** with no so mutch mechanics, graphics or features, let's be honest, there's is nothing innovative yet in the game but it's playable.
 

@@ -35,7 +35,7 @@ Then we discarded the cards that we didn't like and finally we choose randomly o
 
 This is what we get!
 
-![](/assets/ghost-posts-images/2017/02/425806014_163168_8236750835511981787.jpg)
+![](/posts/assets/ghost-posts-images/2017/02/425806014_163168_8236750835511981787.jpg)
 _**Note:** Some names are in Spanish because our native language is Español, amigo!_
 
 From here we started to bake some **very basic idea just using one topic and one mechanic** leaving apart the visual content at the moment, just to do prototyping.
@@ -54,7 +54,7 @@ At the time someone first joined the game jam, if he had no idea of Unity, some 
 
 Once that we had **something that a game designer could work with**, all of us started making a level each one focusing on the mechanics and topics, we set a timer of 30 minutes to design a whole level with an extra 5 minutes to polishing. When the timer came to an end each one played other's level. This was amazing, each of us ended with something **completely different and awesome** even that we were using the same assets and the same mechanics. This process helped us to discover new ways to improve our levels by merging or reusing other's ideas.
 
-![](/assets/ghost-posts-images/2017/02/ItsAliveLevel.jpg)
+![](/posts/assets/ghost-posts-images/2017/02/ItsAliveLevel.jpg)
 
 During this _play testing_ we point out the bugs detected. Then, we **made a review of each level**, What is the best of that level? What could be improved? What feelings does that level evoke?, etc.
 
@@ -77,13 +77,13 @@ In short, **make it look like a finished game**.
 
 And it was!
 
-![](/assets/ghost-posts-images/2017/02/ItsAliveLevel1.jpg)
+![](/posts/assets/ghost-posts-images/2017/02/ItsAliveLevel1.jpg)
 
 ### It's Alive
 
 So we ended with a simple game that has bring us a lot of knowledge and fun for a whole weekend.
 
-![](/assets/ghost-posts-images/2017/02/ItsAliveMainMenu.jpg)
+![](/posts/assets/ghost-posts-images/2017/02/ItsAliveMainMenu.jpg)
 
 And that's true, **Zombie Unicorn is alive!** we are not so dead yet (do not pay attention to our logo as reference) and we are boiling those neurons to make the most juicy game soup you've ever taste. This was the push needed to make the studio oils its gears and start the magic.
 

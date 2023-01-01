@@ -14,7 +14,7 @@ Well this entry is going to be short but awesome because I'm going to show you o
 
 And here it is!
 
-![Zombie Unicorn Logo](/assets/ghost-posts-images/2016/03/StudioLogo.png)
+![Zombie Unicorn Logo](/posts/assets/ghost-posts-images/2016/03/StudioLogo.png)
 
 Unpredictable uh? yeah... I know...
 
