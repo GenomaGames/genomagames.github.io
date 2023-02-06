@@ -11,6 +11,7 @@ import Layout from "@/components/layout";
 import PostsList from "@/components/posts-list";
 import PostType from "@/interfaces/post";
 import dynamic from "next/dynamic";
+import Head from "next/head";
 
 interface Props {
   coverImage?: {
@@ -36,6 +37,9 @@ const GamePage: React.JSXElementConstructor<Props> = ({
 
   return (
     <Layout>
+      <Head>
+        <title>{`${title} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
+      </Head>
       <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
         {title}
       </h1>

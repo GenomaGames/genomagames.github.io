@@ -30,10 +30,14 @@ const PaginatedPostsPage: React.JSXElementConstructor<Props> = ({
   return (
     <Layout>
       <Head>
-        <title>{process.env.NEXT_PUBLIC_SITE_NAME}</title>
+        <title>{`Blog page ${currentPage} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
         {currentPage === 1 && (
           <link rel="canonical" href={process.env.NEXT_PUBLIC_BASE_URL} />
         )}
+        <meta
+          name="description"
+          content={`Page ${currentPage} of game development posts for Genoma Games' blog.`}
+        />
       </Head>
       <PostsList className="mx-auto max-w-sm sm:max-w-full" posts={posts} />
       <nav className="mx-auto flex max-w-sm gap-4 sm:max-w-full">

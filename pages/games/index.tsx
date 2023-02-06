@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
 
 interface Props {
   games: {
@@ -22,6 +23,13 @@ interface Props {
 const GamesPage: React.JSXElementConstructor<Props> = ({ games }: Props) => {
   return (
     <Layout>
+      <Head>
+        <title>{`Games | ${process.env.NEXT_PUBLIC_SITE_NAME}`}</title>
+        <meta
+          name="description"
+          content="List of games released and being developed by Genoma Games"
+        />
+      </Head>
       <article className="mb-8">
         <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
           Our Games
