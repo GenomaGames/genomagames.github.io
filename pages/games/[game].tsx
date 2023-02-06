@@ -13,19 +13,20 @@ import PostType from "@/interfaces/post";
 import dynamic from "next/dynamic";
 
 interface Props {
-  coverImage: {
+  coverImage?: {
     src: string;
-  } | null;
-  devlogs: PostType[];
+  };
+  posts: PostType[];
   isInDevelopment: boolean;
-  releasedAt: Date | null;
+  itchioPage?: string;
+  releasedAt?: Date;
   slug: string;
   summary: string;
   title: string;
 }
 
 const GamePage: React.JSXElementConstructor<Props> = ({
-  devlogs,
+  posts,
   summary,
   title,
 }: Props) => {
@@ -38,6 +39,15 @@ const GamePage: React.JSXElementConstructor<Props> = ({
       <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
         {title}
       </h1>
+      <iframe
+        className="mx-auto mb-4"
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/7wOyQP97hFw"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      ></iframe>
       <ItsioWidget
         backgroundColor="1f2937"
         borderColor="111827"
@@ -51,11 +61,15 @@ const GamePage: React.JSXElementConstructor<Props> = ({
           Genoma Invaders by Genoma Games
         </a>
       </ItsioWidget>
-      <p>{summary}</p>
-      <h2 className="mb-4 inline-block w-full self-center px-8 text-center text-xl font-bold md:text-2xl lg:text-3xl">
-        Devlogs
-      </h2>
-      <PostsList className="mx-auto max-w-sm sm:max-w-full" posts={devlogs} />
+      <p className="mb-8">{summary}</p>
+      {posts.length && (
+        <>
+          <h2 className="mb-4 inline-block w-full self-center px-8 text-center text-xl font-bold md:text-2xl lg:text-3xl">
+            Devlog
+          </h2>
+          <PostsList className="mx-auto max-w-sm sm:max-w-full" posts={posts} />
+        </>
+      )}
     </Layout>
   );
 };
@@ -72,10 +86,19 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
   const result: GetStaticPropsResult<Props> = {
     props: {
-      coverImage: null,
-      devlogs: [],
+      posts: [
+        {
+          content: "test",
+          coverImage: { src: "" },
+          date: 1,
+          draft: false,
+          slug: "asd",
+          summary: "sadf",
+          title: "asd",
+        },
+      ],
       isInDevelopment: true,
-      releasedAt: null,
+      itchioPage: "https://genomagames.itch.io/genoma-invaders",
       slug: "genoma-invaders",
       summary:
         "Fixed shooter (Shoot 'em up) where you control a microscopic 🔬 robot exploring the human body while fighting off bacteria, viruses, and other microorganisms 🦠.",
