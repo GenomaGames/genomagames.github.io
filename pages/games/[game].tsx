@@ -91,15 +91,15 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const result: GetStaticPropsResult<Props> = {
     props: {
       posts: [
-        {
-          content: "test",
-          coverImage: { src: "" },
-          date: 1,
-          draft: false,
-          slug: "asd",
-          summary: "sadf",
-          title: "asd",
-        },
+        // {
+        //   content: "test",
+        //   coverImage: { src: "" },
+        //   date: 1,
+        //   draft: false,
+        //   slug: "asd",
+        //   summary: "sadf",
+        //   title: "asd",
+        // },
       ],
       isInDevelopment: true,
       itchioPage: "https://genomagames.itch.io/genoma-invaders",

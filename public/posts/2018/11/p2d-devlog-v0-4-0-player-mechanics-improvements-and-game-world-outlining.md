@@ -11,7 +11,7 @@ lastmod: 2023-02-06
 
 Another step towards a better game! This one almost appears to be a step back, the created scenes have been removed but in exchange, there is a huge world to be shaped.
 
-You can check the [previous devlog](../09/p2d-devlog-v0-3-0-enemies-and-new-location/) if you missed it.
+You can check the [previous devlog](../09/p2d-devlog-v0-3-0-enemies-and-new-location) if you missed it.
 
 ## TL;DR;
 

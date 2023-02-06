@@ -9,7 +9,7 @@ lastmod: 2023-02-06
 
 # P2D Devlog v0.3.0 Enemies and New Location
 
-This is the third devlog of the project P2D (Name to be defined). The change of this version compared to [the previous one](../05/p2d-devlog-v0-2-0-polishing-and-destructibles/) are very interesting. There has been new features and mechanics with more polishing over actual things.
+This is the third devlog of the project P2D (Name to be defined). The change of this version compared to [the previous one](../05/p2d-devlog-v0-2-0-polishing-and-destructibles) are very interesting. There has been new features and mechanics with more polishing over actual things.
 
 ### TL;DR;
 
