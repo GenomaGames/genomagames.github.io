@@ -31,6 +31,9 @@ const PaginatedPostsPage: React.JSXElementConstructor<Props> = ({
     <Layout>
       <Head>
         <title>{process.env.NEXT_PUBLIC_SITE_NAME}</title>
+        {currentPage === 1 && (
+          <link rel="canonical" href={process.env.NEXT_PUBLIC_BASE_URL} />
+        )}
       </Head>
       <PostsList className="mx-auto max-w-sm sm:max-w-full" posts={posts} />
       <nav className="mx-auto flex max-w-sm gap-4 sm:max-w-full">
