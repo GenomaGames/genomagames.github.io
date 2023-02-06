@@ -4,16 +4,17 @@ tags:
   - devlog
   - project-p2d
   - games
+lastmod: 2023-02-06
 ---
 
 # P2D Devlog v0.3.0 Enemies and New Location
 
-This is the third devlog of the project P2D (Name to be defined). The change of this version compared to [the previous one](http://genomagames.com/p2d-devlog-v0-2-0-polishing-and-destructibles/) are very interesting. There has been new features and mechanics with more polishing over actuals things.
+This is the third devlog of the project P2D (Name to be defined). The change of this version compared to [the previous one](../05/p2d-devlog-v0-2-0-polishing-and-destructibles/) are very interesting. There has been new features and mechanics with more polishing over actual things.
 
 ### TL;DR;
 
 - The player can now look up and down making the camera tilts
-- New countryish location
+- New country-ish location
 - The game now has **enemies** each with different logics:
   - Bats (caves)
   - Boars (caves and country)
@@ -75,7 +76,7 @@ Now the camera switch side when the player alters his looking direction.
 
 #### New Game Country Location
 
-Now there is a new set of sprites to create countryish locations!
+Now there is a new set of sprites to create country-ish locations!
 
 ![Country Location](https://media.giphy.com/media/ozjF8ZMxh17T5JMy2n/giphy.gif)
 
@@ -90,5 +91,3 @@ Now there is a new set of sprites to create countryish locations!
 ### Stay Tuned
 
 You can follow the project progress on [@GenomaGames](https://twitter.com/GenomaGames)
-
-<!--kg-card-end: markdown-->

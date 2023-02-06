@@ -2,13 +2,14 @@
 date: 2016-03-30
 tags:
   - art
+lastmod: 2023-02-06
 ---
 
 # Studio Logo Released!
 
 Hey guys!
 
-This time is my turn to write an entry due that [@matto](/author/matto/), our beloved developer is outside of the country (and not for _immigration issues_).
+This time is my turn to write an entry due that [@matto](https://twitter.com/mattogodoy), our beloved developer is outside of the country (and not for _immigration issues_).
 
 Well this entry is going to be short but awesome because I'm going to show you our brand new **studio logo**!!!
 

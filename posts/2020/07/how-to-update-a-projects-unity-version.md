@@ -1,7 +1,6 @@
 ---
 date: 2020-07-24
-summary:
-  Learn how to upgrade your project's Unity Version. We will update a Unity
+summary: Learn how to upgrade your project's Unity Version. We will update a Unity
   project using  Unity 2020.1.0b13 (Beta) to Unity 2020.1.0f1.
 tags:
   - unity
@@ -10,7 +9,7 @@ tags:
 coverImage:
   src: /posts/assets/2020-07-24-how-to-update-a-projects-unity-version/00-Unity_2020.1_Now_available.jpg
   alt: Unity 2020.1 Background
-lastmod: 2022-12-18
+lastmod: 2023-02-06
 ---
 
 # How to Update a Project's Unity Version
@@ -30,7 +29,7 @@ To follow this Unity tutorial you will need to:
 
 We already had a Unity version installed, [Unity 2020.1.0b13 (Beta)](https://blogs.unity3d.com/es/2020/03/17/unity-2020-1-beta-is-now-available-for-feedback/), and a new one has been released, [Unity 2020.1.0f1](https://blogs.unity3d.com/es/2020/07/23/unity-2020-1-is-now-available/).
 
-First, you will need to install Unity's new version, if you used **Unity Hub** to install the previous one, the process is the same, you can follow the steps in [**How to Install Unity 2020 Tutorial**](../_posts/2020-07-02-how-to-install-unity-2020.md).
+First, you will need to install Unity's new version, if you used **Unity Hub** to install the previous one, the process is the same, you can follow the steps in [**How to Install Unity 2020 Tutorial**](./how-to-install-unity-2020).
 
 ![01-Unity_Hub_Installs_with_new_version_installed](/posts/assets/2020-07-24-how-to-update-a-projects-unity-version/01-Unity_Hub_Installs_with_new_version_installed.png)
 

@@ -4,13 +4,14 @@ tags:
   - devlog
   - project-p2d
   - games
+lastmod: 2023-02-06
 ---
 
 # P2D Devlog v0.4.0 - Player Mechanics Improvements and Game World Outlining
 
 Another step towards a better game! This one almost appears to be a step back, the created scenes have been removed but in exchange, there is a huge world to be shaped.
 
-You can check the [previous devlog](/p2d-devlog-v0-3-0-enemies-and-new-location/) if you missed it.
+You can check the [previous devlog](../09/p2d-devlog-v0-3-0-enemies-and-new-location/) if you missed it.
 
 ## TL;DR;
 
@@ -77,5 +78,3 @@ The plan now is:
 ## Don't miss it!
 
 You can find out earlier about these changes in [@GenomaGames](https://twitter.com/GenomaGames)
-
-<!--kg-card-end: markdown-->

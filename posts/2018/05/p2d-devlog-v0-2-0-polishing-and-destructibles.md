@@ -5,11 +5,12 @@ tags:
   - games
   - pixel-art
   - project-p2d
+lastmod: 2023-02-06
 ---
 
 # P2D Devlog v0.2.0 Polishing and Destructibles
 
-This is the second devlog of the project P2D (Name to be defined). The changes made in this new version are not that huge of [the previous ones](http://genomagames.com/2018/04/19/p2d-devlog-v0-1-0-getting-started/). The main reason for this is the iteration over the things made and the polishing and analysis of that should come next.
+This is the second devlog of the project P2D (Name to be defined). The changes made in this new version are not that huge of [the previous ones](../04/p2d-devlog-v0-1-0-getting-started/). The main reason for this is the iteration over the things made and the polishing and analysis of that should come next.
 
 ### TL;DR
 
