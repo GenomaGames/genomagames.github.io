@@ -10,9 +10,9 @@
   "frontMatter.taxonomy.dateFormat": "yyyy-MM-dd",
   "frontMatter.content.pageFolders": [
     {
-      "title": "blog",
-      "path": "[[workspace]]/public/posts",
-      "previewPath": "posts"
+      "title": "post",
+      "path": "[[workspace]]/public/posts/{{year}}/{{month}}",
+      "previewPath": "/posts/{{pathToken.3}}/{{pathToken.4}}"
     }
   ],
   "frontMatter.taxonomy.contentTypes": [

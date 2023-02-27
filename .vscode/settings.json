@@ -8,5 +8,6 @@
     "prismjs",
     "Rehype",
     "unist"
-  ]
+  ],
+  "[markdown]": {}
 }
