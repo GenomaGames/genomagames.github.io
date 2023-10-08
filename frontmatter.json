@@ -89,20 +89,6 @@
       ]
     }
   ],
-  "frontMatter.taxonomy.tags": [
-    "art",
-    "beginner",
-    "devlog",
-    "game-jam",
-    "games",
-    "pixel-art",
-    "project-p2d",
-    "tip",
-    "tutorial",
-    "unity",
-    "unity hub"
-  ],
-  "frontMatter.taxonomy.categories": [],
   "frontMatter.data.files": [
     {
       "id": "authors",
@@ -113,7 +99,10 @@
       "schema": {
         "title": "Authors",
         "type": "object",
-        "required": ["name", "nickname"],
+        "required": [
+          "name",
+          "nickname"
+        ],
         "properties": {
           "name": {
             "type": "string",
