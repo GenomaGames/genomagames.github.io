@@ -9,6 +9,7 @@
     "start": "next",
     "start:prod": "http-server ./out",
     "prestart:prod": "npm run build",
+    "test": "npm run typecheck && npm run build",
     "typecheck": "tsc"
   },
   "dependencies": {
