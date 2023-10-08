@@ -4,15 +4,21 @@
   "frontMatter.content.publicFolder": "public",
   "frontMatter.content.autoUpdateDate": true,
   "frontMatter.git.enabled": true,
-  "frontMatter.git.commitMessage": "📝 synced by Front Matter",
+  "frontMatter.git.commitMessage": "✍️ update content by Front Matter",
   "frontMatter.preview.host": "http://localhost:3000",
   "frontMatter.framework.startCommand": "npm start",
   "frontMatter.taxonomy.dateFormat": "yyyy-MM-dd",
   "frontMatter.content.pageFolders": [
     {
-      "title": "post",
+      "title": "Posts",
+      "path": "[[workspace]]/public/posts",
+      "disableCreation": true,
+      "previewPath": "'/posts/'yyyy/MM"
+    },
+    {
+      "title": "New Post",
       "path": "[[workspace]]/public/posts/{{year}}/{{month}}",
-      "previewPath": "/posts/{{pathToken.3}}/{{pathToken.4}}"
+      "previewPath": "'/posts/'yyyy/MM"
     }
   ],
   "frontMatter.taxonomy.contentTypes": [
@@ -116,5 +122,7 @@
         }
       }
     }
-  ]
+  ],
+  "frontMatter.templates.prefix": "",
+  "frontMatter.website.host": "https://genomagames.com"
 }
