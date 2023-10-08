@@ -18,6 +18,7 @@ const nextConfig = () => {
       unoptimized: true,
     },
     reactStrictMode: true,
+    output: "export",
     webpack: (config, context) => {
       return config;
     },

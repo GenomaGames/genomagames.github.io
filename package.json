@@ -5,7 +5,7 @@
   "description": "Genoma Games' website",
   "author": "Alberto Fernandez <albertofdzm@gmail.com> (http://onlythepixel.com)",
   "scripts": {
-    "build": "next build && next-sitemap && next export",
+    "build": "next build && next-sitemap",
     "start": "next",
     "start:prod": "http-server ./out",
     "prestart:prod": "npm run build",
