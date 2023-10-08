@@ -1,6 +1,7 @@
 ---
 date: 2020-07-24
-summary: Learn how to upgrade your project's Unity Version. We will update a Unity
+summary:
+  Learn how to upgrade your project's Unity Version. We will update a Unity
   project using  Unity 2020.1.0b13 (Beta) to Unity 2020.1.0f1.
 tags:
   - unity

@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://genomagames.com
-
-# Sitemaps
-Sitemap: https://genomagames.com/sitemap.xml
