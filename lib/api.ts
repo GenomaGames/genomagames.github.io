@@ -98,6 +98,8 @@ export async function getPostByPath(postPath: string): Promise<PostType> {
       await remark()
         .use(remarkGfm)
         .use(remarkSqueezeParagraphs)
+        // FIXME
+        // @ts-expect-error
         .use(stripMarkdown)
         .process(grayMatterFile.content)
     )

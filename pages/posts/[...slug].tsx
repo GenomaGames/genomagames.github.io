@@ -22,6 +22,7 @@ import remarkEmoji from "remark-emoji";
 import rehypePrismPlus from "rehype-prism-plus";
 import { visit } from "unist-util-visit";
 import { remove } from "unist-util-remove";
+import type { BuildVisitor } from "unist-util-visit";
 import type hast from "hast";
 import type mdast from "mdast";
 import type unist from "unist";
@@ -61,7 +62,7 @@ interface Query extends ParsedUrlQuery {
 
 function remarkRemoveFirstHeader() {
   return (tree: unist.Node) => {
-    remove(tree, (node: unist.Node, index, parent) => {
+    remove(tree, (node: unist.Node, index: number | undefined): boolean => {
       return (
         index === 0 &&
         node.type === "heading" &&
@@ -72,52 +73,50 @@ function remarkRemoveFirstHeader() {
 }
 
 function rehypeCodeTitles() {
-  return (tree: hast.Root) =>
-    visit(
-      tree,
-      "element",
-      (
-        node: hast.Element,
-        index: number | null,
-        parent: hast.Root | hast.Element | null,
-      ) => {
+  return (tree: hast.Root) => {
+    const visitor: BuildVisitor<hast.Root, "element"> = (
+      node: hast.Element,
+      index: number | undefined,
+      parent: hast.Root | hast.Element | undefined,
+    ) => {
+      if (
+        node.tagName === "code" &&
+        parent?.type === "element" &&
+        parent.tagName === "pre"
+      ) {
+        if (!parent.properties) parent.properties = {};
+
         if (
-          node.tagName === "code" &&
-          parent?.type === "element" &&
-          parent.tagName === "pre"
+          node.data !== undefined &&
+          "meta" in node.data &&
+          typeof node.data.meta === "string" &&
+          /title="(.*)"/g.test(node.data.meta)
         ) {
-          if (!parent.properties) parent.properties = {};
+          const title: string = (/title="(.*)"/g.exec(node.data.meta) || [])[1];
 
-          if (
-            typeof node?.data?.meta === "string" &&
-            /title="(.*)"/g.test(node.data.meta)
-          ) {
-            const title: string = (/title="(.*)"/g.exec(node.data.meta) ||
-              [])[1];
-
-            parent.properties.dataTitle = title;
-          }
-
-          const className =
-            node &&
-            node.properties &&
-            Array.isArray(node?.properties?.className)
-              ? node.properties.className
-              : [];
-
-          const languageClassName: number | string | undefined =
-            className.find(
-              (className) =>
-                typeof className === "string" &&
-                className.startsWith("language-"),
-            ) || "";
-
-          parent.properties.rel = (/language-(.*)/g.exec(
-            languageClassName.toString(),
-          ) || [])[1].toUpperCase();
+          parent.properties.dataTitle = title;
         }
-      },
-    );
+
+        const className =
+          node && node.properties && Array.isArray(node?.properties?.className)
+            ? node.properties.className
+            : [];
+
+        const languageClassName: number | string | undefined =
+          className.find(
+            (className) =>
+              typeof className === "string" &&
+              className.startsWith("language-"),
+          ) || "";
+
+        parent.properties.rel = (/language-(.*)/g.exec(
+          languageClassName.toString(),
+        ) || [])[1].toUpperCase();
+      }
+    };
+
+    return visit(tree, "element", visitor);
+  };
 }
 
 // TODO: handle code with pre parent and without it
@@ -173,6 +172,8 @@ export const getStaticProps: GetStaticProps<Props, Query> = async (context) => {
       .use(rehypeSlug)
       .use(rehypeAutolinkHeadings)
       .use(rehypeDefaultCodeLanguage)
+      // FIXME
+      // @ts-expect-error
       .use(rehypePrismPlus)
       .use(rehypeCodeTitles)
       .use(rehypeRaw) // This plugin breaks rehypePrismPlus if comes before
