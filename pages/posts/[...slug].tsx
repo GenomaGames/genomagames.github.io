@@ -79,7 +79,7 @@ function rehypeCodeTitles() {
       (
         node: hast.Element,
         index: number | null,
-        parent: hast.Root | hast.Element | null
+        parent: hast.Root | hast.Element | null,
       ) => {
         if (
           node.tagName === "code" &&
@@ -109,14 +109,14 @@ function rehypeCodeTitles() {
             className.find(
               (className) =>
                 typeof className === "string" &&
-                className.startsWith("language-")
+                className.startsWith("language-"),
             ) || "";
 
           parent.properties.rel = (/language-(.*)/g.exec(
-            languageClassName.toString()
+            languageClassName.toString(),
           ) || [])[1].toUpperCase();
         }
-      }
+      },
     );
 }
 
@@ -141,12 +141,12 @@ function rehypeDefaultCodeLanguage(options = { language: "text" }) {
 
         if (
           !node.properties.className.find((className) =>
-            String(className).startsWith("language-")
+            String(className).startsWith("language-"),
           )
         ) {
           node.properties.className.push(`language-${options.language}`);
         }
-      }
+      },
     );
   };
 }

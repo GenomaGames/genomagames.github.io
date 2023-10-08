@@ -56,7 +56,7 @@ const GamesPage: React.JSXElementConstructor<Props> = ({ games }: Props) => {
                       ) : (
                         <div className="h-2 w-full rounded-t-md bg-gradient-to-r from-emerald-500 via-emerald-700 to-indigo-800 group-hover:from-emerald-300 group-hover:to-indigo-700 group-focus:from-emerald-300 group-focus:to-indigo-700"></div>
                       )}
-                      <h2 className="mt-3 mb-2 px-3 text-lg font-bold text-emerald-500 transition-colors ease-in-out group-hover:text-emerald-200 group-hover:underline group-hover:underline-offset-4 group-focus:text-emerald-200 group-focus:underline group-focus:underline-offset-4">
+                      <h2 className="mb-2 mt-3 px-3 text-lg font-bold text-emerald-500 transition-colors ease-in-out group-hover:text-emerald-200 group-hover:underline group-hover:underline-offset-4 group-focus:text-emerald-200 group-focus:underline group-focus:underline-offset-4">
                         {title}
                       </h2>
                     </header>
@@ -83,7 +83,7 @@ const GamesPage: React.JSXElementConstructor<Props> = ({ games }: Props) => {
                   </Link>
                 </article>
               );
-            }
+            },
           )}
         </div>
       </article>

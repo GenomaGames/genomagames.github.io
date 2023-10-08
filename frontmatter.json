@@ -99,10 +99,7 @@
       "schema": {
         "title": "Authors",
         "type": "object",
-        "required": [
-          "name",
-          "nickname"
-        ],
+        "required": ["name", "nickname"],
         "properties": {
           "name": {
             "type": "string",

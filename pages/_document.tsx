@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html
       lang="en"
-      className="bg-gray-900 bg-gradient-to-b from-gray-900 to-black text-slate-200 font-sans text-base min-h-screen"
+      className="min-h-screen bg-gray-900 bg-gradient-to-b from-gray-900 to-black font-sans text-base text-slate-200"
     >
       <Head />
       <body className="min-h-screen">

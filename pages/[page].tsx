@@ -69,7 +69,7 @@ const PaginatedPostsPage: React.JSXElementConstructor<Props> = ({
 export default PaginatedPostsPage;
 
 export const getStaticProps: GetStaticProps<Props, Params> = async (
-  context
+  context,
 ) => {
   const currentPage: number = Number(context.params?.page);
 
@@ -79,7 +79,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
 
   const paginatedPosts: PostsProp = allPosts.slice(
     (currentPage - 1) * Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),
-    currentPage * Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE)
+    currentPage * Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),
   );
 
   const result: GetStaticPropsResult<Props> = {

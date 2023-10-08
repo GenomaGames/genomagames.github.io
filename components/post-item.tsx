@@ -28,7 +28,7 @@ const PostItem: React.JSXElementConstructor<Props> = ({
       >
         {draft && (
           <div
-            className="absolute top-0 right-0 z-10 w-8 rounded-tr-md rounded-bl-md bg-indigo-700 text-center"
+            className="absolute right-0 top-0 z-10 w-8 rounded-bl-md rounded-tr-md bg-indigo-700 text-center"
             title="Draft post"
           >
             <FontAwesomeIcon icon={faPersonDigging} />
@@ -46,7 +46,7 @@ const PostItem: React.JSXElementConstructor<Props> = ({
           ) : (
             <div className="h-2 w-full rounded-t-md bg-gradient-to-r from-emerald-500 via-emerald-700 to-indigo-800 group-hover:from-emerald-300 group-hover:to-indigo-700 group-focus:from-emerald-300 group-focus:to-indigo-700  sm:absolute sm:left-0 sm:top-0 sm:h-full sm:w-44 sm:rounded-none sm:rounded-l-md sm:bg-gradient-to-br lg:w-56"></div>
           )}
-          <h2 className="mt-3 mb-2 px-3 text-lg font-bold text-emerald-500 transition-colors ease-in-out group-hover:text-emerald-200 group-hover:underline group-hover:underline-offset-4 group-focus:text-emerald-200 group-focus:underline group-focus:underline-offset-4 sm:mt-0">
+          <h2 className="mb-2 mt-3 px-3 text-lg font-bold text-emerald-500 transition-colors ease-in-out group-hover:text-emerald-200 group-hover:underline group-hover:underline-offset-4 group-focus:text-emerald-200 group-focus:underline group-focus:underline-offset-4 sm:mt-0">
             {title}
           </h2>
         </header>

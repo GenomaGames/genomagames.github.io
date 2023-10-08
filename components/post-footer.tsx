@@ -16,7 +16,7 @@ const PostFooter: React.JSXElementConstructor<Props> = ({
 
   twitterShareUrl.searchParams.set(
     "text",
-    `${title} by @${process.env.NEXT_PUBLIC_TWITTER_USERNAME} ${process.env.NEXT_PUBLIC_TWITTER_SHARE_POST_HASHTAGS} ${postUrl}`
+    `${title} by @${process.env.NEXT_PUBLIC_TWITTER_USERNAME} ${process.env.NEXT_PUBLIC_TWITTER_SHARE_POST_HASHTAGS} ${postUrl}`,
   );
 
   return (

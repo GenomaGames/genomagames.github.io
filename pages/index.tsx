@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
   const paginatedPosts: PostType[] = allPosts.slice(
     0,
-    Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE)
+    Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),
   );
 
   const totalPages: number = await getTotalPages();

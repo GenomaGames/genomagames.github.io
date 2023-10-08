@@ -52,7 +52,7 @@ export function getPostPaths(page?: number) {
   if (page) {
     postPaths = postPaths.slice(
       (page - 1) * Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),
-      page * Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE)
+      page * Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),
     );
   }
 
@@ -85,7 +85,7 @@ export async function getPostByPath(postPath: string): Promise<PostType> {
       },
       (node) => {
         headings.push(toString(node));
-      }
+      },
     );
 
     title = headings[0] || "";
@@ -163,11 +163,11 @@ export async function getPosts(page?: number) {
   const postPaths: string[] = getPostPaths(page);
 
   const posts = await Promise.all(
-    postPaths.map((postPath) => getPostByPath(postPath))
+    postPaths.map((postPath) => getPostByPath(postPath)),
   );
 
   const sortedPosts = posts.sort((postA, postB) =>
-    postA.date > postB.date ? -1 : 1
+    postA.date > postB.date ? -1 : 1,
   );
 
   return sortedPosts;
@@ -181,7 +181,7 @@ export function getTotalPages() {
   const totalPosts = getTotalPosts();
 
   const totalPages: number = Math.ceil(
-    totalPosts / Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE)
+    totalPosts / Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),
   );
 
   return totalPages;
@@ -197,7 +197,7 @@ function generatePostSlug(postPath: string) {
 
 function getPostSlug(
   postPath: string,
-  grayMatterFile?: grayMatter.GrayMatterFile<string>
+  grayMatterFile?: grayMatter.GrayMatterFile<string>,
 ) {
   if (!grayMatterFile) {
     const fileContent = fs.readFileSync(postPath, "utf8");

@@ -19,13 +19,13 @@ const PostHeader: React.JSXElementConstructor<Props> = ({
             <Image
               src={coverImage.src}
               alt={title}
-              className="absolute top-0 bottom-0 my-auto block h-full w-full object-cover opacity-40"
+              className="absolute bottom-0 top-0 my-auto block h-full w-full object-cover opacity-40"
               height={256}
               width={856}
               priority
             />
           ) : (
-            <div className="absolute top-0 bottom-0 h-full w-full bg-gradient-to-br from-emerald-900 to-indigo-900"></div>
+            <div className="absolute bottom-0 top-0 h-full w-full bg-gradient-to-br from-emerald-900 to-indigo-900"></div>
           )}
           <div className="h-full w-full bg-black bg-opacity-50 backdrop-blur-sm"></div>
         </div>
