@@ -1,3 +1,9 @@
+const BASE_URL_DEFAULT = "http://localhost:3000";
+const BASE_URL =
+  process.env.NODE_ENV !== "production"
+    ? BASE_URL_DEFAULT
+    : process.env.BASE_URL ?? BASE_URL_DEFAULT;
+
 /**
  * @type {import('next').NextConfig} nextConfig
  */
@@ -9,10 +15,7 @@ const nextConfig = () => {
    */
   const baseConfig = {
     env: {
-      BASE_URL:
-        process.env.NODE_ENV !== "production"
-          ? "http://localhost:3000"
-          : process.env.BASE_URL,
+      BASE_URL: BASE_URL,
     },
     images: {
       unoptimized: true,
