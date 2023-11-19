@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 
 import grayMatter from "gray-matter";
-import { globbySync } from "globby";
+import { globby } from "globby";
 import stripMarkdown from "strip-markdown";
 import { visit } from "unist-util-visit";
 import { toString } from "mdast-util-to-string";
@@ -13,6 +13,8 @@ import remarkSqueezeParagraphs from "remark-squeeze-paragraphs";
 import PostType from "@/interfaces/post";
 
 const postsDirectoryPath = path.join(process.cwd(), "public/posts");
+
+const MINIMUM_PAGE = 1;
 
 interface Cache {
   postPaths: Set<string>;
@@ -26,15 +28,15 @@ const cache: Cache = {
   postSlugsByPath: new Map(),
 };
 
-export function getPostPaths(page?: number) {
+export async function getPostPaths(page?: number): Promise<string[]> {
   let postPaths: string[] = Array.from(cache.postPaths.values());
 
   if (postPaths.length === 0) {
-    postPaths = globbySync(postsDirectoryPath, {
-      expandDirectories: {
-        extensions: ["md"],
-      },
-    });
+    postPaths = await globby(path.join(postsDirectoryPath, "**/*.md"));
+
+    if (postPaths.length === 0) {
+      console.warn(`No posts found in ${postsDirectoryPath}`);
+    }
 
     postPaths.forEach((postPath) => cache.postPaths.add(postPath));
   }
@@ -49,7 +51,11 @@ export function getPostPaths(page?: number) {
     });
   }
 
-  if (page) {
+  if (page !== undefined) {
+    if (page < MINIMUM_PAGE) {
+      throw new Error(`Invalid page number ${page}`);
+    }
+
     postPaths = postPaths.slice(
       (page - 1) * Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),
       page * Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),
@@ -160,7 +166,7 @@ export async function getPostBySlug(slug: string) {
 }
 
 export async function getPosts(page?: number) {
-  const postPaths: string[] = getPostPaths(page);
+  const postPaths: string[] = await getPostPaths(page);
 
   const posts = await Promise.all(
     postPaths.map((postPath) => getPostByPath(postPath)),
@@ -173,12 +179,12 @@ export async function getPosts(page?: number) {
   return sortedPosts;
 }
 
-export function getTotalPosts(): number {
-  return getPostPaths().length;
+export async function getTotalPosts(): Promise<number> {
+  return (await getPostPaths()).length;
 }
 
-export function getTotalPages() {
-  const totalPosts = getTotalPosts();
+export async function getTotalPages(): Promise<number> {
+  const totalPosts = await getTotalPosts();
 
   const totalPages: number = Math.ceil(
     totalPosts / Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),

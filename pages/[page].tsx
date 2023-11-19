@@ -19,11 +19,10 @@ interface Props {
   totalPages: number;
 }
 
-const PaginatedPostsPage: React.JSXElementConstructor<Props> = ({
-  currentPage,
-  posts,
-  totalPages,
-}: Props) => {
+const PaginatedPostsPage: React.JSXElementConstructor<Props> = (
+  props: Props,
+) => {
+  const { currentPage, posts = [], totalPages } = props;
   const nextPage: number = currentPage + 1;
   const previousPage: number = currentPage - 1;
 
@@ -73,7 +72,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
 ) => {
   const currentPage: number = Number(context.params?.page);
 
-  const totalPages: number = getTotalPages();
+  const totalPages: number = await getTotalPages();
 
   const allPosts: PostsProp = await getPosts();
 

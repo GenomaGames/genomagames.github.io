@@ -10,10 +10,9 @@ interface Props {
   totalPages: number;
 }
 
-const IndexPage: React.JSXElementConstructor<Props> = ({
-  posts,
-  totalPages,
-}: Props) => {
+const IndexPage: React.JSXElementConstructor<Props> = (props: Props) => {
+  const { posts, totalPages } = props;
+
   return (
     <Layout>
       <PostsList className="mx-auto max-w-sm sm:max-w-full" posts={posts} />
