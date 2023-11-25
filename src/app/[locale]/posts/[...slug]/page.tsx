@@ -57,7 +57,7 @@ export const generateStaticParams = async ({
 
 export const generateMetadata = async ({ params }: { params: Params }) => {
   const slug: string = params.slug.join("/");
-  const post = await getPostBySlugUseCase.run(slug);
+  const post = await getPostBySlugUseCase.run({ slug, locale: params.locale });
 
   const metadata: Metadata = {
     description: post.summary,
@@ -89,7 +89,7 @@ const PostPage: React.JSXElementConstructor<Props> = async ({
   params,
 }: Props) => {
   const slug: string = params.slug.join("/");
-  const post = await getPostBySlugUseCase.run(slug);
+  const post = await getPostBySlugUseCase.run({ slug, locale: params.locale });
 
   post.content = (
     await unified()

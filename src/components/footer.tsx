@@ -1,9 +1,6 @@
 import { faArrowUp, faLanguage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
-
-import { languages, locales } from "../i18n";
 
 interface Props {}
 

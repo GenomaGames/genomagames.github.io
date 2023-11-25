@@ -6,14 +6,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { getLocale } from "next-intl/server";
 
 import { Post } from "../Posts/domain/Post";
 // import { CommentCount } from "disqus-react";
 
 type Props = Post;
 
-const PostItem: React.JSXElementConstructor<Props> = ({
+const PostItem: React.JSXElementConstructor<Props> = async ({
   coverImage,
   date,
   draft,
@@ -21,7 +21,7 @@ const PostItem: React.JSXElementConstructor<Props> = ({
   title,
   slug,
 }: Props) => {
-  const locale = useLocale();
+  const locale = await getLocale();
 
   return (
     <article className="mx-auto mb-4">

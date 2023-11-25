@@ -12,6 +12,11 @@
       "title": "New Post",
       "path": "[[workspace]]/public/posts/{{year}}/{{month}}",
       "previewPath": "'/posts/'yyyy/MM"
+    },
+    {
+      "title": "New Post (ES)",
+      "path": "[[workspace]]/public/posts/es/{{year}}/{{month}}",
+      "previewPath": "'/es/posts/'yyyy/MM"
     }
   ],
   "frontMatter.content.publicFolder": "public",
@@ -38,6 +43,28 @@
           "twitterUsername": {
             "type": "string",
             "title": "Twitter Username"
+          }
+        }
+      }
+    },
+    {
+      "id": "languages",
+      "title": "Languages",
+      "file": "[[workspace]]/data/languages.json",
+      "fileType": "json",
+      "labelField": "key",
+      "schema": {
+        "title": "Languages",
+        "type": "object",
+        "required": ["key", "language"],
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "language": {
+            "type": "string",
+            "title": "Language"
           }
         }
       }
@@ -118,6 +145,14 @@
           "title": "Categories",
           "name": "categories",
           "type": "categories"
+        },
+        {
+          "title": "Language",
+          "name": "language",
+          "type": "dataFile",
+          "dataFileId": "languages",
+          "dataFileKey": "key",
+          "dataFileValue": "key"
         }
       ]
     }

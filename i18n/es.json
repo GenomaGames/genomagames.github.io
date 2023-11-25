@@ -2,8 +2,15 @@
   "IndexPage": {
     "more_posts": "Más entradas"
   },
-  "PaginatedPostsPage": {},
+  "PaginatedPostsPage": {
+    "next": "Siguiente",
+    "prev": "Anterior"
+  },
   "Footer": {
-    "scroll_to_top": "Volver arriba"
+    "scroll_to_top": "Volver arriba",
+    "copyright": "©️ 2014-2023 Genoma Games. Todos los derechos reservados",
+    "english": "Inglés",
+    "languages": "Idiomas",
+    "spanish": "Español"
   }
 }

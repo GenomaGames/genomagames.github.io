@@ -11,5 +11,12 @@
   ],
   "[markdown]": {},
   "i18n-ally.localesPaths": ["i18n"],
-  "i18n-ally.keystyle": "nested"
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.extract.ignoredByFiles": {
+    "src/Posts/domain/PostsRepository.ts": [
+      "Missing date on post ${postPath}",
+      "Post path not found for slug: ${slug}"
+    ],
+    "src/components/footer.tsx": ["Footer"]
+  }
 }

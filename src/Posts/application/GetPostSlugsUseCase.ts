@@ -1,3 +1,4 @@
+import { isLocale } from "@/src/lib/isEnumValue";
 import { UseCase } from "@/src/Shared/application/UseCase";
 
 import { PostsRepository, postsRepository } from "../domain/PostsRepository";
@@ -9,8 +10,12 @@ interface Input {
 export class GetPostSlugsUseCase implements UseCase<Input, string[]> {
   constructor(private postsRepository: PostsRepository) {}
 
-  public async run(input: Input): Promise<string[]> {
-    return this.postsRepository.getPostSlugs();
+  public async run({ locale }: Input): Promise<string[]> {
+    if (!isLocale(locale)) {
+      throw new Error(`Locale "${locale}" not valid`);
+    }
+
+    return this.postsRepository.getPostSlugs(locale);
   }
 }
 

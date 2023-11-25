@@ -2,6 +2,7 @@ import { getRequestConfig } from "next-intl/server";
 
 export enum Locale {
   en = "en",
+  es = "es",
 }
 
 interface Language {
@@ -23,6 +24,10 @@ export const languages: Languages = {
   [Locale.en]: {
     i18nKey: "english",
     tag: Locale.en,
+  },
+  [Locale.es]: {
+    i18nKey: "spanish",
+    tag: Locale.es,
   },
 };
 

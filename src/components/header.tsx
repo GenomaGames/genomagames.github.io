@@ -1,3 +1,5 @@
+import "flag-icons/css/flag-icons.min.css";
+
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faGamepad } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,7 +19,7 @@ const Header: React.JSXElementConstructor<Props> = (props: Props) => {
     <header className="fixed left-0 top-0 z-10 h-12 w-full bg-gradient-to-br from-slate-800 to-gray-900 shadow-md shadow-black">
       <div className="container mx-auto flex h-full max-w-5xl items-center px-4">
         <h1 className="flex h-full items-center">
-          <Link href="/" className="flex items-center">
+          <Link href={`/${locale}`} className="flex items-center">
             <Image
               className="inline-block h-auto w-8"
               src={iconImage}
@@ -29,6 +31,23 @@ const Header: React.JSXElementConstructor<Props> = (props: Props) => {
           </Link>
         </h1>
         <div className="ml-auto flex">
+          {locale === "en" ? (
+            <Link
+              className="flex h-12 w-12 items-center justify-center justify-self-end"
+              href="/es"
+              hrefLang="es"
+            >
+              <span className="fi fi-es"></span>
+            </Link>
+          ) : (
+            <Link
+              className="flex h-12 w-12 items-center justify-center justify-self-end"
+              href="/en"
+              hrefLang="en"
+            >
+              <span className="fi fi-us"></span>
+            </Link>
+          )}
           {process.env.NODE_ENV !== "production" && (
             <Link
               className="flex h-12 w-12 items-center justify-center justify-self-end"

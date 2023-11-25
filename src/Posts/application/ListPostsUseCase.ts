@@ -1,4 +1,5 @@
-import { defaultLocale } from "@/src/i18n";
+import { defaultLocale, Locale } from "@/src/i18n";
+import { isLocale } from "@/src/lib/isEnumValue";
 import { UseCase } from "@/src/Shared/application/UseCase";
 import { PaginatedList } from "@/src/Shared/domain/PaginatedList";
 
@@ -19,17 +20,26 @@ export class ListPostsUseCase implements UseCase<Input, PaginatedList<Post>> {
     page = 1,
     locale = defaultLocale,
   }: Input): Promise<PaginatedList<Post>> {
-    const totalPages: number = await this.postsRepository.getTotalPages();
+    if (!isLocale(locale)) {
+      throw new Error(`Locale "${locale}" not valid`);
+    }
+
+    const totalPages: number = await this.postsRepository.getTotalPages(locale);
 
     if (page > totalPages || page < MINIMUM_PAGE) {
       throw new Error(`Invalid page number ${page}`);
     }
 
     const postPaths: string[] =
-      await this.postsRepository.getPaginatedPostsPaths(page);
+      await this.postsRepository.getPaginatedPostsPaths({
+        page,
+        locale,
+      });
 
     const posts = await Promise.all(
-      postPaths.map((postPath) => this.postsRepository.getPostByPath(postPath)),
+      postPaths.map((postPath) =>
+        this.postsRepository.getPostByPath({ locale, postPath }),
+      ),
     );
 
     const sortedPosts = posts.sort((postA, postB) =>

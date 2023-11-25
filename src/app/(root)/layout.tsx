@@ -1,28 +1,14 @@
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import "../styles/globals.css";
-
-import { ParsedUrlQuery } from "node:querystring";
+import "../../styles/globals.css";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { unstable_setRequestLocale } from "next-intl/server";
 import React from "react";
-
-import { defaultLocale } from "@/src/i18n";
-
-import Footer from "../components/footer";
-import Header from "../components/header";
 
 config.autoAddCss = false;
 
-interface Params extends ParsedUrlQuery {
-  locale: string;
-}
-
-interface Props extends React.PropsWithChildren {
-  params: Params;
-}
+interface Props extends React.PropsWithChildren {}
 
 export const viewport: Viewport = {
   colorScheme: "dark",
@@ -55,23 +41,18 @@ export const metadata: Metadata = {
 
 const RootLayout: React.JSXElementConstructor<Props> = ({
   children,
-  params: { locale = defaultLocale },
 }: Props) => {
-  unstable_setRequestLocale(locale);
-
   return (
     <html
-      lang={locale}
+      lang="en"
       className="min-h-screen bg-gray-900 bg-gradient-to-b from-gray-900 to-black font-sans text-base text-slate-200"
     >
       <body className="min-h-screen">
         <div id="top"></div>
-        <Header />
         <div className="flex min-h-screen flex-col">
           <main className="mx-auto mt-16 w-full px-5 pt-4 sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
             {children}
           </main>
-          <Footer />
         </div>
       </body>
 
