@@ -2,7 +2,7 @@
 title: Test Post
 summary: This is a test post
 date: 9999-12-31
-lastmod: 2023-01-01
+lastmod: 2023-11-25
 draft: true
 coverImage:
   alt: Test Cover Image
@@ -119,6 +119,14 @@ function addTwoNumbers (num1, num2) {
 -  return 1 + 2
 +  return num1 + num2
 }
+```
+
+```js /foo/ /bar/#1
+var foo = function (bar) {
+  return bar++;
+};
+
+console.log(foo(5));
 ```
 
 ## Tables
@@ -294,9 +302,9 @@ The implication of the "one or more consecutive lines of text" rule is
 that Markdown supports "hard-wrapped" text paragraphs. This differs
 significantly from most other text-to-HTML formatters (including Movable
 Type's "Convert Line Breaks" option) which translate every line break
-character in a paragraph into a `<br />` tag.
+character in a paragraph into a `<br />{:html}` tag.
 
-When you _do_ want to insert a `<br />` break tag using Markdown, you
+When you _do_ want to insert a `<br />{:html}` break tag using Markdown, you
 end a line with two or more spaces, then type return.
 
 ### Headers
@@ -352,7 +360,9 @@ and code blocks:
 >
 > Here's some example code:
 >
->     return shell_exec("echo $input | $markdown_script");
+> ```js
+> return shell_exec("echo $input | $markdown_script");
+> ```
 
 Any decent text editor should make email-style quoting easy. For
 example, with BBEdit, you can make a selection and choose Increase
@@ -471,7 +481,7 @@ to be indented _twice_ -- 8 spaces or two tabs:
 Pre-formatted code blocks are used for writing about programming or
 markup source code. Rather than forming normal paragraphs, the lines
 of a code block are interpreted literally. Markdown wraps a code block
-in both `<pre>` and `<code>` tags.
+in both `<pre>{:html}` and `<code>{:html}` tags.
 
 To produce a code block in Markdown, simply indent every line of the
 block by at least 4 spaces or 1 tab.
@@ -503,7 +513,7 @@ Regular Markdown syntax is not processed within code blocks. E.g.,
 asterisks are just literal asterisks within a code block. This means
 it's also easy to use Markdown to write about Markdown's own syntax.
 
-```
+```applescript
 tell application "Foo"
     beep
 end tell
@@ -530,7 +540,7 @@ This is [an example](http://example.com/) inline link.
 
 Markdown treats asterisks (`*`) and underscores (`_`) as indicators of
 emphasis. Text wrapped with one `*` or `_` will be wrapped with an
-HTML `<em>` tag; double `*`'s or `_`'s will be wrapped with an HTML
+HTML `<em>{:html}` tag; double `*`'s or `_`'s will be wrapped with an HTML
 `<strong>` tag. E.g., this input:
 
 _single asterisks_
@@ -543,8 +553,8 @@ _single underscores_
 
 ### Code
 
-To indicate a span of code, wrap it with backtick quotes (`` ` ``).
+To indicate a span of code, wrap it with backtick quotes (`` ` {:js}``).
 Unlike a pre-formatted code block, a code span indicates code within a
 normal paragraph. For example:
 
-Use the `printf()` function.
+Use the `printf(){:js}` function.
