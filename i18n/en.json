@@ -4,7 +4,10 @@
   },
   "Footer": {
     "copyright": "©️ 2014-2022 Genoma Games. All rights reserved",
-    "scroll_to_top": "Scroll to top"
+    "scroll_to_top": "Scroll to top",
+    "languages": "Languages",
+    "english": "English",
+    "spanish": "Spanish"
   },
   "PaginatedPostsPage": {
     "prev": "Prev",
