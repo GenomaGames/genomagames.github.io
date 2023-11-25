@@ -1,8 +1,11 @@
 import { ParsedUrlQuery } from "node:querystring";
+
 import Link from "next/link";
-import PostsList from "@/src/components/posts-list";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+
+import PostsList from "@/src/components/posts-list";
 import { listPostsUseCase } from "@/src/Posts/application/ListPostsUseCase";
+
 interface Params extends ParsedUrlQuery {
   locale: string;
 }

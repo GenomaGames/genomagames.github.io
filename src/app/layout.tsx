@@ -1,17 +1,18 @@
-import { notFound } from "next/navigation";
-import { ParsedUrlQuery } from "node:querystring";
-import { unstable_setRequestLocale } from "next-intl/server";
-import React from "react";
-import { defaultLocale, locales } from "@/src/i18n";
-import Script from "next/script";
-import { Metadata, Viewport } from "next";
-import { config } from "@fortawesome/fontawesome-svg-core";
-
-import Header from "../components/header";
-import Footer from "../components/footer";
-
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../styles/globals.css";
+
+import { ParsedUrlQuery } from "node:querystring";
+
+import { config } from "@fortawesome/fontawesome-svg-core";
+import { Metadata, Viewport } from "next";
+import Script from "next/script";
+import { unstable_setRequestLocale } from "next-intl/server";
+import React from "react";
+
+import { defaultLocale } from "@/src/i18n";
+
+import Footer from "../components/footer";
+import Header from "../components/header";
 
 config.autoAddCss = false;
 

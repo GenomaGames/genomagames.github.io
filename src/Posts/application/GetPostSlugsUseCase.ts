@@ -1,4 +1,5 @@
 import { UseCase } from "@/src/Shared/application/UseCase";
+
 import { PostsRepository, postsRepository } from "../domain/PostsRepository";
 
 interface Input {

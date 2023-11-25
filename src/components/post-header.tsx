@@ -2,6 +2,7 @@ import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format } from "date-fns";
 import Image from "next/image";
+
 import { Post } from "../Posts/domain/Post";
 
 type Props = Post;

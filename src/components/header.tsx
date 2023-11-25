@@ -1,12 +1,12 @@
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGamepad } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale } from "next-intl";
+import React from "react";
 
 import iconImage from "@/public/icon.png";
-import { faGamepad } from "@fortawesome/free-solid-svg-icons";
-import React from "react";
-import { useLocale } from "next-intl";
 
 interface Props {}
 

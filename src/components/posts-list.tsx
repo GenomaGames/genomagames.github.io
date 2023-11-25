@@ -1,4 +1,5 @@
 import PostItem from "@/src/components/post-item";
+
 import { Post } from "../Posts/domain/Post";
 
 interface Props {

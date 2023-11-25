@@ -1,11 +1,12 @@
-import { faPersonDigging } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PostFooter from "@/src/components/post-footer";
-import PostHeader from "@/src/components/post-header";
-
 import "prism-themes/themes/prism-vsc-dark-plus.min.css";
 
+import { faPersonDigging } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import PostFooter from "@/src/components/post-footer";
+import PostHeader from "@/src/components/post-header";
 import markdownStyles from "@/src/styles/markdown-styles.module.css";
+
 import { Post } from "../Posts/domain/Post";
 
 type Props = Post;

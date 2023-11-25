@@ -1,5 +1,6 @@
-import { defaultLocale } from "@/src/i18n";
 import { redirect } from "next/navigation";
+
+import { defaultLocale } from "@/src/i18n";
 
 interface Props {}
 

@@ -1,4 +1,5 @@
 import { UseCase } from "@/src/Shared/application/UseCase";
+
 import { Post } from "../domain/Post";
 import { PostsRepository, postsRepository } from "../domain/PostsRepository";
 

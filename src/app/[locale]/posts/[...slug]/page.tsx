@@ -1,29 +1,31 @@
-import PostArticle from "@/src/components/post-article";
-import { ParsedUrlQuery } from "querystring";
+import { ParsedUrlQuery } from "node:querystring";
+
 import { format } from "date-fns";
+import type hast from "hast";
+import type mdast from "mdast";
+import { Metadata } from "next";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeExternalLinks from "rehype-external-links";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypePrismPlus from "rehype-prism-plus";
+import rehypeRaw from "rehype-raw";
+import rehypeSlug from "rehype-slug";
+import rehypeStringify from "rehype-stringify";
+import remarkEmoji from "remark-emoji";
+import remarkGfm from "remark-gfm";
+import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import remarkSqueezeParagraphs from "remark-squeeze-paragraphs";
 import remarkUnwrapImages from "remark-unwrap-images";
-import rehypeRaw from "rehype-raw";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeExternalLinks from "rehype-external-links";
-import remarkEmoji from "remark-emoji";
-import rehypePrismPlus from "rehype-prism-plus";
-import rehypePrettyCode from "rehype-pretty-code";
-import { visit } from "unist-util-visit";
+import { unified } from "unified";
+import type unist from "unist";
 import { remove } from "unist-util-remove";
 import type { BuildVisitor } from "unist-util-visit";
-import type hast from "hast";
-import type mdast from "mdast";
-import type unist from "unist";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import rehypeStringify from "rehype-stringify";
-import remarkGfm from "remark-gfm";
-import { Metadata } from "next";
-import { getPostSlugsUseCase } from "@/src/Posts/application/GetPostSlugsUseCase";
+import { visit } from "unist-util-visit";
+
+import PostArticle from "@/src/components/post-article";
 import { getPostBySlugUseCase } from "@/src/Posts/application/GetPostBySlug";
+import { getPostSlugsUseCase } from "@/src/Posts/application/GetPostSlugsUseCase";
 
 interface Params extends ParsedUrlQuery {
   locale: string;

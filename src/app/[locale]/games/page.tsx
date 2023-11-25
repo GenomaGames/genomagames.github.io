@@ -1,11 +1,11 @@
-import { format } from "date-fns";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
-import Image from "next/image";
-import Head from "next/head";
 import { ParsedUrlQuery } from "node:querystring";
+
+import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { format } from "date-fns";
 import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Params extends ParsedUrlQuery {
   locale: string;

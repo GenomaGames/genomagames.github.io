@@ -1,12 +1,13 @@
-import Link from "next/link";
-import { format } from "date-fns";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarDay,
   faPersonDigging,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { format } from "date-fns";
 import Image from "next/image";
+import Link from "next/link";
 import { useLocale } from "next-intl";
+
 import { Post } from "../Posts/domain/Post";
 // import { CommentCount } from "disqus-react";
 

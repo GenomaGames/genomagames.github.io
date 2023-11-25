@@ -1,7 +1,9 @@
-import { ParsedUrlQuery } from "querystring";
+import { ParsedUrlQuery } from "node:querystring";
+
 import { Metadata } from "next";
-import PostsList from "@/src/components/posts-list";
 import dynamic from "next/dynamic";
+
+import PostsList from "@/src/components/posts-list";
 import { Post } from "@/src/Posts/domain/Post";
 
 interface Params extends ParsedUrlQuery {

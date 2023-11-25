@@ -1,7 +1,8 @@
-import { UseCase } from "@/src/Shared/application/UseCase";
 import { defaultLocale } from "@/src/i18n";
-import { Post } from "../domain/Post";
+import { UseCase } from "@/src/Shared/application/UseCase";
 import { PaginatedList } from "@/src/Shared/domain/PaginatedList";
+
+import { Post } from "../domain/Post";
 import { PostsRepository, postsRepository } from "../domain/PostsRepository";
 
 interface Input {

@@ -1,5 +1,6 @@
-import { locales } from "@/src/i18n";
 import { ParsedUrlQuery } from "node:querystring";
+
+import { locales } from "@/src/i18n";
 
 interface Params extends ParsedUrlQuery {
   locale: string;

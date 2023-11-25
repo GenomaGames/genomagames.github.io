@@ -1,10 +1,12 @@
+import { ParsedUrlQuery } from "node:querystring";
+
+import { Metadata } from "next";
+import Link from "next/link";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+
+import PostsList from "@/src/components/posts-list";
 import { getPostsPagesUseCase } from "@/src/Posts/application/GetPostsPagesUseCase";
 import { listPostsUseCase } from "@/src/Posts/application/ListPostsUseCase";
-import PostsList from "@/src/components/posts-list";
-import { Metadata } from "next";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-import Link from "next/link";
-import { ParsedUrlQuery } from "querystring";
 
 interface Params extends ParsedUrlQuery {
   locale: string;
