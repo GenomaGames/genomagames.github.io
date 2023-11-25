@@ -1,13 +1,13 @@
+import fs from "node:fs";
+import path from "node:path";
 import { ParsedUrlQuery } from "node:querystring";
 
 import { format } from "date-fns";
-import type hast from "hast";
 import type mdast from "mdast";
 import { Metadata } from "next";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypePrettyCode from "rehype-pretty-code";
-import rehypePrismPlus from "rehype-prism-plus";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
@@ -20,8 +20,6 @@ import remarkUnwrapImages from "remark-unwrap-images";
 import { unified } from "unified";
 import type unist from "unist";
 import { remove } from "unist-util-remove";
-import type { BuildVisitor } from "unist-util-visit";
-import { visit } from "unist-util-visit";
 
 import PostArticle from "@/src/components/post-article";
 import { getPostBySlugUseCase } from "@/src/Posts/application/GetPostBySlug";
@@ -87,84 +85,6 @@ function remarkRemoveFirstHeader() {
   };
 }
 
-function rehypeCodeTitles() {
-  return (tree: hast.Root) => {
-    const visitor: BuildVisitor<hast.Root, "element"> = (
-      node: hast.Element,
-      index: number | undefined,
-      parent: hast.Root | hast.Element | undefined,
-    ) => {
-      if (
-        node.tagName === "code" &&
-        parent?.type === "element" &&
-        parent.tagName === "pre"
-      ) {
-        if (!parent.properties) parent.properties = {};
-
-        if (
-          node.data !== undefined &&
-          "meta" in node.data &&
-          typeof node.data.meta === "string" &&
-          /title="(.*)"/g.test(node.data.meta)
-        ) {
-          const title: string = (/title="(.*)"/g.exec(node.data.meta) || [])[1];
-
-          parent.properties.dataTitle = title;
-        }
-
-        const className =
-          node && node.properties && Array.isArray(node?.properties?.className)
-            ? node.properties.className
-            : [];
-
-        const languageClassName: number | string | undefined =
-          className.find(
-            (className) =>
-              typeof className === "string" &&
-              className.startsWith("language-"),
-          ) || "";
-
-        parent.properties.rel = (/language-(.*)/g.exec(
-          languageClassName.toString(),
-        ) || [])[1].toUpperCase();
-      }
-    };
-
-    return visit(tree, "element", visitor);
-  };
-}
-
-// TODO: handle code with pre parent and without it
-function rehypeDefaultCodeLanguage(options = { language: "text" }) {
-  return (tree: hast.Node) => {
-    visit(
-      tree,
-      "element",
-      (node: hast.Element, index: number, parent: hast.Element) => {
-        if (node.tagName !== "code") return;
-
-        if (!node.properties) {
-          node.properties = {
-            className: [],
-          };
-        }
-
-        if (!Array.isArray(node.properties.className)) {
-          node.properties.className = [];
-        }
-
-        if (
-          !node.properties.className.find((className) =>
-            String(className).startsWith("language-"),
-          )
-        ) {
-          node.properties.className.push(`language-${options.language}`);
-        }
-      },
-    );
-  };
-}
-
 const PostPage: React.JSXElementConstructor<Props> = async ({
   params,
 }: Props) => {
@@ -183,10 +103,15 @@ const PostPage: React.JSXElementConstructor<Props> = async ({
       .use(rehypeExternalLinks)
       .use(rehypeSlug)
       .use(rehypeAutolinkHeadings)
-      .use(rehypeDefaultCodeLanguage)
-      // .use(rehypePrismPlus)
-      // .use(rehypePrettyCode)
-      .use(rehypeCodeTitles)
+      .use(rehypePrettyCode, {
+        keepBackground: false,
+        theme: JSON.parse(
+          fs.readFileSync(
+            path.join(process.cwd(), "src/CodeThemes/moonlight-ii.json"),
+            "utf-8",
+          ),
+        ),
+      })
       .use(rehypeRaw) // This plugin breaks rehypePrismPlus if comes before
       .use(rehypeStringify)
       .process(post.content)

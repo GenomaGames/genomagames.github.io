@@ -1,5 +1,3 @@
-import "prism-themes/themes/prism-vsc-dark-plus.min.css";
-
 import { faPersonDigging } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

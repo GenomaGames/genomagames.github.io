@@ -77,74 +77,86 @@
   @apply text-sm font-bold text-indigo-400;
 }
 
-.markdown pre {
-  @apply relative rounded px-0 pt-4;
-}
-
-.markdown pre code {
-  @apply whitespace-pre-wrap;
-}
-
-.markdown :global(.code-line) {
-  @apply block border-l-4 border-transparent px-3;
-}
-
-.markdown :global(.code-line.inserted) {
-  @apply bg-emerald-700/20;
-}
-
-.markdown :global(.code-line.deleted) {
-  @apply bg-rose-700/20;
-}
-
-.markdown :global(.line-number) {
-  @apply ml-10 border-l-2 border-l-slate-500 pl-2;
-}
-
-.markdown :global(.line-number::before) {
-  @apply absolute left-0 inline-block w-10 pr-2 text-right text-slate-400;
-  content: attr(line);
-}
-
-.markdown :global(.line-number.inserted::before) {
-  @apply bg-emerald-700/20;
-}
-
-.markdown :global(.line-number.deleted::before) {
-  @apply bg-rose-700/20;
-}
-
-.markdown :global(.highlight-line),
-.markdown :global(.line-number.highlight-line) {
-  @apply border-l-slate-400 bg-gray-700/40;
-}
-
-.markdown :global(.line-number.highlight-line::before) {
-  @apply border-l-4 border-l-emerald-600 bg-gray-700/40;
-}
-
-.markdown pre[rel]:not([rel=""])::before {
-  @apply absolute right-2 top-0 z-10 text-sm font-bold text-emerald-400;
-  content: attr(rel);
-}
-
-.markdown pre[data-title]:not([data-title=""])::before {
-  @apply absolute right-0 top-0 z-10 flex h-7 w-full items-center bg-emerald-900 px-2 text-base font-bold text-emerald-200;
-  content: attr(data-title);
-}
-
-.markdown pre[data-title]:not([data-title=""]) {
-  @apply pt-9;
-}
-
-.markdown :not(pre) > code {
-  @apply whitespace-pre-wrap break-all;
-}
-
 .markdown a {
   @apply font-semibold text-emerald-500 hover:text-emerald-200 hover:underline hover:underline-offset-2;
 }
 
 .markdown img {
   @apply mx-auto block rounded;
+}
+
+.markdown table {
+  @apply min-w-full bg-slate-950/40;
+}
+
+.markdown table th {
+  @apply bg-emerald-900/60 text-base font-bold text-emerald-200;
+}
+
+.markdown table th,
+.markdown table td {
+  @apply border-2 border-slate-700 px-2 py-1;
+}
+
+.markdown code {
+  @apply rounded-md bg-gray-950/60 px-1.5 py-0.5 leading-snug text-indigo-400;
+}
+
+.markdown pre {
+  @apply overflow-hidden rounded-md px-0;
+}
+
+.markdown pre code {
+  @apply grid overflow-auto rounded-none px-0 py-2 leading-relaxed;
+  counter-reset: line;
+}
+
+.markdown [data-rehype-pretty-code-title] {
+  @apply flex h-7 w-full items-center rounded-t-md bg-emerald-900/60 px-2 text-base font-bold text-emerald-200;
+}
+
+.markdown [data-rehype-pretty-code-title] + pre {
+  @apply rounded-t-none;
+}
+
+.markdown [data-line] {
+  @apply border-l-2 border-l-transparent px-4;
+}
+
+.markdown [data-line-numbers] [data-line] {
+  @apply pl-0;
+}
+
+.markdown [data-line-numbers] [data-line]::before {
+  @apply mr-2 inline-block border-r-2 border-r-slate-700 pl-2 text-slate-400;
+  counter-increment: line;
+  content: counter(line);
+}
+
+.markdown [data-line-numbers-max-digits="1"] > [data-line]::before {
+  @apply w-8;
+}
+
+.markdown [data-line-numbers-max-digits="2"] > [data-line]::before {
+  @apply w-8;
+}
+
+.markdown [data-line-numbers-max-digits="3"] > [data-line]::before {
+  @apply w-12;
+}
+
+.markdown [data-highlighted-line] {
+  @apply border-l-2 border-l-indigo-600 bg-indigo-950/40;
+}
+
+.markdown [data-highlighted-chars] {
+  @apply -mx-1 -my-0.5 rounded bg-cyan-900/50 px-1 py-0.5;
+}
+
+.markdown [data-highlighted-chars][data-chars-id] {
+  @apply font-bold;
+}
+
+.markdown [data-highlighted-chars][data-chars-id="1"] {
+  @apply bg-emerald-800/50 !text-emerald-300;
 }
