@@ -47,7 +47,7 @@ export class PostsRepository {
       .replace(/\w*\//, "")
       .replace(/(?:\/index)?\.md$/, "");
 
-    console.log(`${postPath.replace(postsDirectoryPath, "")} -> ${slug}`);
+    // console.log(`${postPath.replace(postsDirectoryPath, "")} -> ${slug}`);
 
     return slug;
   }
