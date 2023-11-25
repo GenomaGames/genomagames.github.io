@@ -26,6 +26,14 @@ export class ListPostsUseCase implements UseCase<Input, PaginatedList<Post>> {
 
     const totalPages: number = await this.postsRepository.getTotalPages(locale);
 
+    if (totalPages === 0) {
+      return {
+        entities: [],
+        page: page,
+        hasMore: page < totalPages,
+      };
+    }
+
     if (page > totalPages || page < MINIMUM_PAGE) {
       throw new Error(
         `Invalid page number: ${page} (totalPages: ${totalPages})`,
