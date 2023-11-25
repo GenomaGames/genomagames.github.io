@@ -1,3 +1,5 @@
+const withNextIntl = require("next-intl/plugin")();
+
 const BASE_URL_DEFAULT = "http://localhost:3000";
 const BASE_URL =
   process.env.NODE_ENV !== "production"
@@ -8,7 +10,7 @@ const BASE_URL =
  * @type {import('next').NextConfig} nextConfig
  */
 const nextConfig = () => {
-  const plugins = [];
+  const plugins = [withNextIntl];
 
   /**
    * @type {import('next').NextConfig} baseConfig
