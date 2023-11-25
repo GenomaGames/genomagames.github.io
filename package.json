@@ -6,11 +6,12 @@
   "author": "Alberto Fernandez <albertofdzm@gmail.com> (http://onlythepixel.com)",
   "scripts": {
     "build": "next build && next-sitemap",
-    "start": "next dev",
-    "start:prod": "http-server ./out",
+    "lint": "next lint && npm run typecheck",
     "prestart:prod": "npm run build",
-    "test": "next lint && npm run typecheck && npm run build",
-    "typecheck": "tsc"
+    "start:prod": "http-server ./out",
+    "start": "next dev",
+    "test": "npm run lint && npm run build",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.4.2",
@@ -67,6 +68,7 @@
     "eslint": "8.53.0",
     "eslint-config-next": "14.0.2",
     "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-simple-import-sort": "10.0.0",
     "http-server": "14.1.1",
     "postcss": "8.4.31",
     "postcss-import": "15.1.0",
