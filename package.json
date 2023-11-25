@@ -7,6 +7,7 @@
   "scripts": {
     "build": "next build && next-sitemap",
     "lint": "next lint && npm run typecheck",
+    "lint:fix": "next lint --fix && npm run typecheck",
     "prestart:prod": "npm run build",
     "start:prod": "http-server ./out",
     "start": "next dev",
