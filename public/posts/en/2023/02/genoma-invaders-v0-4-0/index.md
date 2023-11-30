@@ -5,11 +5,12 @@ coverImage:
   src: ""
   alt: ""
 date: 2023-02-27
-lastmod: 2023-02-27
+lastmod: 2023-11-27
 draft: true
 author: AlbertoFdzM
 tags:
   - devlog
+language: es
 ---
 
 Esta version ha costado bastante generarla sobre todo por lo complicado que ha sido desarrollar el sistema de navegación y su contenido.

@@ -9,9 +9,9 @@
       "previewPath": "'/posts/'yyyy/MM"
     },
     {
-      "title": "New Post",
-      "path": "[[workspace]]/public/posts/{{year}}/{{month}}",
-      "previewPath": "'/posts/'yyyy/MM"
+      "title": "New Post (EN)",
+      "path": "[[workspace]]/public/posts/en/{{year}}/{{month}}",
+      "previewPath": "'/en/posts/'yyyy/MM"
     },
     {
       "title": "New Post (ES)",
@@ -52,15 +52,15 @@
       "title": "Languages",
       "file": "[[workspace]]/data/languages.json",
       "fileType": "json",
-      "labelField": "key",
+      "labelField": "language",
       "schema": {
         "title": "Languages",
         "type": "object",
-        "required": ["key", "language"],
+        "required": ["code", "language"],
         "properties": {
-          "key": {
+          "code": {
             "type": "string",
-            "title": "Key"
+            "title": "Code"
           },
           "language": {
             "type": "string",
@@ -134,7 +134,8 @@
           "type": "dataFile",
           "dataFileId": "authors",
           "dataFileKey": "nickname",
-          "dataFileValue": "nickname"
+          "dataFileValue": "nickname",
+          "multiple": false
         },
         {
           "title": "Tags",
@@ -151,8 +152,9 @@
           "name": "language",
           "type": "dataFile",
           "dataFileId": "languages",
-          "dataFileKey": "key",
-          "dataFileValue": "key"
+          "dataFileKey": "code",
+          "dataFileValue": "language",
+          "multiple": false
         }
       ]
     }
