@@ -84,7 +84,7 @@ const GamePage: React.JSXElementConstructor<Props> = ({
   //   Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE)
   // );
 
-  const ItsioWidget = dynamic(() => import("@/src/components/itchio-widget"), {
+  const ItchioWidget = dynamic(() => import("@/src/components/itchio-widget"), {
     ssr: false,
   });
 
@@ -102,7 +102,7 @@ const GamePage: React.JSXElementConstructor<Props> = ({
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
       ></iframe>
-      <ItsioWidget
+      <ItchioWidget
         backgroundColor="1f2937"
         borderColor="111827"
         borderSize={5}
@@ -114,7 +114,7 @@ const GamePage: React.JSXElementConstructor<Props> = ({
         <a href="https://genomagames.itch.io/genoma-invaders">
           Genoma Invaders by Genoma Games
         </a>
-      </ItsioWidget>
+      </ItchioWidget>
       <p className="mb-8">{game?.summary}</p>
       {game?.posts.length && (
         <>
