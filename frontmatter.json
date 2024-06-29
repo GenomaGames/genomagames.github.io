@@ -1,22 +1,44 @@
 {
   "$schema": "https://frontmatter.codes/frontmatter.schema.json",
   "frontMatter.content.autoUpdateDate": true,
+  "frontMatter.content.i18n": [
+    {
+      "title": "English",
+      "locale": "en",
+      "path": "en"
+    },
+    {
+      "title": "Spanish",
+      "locale": "es",
+      "path": "es"
+    }
+  ],
   "frontMatter.content.pageFolders": [
     {
-      "title": "Posts",
-      "path": "[[workspace]]/public/posts",
-      "disableCreation": true,
-      "previewPath": "'/posts/'yyyy/MM"
-    },
-    {
-      "title": "New Post (EN)",
+      "title": "Posts (EN)",
       "path": "[[workspace]]/public/posts/en/{{year}}/{{month}}",
-      "previewPath": "'/en/posts/'yyyy/MM"
+      "previewPath": "{{locale}}/posts/{{date|yyyy/MM}}",
+      "defaultLocale": "en",
+      "locales": [
+        {
+          "title": "English",
+          "locale": "en",
+          "path": "."
+        }
+      ]
     },
     {
-      "title": "New Post (ES)",
+      "title": "Posts (ES)",
       "path": "[[workspace]]/public/posts/es/{{year}}/{{month}}",
-      "previewPath": "'/es/posts/'yyyy/MM"
+      "previewPath": "{{locale}}/posts/{{date|yyyy/MM}}",
+      "defaultLocale": "es",
+      "locales": [
+        {
+          "title": "Spanish",
+          "locale": "es",
+          "path": "."
+        }
+      ]
     }
   ],
   "frontMatter.content.publicFolder": "public",
