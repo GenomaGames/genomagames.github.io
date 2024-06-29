@@ -20,7 +20,7 @@
     "@fortawesome/free-solid-svg-icons": "6.5.2",
     "@fortawesome/react-fontawesome": "0.2.0",
     "classnames": "2.5.1",
-    "date-fns": "2.30.0",
+    "date-fns": "3.6.0",
     "disqus-react": "1.1.5",
     "flag-icons": "7.2.3",
     "globby": "14.0.1",
