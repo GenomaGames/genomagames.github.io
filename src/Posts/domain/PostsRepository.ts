@@ -41,7 +41,7 @@ export class PostsRepository {
     };
   }
 
-  private generatePostSlugFromPath(postPath: string) {
+  private generatePostSlugFromPath(postPath: string): string {
     const slug: string = postPath
       .replace(`${postsDirectoryPath}/`, "")
       .replace(/\w*\//, "")

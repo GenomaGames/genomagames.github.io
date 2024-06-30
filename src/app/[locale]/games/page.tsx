@@ -41,6 +41,14 @@ const GamesPage: React.JSXElementConstructor<Props> = (props: Props) => {
       coverImage: null,
       isInDevelopment: true,
       releasedAt: null,
+      slug: "unknown-tales-rogue-archipelago",
+      summary: "",
+      name: "Unknown Tales: Rogue Archipelago",
+    },
+    {
+      coverImage: null,
+      isInDevelopment: true,
+      releasedAt: null,
       slug: "genoma-invaders",
       summary:
         "Fixed shooter (Shoot 'em up) where you control a microscopic 🔬 robot exploring the human body while fighting off bacteria, viruses, and other microorganisms 🦠.",
@@ -49,7 +57,7 @@ const GamesPage: React.JSXElementConstructor<Props> = (props: Props) => {
   ];
 
   return (
-    <article className="mb-8">
+    <div className="mb-8">
       <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
         Our Games
       </h1>
@@ -57,7 +65,7 @@ const GamesPage: React.JSXElementConstructor<Props> = (props: Props) => {
         {games.map(
           ({ coverImage, releasedAt, slug, summary, name: title }, index) => {
             return (
-              <article key={index} className="mx-auto">
+              <article key={index} className="mx-auto w-full">
                 <Link
                   className="md group relative block rounded-md bg-gray-800 drop-shadow-xl transition-colors ease-in-out"
                   href={`/${locale}/games/${slug}`}
@@ -104,7 +112,7 @@ const GamesPage: React.JSXElementConstructor<Props> = (props: Props) => {
           },
         )}
       </div>
-    </article>
+    </div>
   );
 };
 

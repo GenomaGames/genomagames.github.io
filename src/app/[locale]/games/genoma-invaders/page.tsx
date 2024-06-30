@@ -8,7 +8,6 @@ import { Post } from "@/src/Posts/domain/Post";
 
 interface Params extends ParsedUrlQuery {
   locale: string;
-  gameSlug: string;
 }
 
 interface GameProps {
@@ -28,61 +27,27 @@ interface Props {
   params: Params;
 }
 
-const games: GameProps[] = [
-  {
-    coverImage: undefined,
-    isInDevelopment: true,
-    posts: [],
-    releasedAt: undefined,
-    slug: "genoma-invaders",
-    itchioPage: "https://genomagames.itch.io/genoma-invaders",
-    summary:
-      "Fixed shooter (Shoot 'em up) where you control a microscopic 🔬 robot exploring the human body while fighting off bacteria, viruses, and other microorganisms 🦠.",
-    title: "Genoma Invaders",
-  },
-];
-
-export const generateStaticParams = async ({
-  params,
-}: {
-  params: {
-    locale: string;
-  };
-}): Promise<Params[]> => {
-  const staticParams: Params[] = games.map((game) => {
-    return {
-      locale: params.locale,
-      gameSlug: game.slug,
-    };
-  });
-
-  return staticParams;
+const game: GameProps = {
+  coverImage: undefined,
+  isInDevelopment: true,
+  posts: [],
+  releasedAt: undefined,
+  slug: "genoma-invaders",
+  itchioPage: "https://genomagames.itch.io/genoma-invaders",
+  summary:
+    "Fixed shooter (Shoot 'em up) where you control a microscopic 🔬 robot exploring the human body while fighting off bacteria, viruses, and other microorganisms 🦠.",
+  title: "Genoma Invaders",
 };
 
-export const generateMetadata = async ({
-  params: { gameSlug },
-}: {
-  params: Params;
-}) => {
-  const game = games.find((game) => game.slug === gameSlug);
-  const metadata: Metadata = {
-    title: game?.title,
-  };
-
-  return metadata;
+export const metadata: Metadata = {
+  title: game.title,
+  description: game.summary,
 };
 
-const GamePage: React.JSXElementConstructor<Props> = ({
-  params: { gameSlug },
-}: Props) => {
-  const game = games.find((game) => game.slug === gameSlug);
-
-  // const allDevlogs: PostType[] = await getDevlogs();
-
-  // const paginatedDevlogs: PostType[] = allDevlogs.slice(
-  //   0,
-  //   Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE)
-  // );
+const GamePage: React.JSXElementConstructor<Props> = (props: Props) => {
+  const {
+    params: { locale },
+  } = props;
 
   const ItchioWidget = dynamic(() => import("@/src/components/itchio-widget"), {
     ssr: false,
@@ -112,7 +77,7 @@ const GamePage: React.JSXElementConstructor<Props> = ({
         textColor="1de9a5"
       >
         <a href="https://genomagames.itch.io/genoma-invaders">
-          Genoma Invaders by Genoma Games
+          {game.title} by Genoma Games
         </a>
       </ItchioWidget>
       <p className="mb-8">{game?.summary}</p>

@@ -22,7 +22,7 @@ import type unist from "unist";
 import { remove } from "unist-util-remove";
 
 import PostArticle from "@/src/components/post-article";
-import { getPostBySlugUseCase } from "@/src/Posts/application/GetPostBySlug";
+import { getPostBySlugUseCase } from "@/src/Posts/application/GetPostBySlugUseCase";
 import { getPostSlugsUseCase } from "@/src/Posts/application/GetPostSlugsUseCase";
 
 interface Params extends ParsedUrlQuery {
