@@ -1,6 +1,7 @@
 {
   "$schema": "https://frontmatter.codes/frontmatter.schema.json",
   "frontMatter.content.autoUpdateDate": true,
+  "frontMatter.content.fmHighlight": true,
   "frontMatter.content.i18n": [
     {
       "title": "English",
@@ -15,7 +16,7 @@
   ],
   "frontMatter.content.pageFolders": [
     {
-      "title": "Posts (EN)",
+      "title": "Posts",
       "path": "[[workspace]]/public/posts/en/{{year}}/{{month}}",
       "previewPath": "{{locale}}/posts/{{date|yyyy/MM}}",
       "defaultLocale": "en",
@@ -28,7 +29,7 @@
       ]
     },
     {
-      "title": "Posts (ES)",
+      "title": "Posts",
       "path": "[[workspace]]/public/posts/es/{{year}}/{{month}}",
       "previewPath": "{{locale}}/posts/{{date|yyyy/MM}}",
       "defaultLocale": "es",
@@ -39,6 +40,12 @@
           "path": "."
         }
       ]
+    },
+    {
+      "title": "Posts",
+      "path": "[[workspace]]/public/posts",
+      "disableCreation": true,
+      "previewPath": "{{locale}}/posts/{{date|yyyy/MM}}"
     }
   ],
   "frontMatter.content.publicFolder": "public",
@@ -96,7 +103,11 @@
   "frontMatter.framework.startCommand": "npm start",
   "frontMatter.git.enabled": true,
   "frontMatter.git.commitMessage": "✍️ update content by Front Matter",
+  "frontMatter.panel.actions.disabled": [],
   "frontMatter.preview.host": "http://localhost:3000",
+  "frontMatter.preview.trailingSlash": false,
+  "frontMatter.site.baseURL": "https://genomagames.com",
+  "frontMatter.taxonomy.alignFilename": false,
   "frontMatter.taxonomy.contentTypes": [
     {
       "name": "default",
@@ -181,6 +192,7 @@
       ]
     }
   ],
+  "frontMatter.taxonomy.frontMatterType": "YAML",
   "frontMatter.taxonomy.dateFormat": "yyyy-MM-dd",
   "frontMatter.taxonomy.seoDescriptionField": "summary",
   "frontMatter.templates.prefix": "",
