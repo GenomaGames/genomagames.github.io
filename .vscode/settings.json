@@ -18,5 +18,6 @@
       "Post path not found for slug: ${slug}"
     ],
     "src/components/footer.tsx": ["Footer"]
-  }
+  },
+  "cSpell.language": "es-ES,en-US,en"
 }
