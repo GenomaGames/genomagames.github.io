@@ -19,7 +19,7 @@ interface Params extends ParsedUrlQuery {
 }
 
 interface Props extends React.PropsWithChildren {
-  params: Params;
+  params: Promise<Params>;
 }
 
 export const viewport: Viewport = {
@@ -63,10 +63,17 @@ export const generateStaticParams = async (): Promise<Params[]> => {
   return staticParams;
 };
 
-const LocaleLayout: React.JSXElementConstructor<Props> = ({
-  children,
-  params: { locale },
-}: Props) => {
+const LocaleLayout: React.JSXElementConstructor<Props> = async (props: Props) => {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
+  const {
+    children
+  } = props;
+
   unstable_setRequestLocale(locale);
 
   return (

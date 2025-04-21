@@ -14,7 +14,7 @@ interface Params extends ParsedUrlQuery {
 }
 
 interface Props {
-  params: Params;
+  params: Promise<Params>;
 }
 
 export const generateStaticParams = async ({
@@ -38,11 +38,11 @@ export const generateStaticParams = async ({
   return staticParams;
 };
 
-export const generateMetadata = async ({
-  params: { page },
-}: {
-  params: Params;
-}) => {
+export const generateMetadata = async (props: { params: Promise<Params> }) => {
+  const params = await props.params;
+
+  const { page } = params;
+
   const currentPage: number = Number(page);
 
   const metadata: Metadata = {
@@ -64,15 +64,13 @@ export const generateMetadata = async ({
 const PaginatedPostsPage: React.JSXElementConstructor<Props> = async (
   props: Props,
 ) => {
-  const {
-    params: { locale, page },
-  } = props;
+  const { locale, page } = await props.params;
 
   const currentPage: number = Number(page);
   const nextPage: number = currentPage + 1;
   const previousPage: number = currentPage - 1;
 
-  unstable_setRequestLocale(props.params.locale);
+  unstable_setRequestLocale((await props.params).locale);
 
   const t = await getTranslations({
     locale: locale,

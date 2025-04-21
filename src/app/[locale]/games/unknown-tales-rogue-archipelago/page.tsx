@@ -23,7 +23,7 @@ interface GameProps {
 }
 
 interface Props {
-  params: Params;
+  params: Promise<Params>;
 }
 
 const game: GameProps = {

@@ -22,7 +22,7 @@ interface Params extends ParsedUrlQuery {
 }
 
 interface Props {
-  params: Params;
+  params: Promise<Params>;
 }
 
 export const metadata: Metadata = {
@@ -77,7 +77,8 @@ async function getPrivacyPolicyContent(locale: string) {
   }
 }
 
-const PrivacyPolicyPage = async ({ params }: Props) => {
+const PrivacyPolicyPage = async (props: Props) => {
+  const params = await props.params;
   const content = await getPrivacyPolicyContent(params.locale);
 
   return (

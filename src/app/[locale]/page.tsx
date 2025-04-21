@@ -11,13 +11,11 @@ interface Params extends ParsedUrlQuery {
 }
 
 interface Props {
-  params: Params;
+  params: Promise<Params>;
 }
 
 const IndexPage: React.JSXElementConstructor<Props> = async (props: Props) => {
-  const {
-    params: { locale },
-  } = props;
+  const { locale } = await props.params;
   unstable_setRequestLocale(locale);
 
   const t = await getTranslations({

@@ -31,7 +31,7 @@ interface Params extends ParsedUrlQuery {
 }
 
 interface Props {
-  params: Params;
+  params: Promise<Params>;
 }
 
 export const generateStaticParams = async ({
@@ -55,7 +55,8 @@ export const generateStaticParams = async ({
   return staticParams;
 };
 
-export const generateMetadata = async ({ params }: { params: Params }) => {
+export const generateMetadata = async (props: { params: Promise<Params> }) => {
+  const params = await props.params;
   const slug: string = params.slug.join("/");
   const post = await getPostBySlugUseCase.run({ slug, locale: params.locale });
 
@@ -85,9 +86,8 @@ function remarkRemoveFirstHeader() {
   };
 }
 
-const PostPage: React.JSXElementConstructor<Props> = async ({
-  params,
-}: Props) => {
+const PostPage: React.JSXElementConstructor<Props> = async (props: Props) => {
+  const params = await props.params;
   const slug: string = params.slug.join("/");
   const post = await getPostBySlugUseCase.run({ slug, locale: params.locale });
 

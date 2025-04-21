@@ -1,8 +1,8 @@
 import { ParsedUrlQuery } from "node:querystring";
 
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
 
+import ItchioWidget from "@/src/components/itchio-widget";
 import PostsList from "@/src/components/posts-list";
 import { Post } from "@/src/Posts/domain/Post";
 
@@ -24,7 +24,7 @@ interface GameProps {
 }
 
 interface Props {
-  params: Params;
+  params: Promise<Params>;
 }
 
 const game: GameProps = {
@@ -44,14 +44,8 @@ export const metadata: Metadata = {
   description: game.summary,
 };
 
-const GamePage: React.JSXElementConstructor<Props> = (props: Props) => {
-  const {
-    params: { locale },
-  } = props;
-
-  const ItchioWidget = dynamic(() => import("@/src/components/itchio-widget"), {
-    ssr: false,
-  });
+const GamePage: React.JSXElementConstructor<Props> = async (props: Props) => {
+  const { locale } = await props.params;
 
   return (
     <>

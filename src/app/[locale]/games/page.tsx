@@ -23,7 +23,7 @@ interface GameProps {
 }
 
 interface Props {
-  params: Params;
+  params: Promise<Params>;
 }
 
 export const metadata: Metadata = {
@@ -31,10 +31,8 @@ export const metadata: Metadata = {
   description: "List of games released and being developed by Genoma Games",
 };
 
-const GamesPage: React.JSXElementConstructor<Props> = (props: Props) => {
-  const {
-    params: { locale },
-  } = props;
+const GamesPage: React.JSXElementConstructor<Props> = async (props: Props) => {
+  const { locale } = await props.params;
 
   const games: GameProps[] = [
     {
