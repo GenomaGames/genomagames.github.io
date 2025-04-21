@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    creator: `@${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`,
+    creator: `@${process.env.NEXT_PUBLIC_X_USERNAME}`,
     description: process.env.NEXT_PUBLIC_SITE_DESCRIPTION,
     title: process.env.NEXT_PUBLIC_SITE_NAME,
     images: [`${process.env.NEXT_PUBLIC_BASE_URL}/icon.png`],

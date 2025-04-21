@@ -1,6 +1,6 @@
 import "flag-icons/css/flag-icons.min.css";
 
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faGamepad } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
@@ -58,19 +58,19 @@ const Header: React.JSXElementConstructor<Props> = (props: Props) => {
                 icon={faGamepad}
                 size="xl"
               />
-              <span className="sr-only">{`${process.env.NEXT_PUBLIC_SITE_NAME} Twitter`}</span>
+              <span className="sr-only">{`${process.env.NEXT_PUBLIC_SITE_NAME} on X`}</span>
             </Link>
           )}
           <Link
             className="flex h-12 w-12 items-center justify-center justify-self-end"
-            href={`https://twitter.com/${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`}
+            href={`https://x.com/${process.env.NEXT_PUBLIC_X_USERNAME}`}
           >
             <FontAwesomeIcon
-              className="text-[#00acee]"
-              icon={faTwitter}
+              className="text-white"
+              icon={faXTwitter}
               size="xl"
             />
-            <span className="sr-only">{`${process.env.NEXT_PUBLIC_SITE_NAME} Twitter`}</span>
+            <span className="sr-only">{`${process.env.NEXT_PUBLIC_SITE_NAME} on X`}</span>
           </Link>
         </div>
       </div>

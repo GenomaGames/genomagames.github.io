@@ -49,8 +49,8 @@ jobs:
           echo NEXT_PUBLIC_POSTS_PER_PAGE=${{ secrets.NEXT_PUBLIC_POSTS_PER_PAGE }} >> .env
           echo NEXT_PUBLIC_SHOW_DRAFTS=${{ secrets.NEXT_PUBLIC_SHOW_DRAFTS }} >> .env
           echo NEXT_PUBLIC_SITE_NAME=${{ secrets.NEXT_PUBLIC_SITE_NAME }} >> .env
-          echo NEXT_PUBLIC_TWITTER_USERNAME=${{ secrets.NEXT_PUBLIC_TWITTER_USERNAME }} >> .env
-          echo NEXT_PUBLIC_TWITTER_SHARE_POST_HASHTAGS=${{ secrets.NEXT_PUBLIC_TWITTER_SHARE_POST_HASHTAGS }} >> .env
+          echo NEXT_PUBLIC_X_USERNAME=${{ secrets.NEXT_PUBLIC_X_USERNAME }} >> .env
+          echo NEXT_PUBLIC_X_SHARE_POST_HASHTAGS=${{ secrets.NEXT_PUBLIC_X_SHARE_POST_HASHTAGS }} >> .env
 
       - name: Build
         run: npm run build

@@ -46,10 +46,10 @@ const Meta = () => {
         />
 
         <meta name="twitter:card" content="summary" />
-        {process.env.NEXT_PUBLIC_TWITTER_USERNAME && (
+        {process.env.NEXT_PUBLIC_X_USERNAME && (
           <meta
             name="twitter:site"
-            content={`@${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`}
+            content={`@${process.env.NEXT_PUBLIC_X_USERNAME}`}
           />
         )}
       </Head>
