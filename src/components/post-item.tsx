@@ -1,7 +1,4 @@
-import {
-  faCalendarDay,
-  faPersonDigging,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCalendarDay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -9,6 +6,7 @@ import Link from "next/link";
 import { getLocale } from "next-intl/server";
 
 import { Post } from "../Posts/domain/Post";
+import DraftLabel from "./draft-label";
 // import { CommentCount } from "disqus-react";
 
 type Props = Post;
@@ -29,14 +27,7 @@ const PostItem: React.JSXElementConstructor<Props> = async ({
         className="md group relative block rounded-md bg-gray-800 drop-shadow-xl transition-colors ease-in-out sm:pl-44 sm:pt-2 lg:pl-56"
         href={`/${locale}/posts/${slug}`}
       >
-        {draft && (
-          <div
-            className="absolute right-0 top-0 z-10 w-8 rounded-bl-md rounded-tr-md bg-indigo-700 text-center"
-            title="Draft post"
-          >
-            <FontAwesomeIcon icon={faPersonDigging} />
-          </div>
-        )}
+        <DraftLabel isDraft={draft} />
         <header>
           {coverImage ? (
             <Image
@@ -47,7 +38,7 @@ const PostItem: React.JSXElementConstructor<Props> = async ({
               height={144}
             />
           ) : (
-            <div className="h-2 w-full rounded-t-md bg-gradient-to-r from-emerald-500 via-emerald-700 to-indigo-800 group-hover:from-emerald-300 group-hover:to-indigo-700 group-focus:from-emerald-300 group-focus:to-indigo-700  sm:absolute sm:left-0 sm:top-0 sm:h-full sm:w-44 sm:rounded-none sm:rounded-l-md sm:bg-gradient-to-br lg:w-56"></div>
+            <div className="h-2 w-full rounded-t-md bg-gradient-to-r from-emerald-500 via-emerald-700 to-indigo-800 group-hover:from-emerald-300 group-hover:to-indigo-700 group-focus:from-emerald-300 group-focus:to-indigo-700 sm:absolute sm:left-0 sm:top-0 sm:h-full sm:w-44 sm:rounded-none sm:rounded-l-md sm:bg-gradient-to-br lg:w-56"></div>
           )}
           <h2 className="mb-2 mt-3 px-3 text-lg font-bold text-emerald-500 transition-colors ease-in-out group-hover:text-emerald-200 group-hover:underline group-hover:underline-offset-4 group-focus:text-emerald-200 group-focus:underline group-focus:underline-offset-4 sm:mt-0">
             {title}

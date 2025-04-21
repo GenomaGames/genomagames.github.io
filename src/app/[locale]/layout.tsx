@@ -27,14 +27,20 @@ export const viewport: Viewport = {
   themeColor: "#603cba",
 };
 
+if (process.env.NEXT_PUBLIC_BASE_URL === undefined) {
+  throw new Error("NEXT_PUBLIC_BASE_URL is not defined");
+}
+
+const baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL;
+
 export const metadata: Metadata = {
   alternates: {
     types: {
-      "application/rss+xml": `${process.env.NEXT_PUBLIC_BASE_URL}/feed.xml`,
+      "application/rss+xml": `${baseUrl}/feed.xml`,
     },
   },
   description: process.env.NEXT_PUBLIC_SITE_DESCRIPTION,
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL as string),
+  metadataBase: new URL(baseUrl),
   openGraph: {
     images: "/icon.png",
   },
@@ -47,7 +53,7 @@ export const metadata: Metadata = {
     creator: `@${process.env.NEXT_PUBLIC_X_USERNAME}`,
     description: process.env.NEXT_PUBLIC_SITE_DESCRIPTION,
     title: process.env.NEXT_PUBLIC_SITE_NAME,
-    images: [`${process.env.NEXT_PUBLIC_BASE_URL}/icon.png`],
+    images: [`${baseUrl}/icon.png`],
   },
 };
 

@@ -1,11 +1,9 @@
-import { faPersonDigging } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import PostFooter from "@/src/components/post-footer";
 import PostHeader from "@/src/components/post-header";
 import markdownStyles from "@/src/styles/markdown-styles.module.css";
 
 import { Post } from "../Posts/domain/Post";
+import DraftLabel from "./draft-label";
 
 type Props = Post;
 
@@ -14,14 +12,7 @@ const PostArticle: React.JSXElementConstructor<Props> = (props: Props) => {
 
   return (
     <article className="container mx-auto mb-4 break-words rounded-md bg-gray-800 drop-shadow-xl">
-      {draft && (
-        <div
-          className="absolute right-0 top-0 w-8 rounded-bl-md rounded-tr-md bg-indigo-700 text-center"
-          title="Draft post"
-        >
-          <FontAwesomeIcon icon={faPersonDigging} />
-        </div>
-      )}
+      <DraftLabel isDraft={draft} />
       <PostHeader {...props} />
 
       <div className="px-3 py-4 sm:px-6 md:px-8">
