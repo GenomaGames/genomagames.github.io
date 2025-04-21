@@ -1,57 +1,32 @@
-import path from "node:path";
-
-import { globby } from "globby";
-import grayMatter from "gray-matter";
-import { toString } from "mdast-util-to-string";
-import { remark } from "remark";
-import remarkGfm from "remark-gfm";
-import remarkSqueezeParagraphs from "remark-squeeze-paragraphs";
-import stripMarkdown from "strip-markdown";
-import { visit } from "unist-util-visit";
-
 import { Locale } from "@/src/i18n";
 
-import { Post } from "../domain/Post";
+import { PostCacheManager } from "../infrastructure/PostCacheManager";
+import { PostContentParser } from "../infrastructure/PostContentParser";
+import { PostPathResolver } from "../infrastructure/PostPathResolver";
+import { Post } from "./Post";
 
-type Cache = {
-  [Key in Locale]: {
-    postPaths: Set<string>;
-    postPathsBySlug: Map<string, string>;
-    postSlugsByPath: Map<string, string>;
-  };
-};
-
-const postsDirectoryPath = path.join(process.cwd(), "public/posts");
-
+/**
+ * Repository for accessing and managing blog posts
+ */
 export class PostsRepository {
-  private cache: Cache;
+  private readonly pathResolver: PostPathResolver;
+  private readonly contentParser: PostContentParser;
+  private readonly cacheManager: PostCacheManager;
+  private readonly postsPerPage: number = 10;
 
-  constructor() {
-    this.cache = {
-      [Locale.en]: {
-        postPaths: new Set(),
-        postPathsBySlug: new Map(),
-        postSlugsByPath: new Map(),
-      },
-      [Locale.es]: {
-        postPaths: new Set(),
-        postPathsBySlug: new Map(),
-        postSlugsByPath: new Map(),
-      },
-    };
+  constructor(
+    pathResolver: PostPathResolver,
+    contentParser: PostContentParser,
+    cacheManager: PostCacheManager,
+  ) {
+    this.pathResolver = pathResolver;
+    this.contentParser = contentParser;
+    this.cacheManager = cacheManager;
   }
 
-  private generatePostSlugFromPath(postPath: string): string {
-    const slug: string = postPath
-      .replace(`${postsDirectoryPath}/`, "")
-      .replace(/\w*\//, "")
-      .replace(/(?:\/index)?\.md$/, "");
-
-    // console.log(`${postPath.replace(postsDirectoryPath, "")} -> ${slug}`);
-
-    return slug;
-  }
-
+  /**
+   * Get a post by its file path
+   */
   public async getPostByPath({
     locale,
     postPath,
@@ -59,208 +34,147 @@ export class PostsRepository {
     locale: Locale;
     postPath: string;
   }): Promise<Post> {
-    const grayMatterFile = grayMatter.read(postPath);
+    // Try to get slug from cache first
+    const cachedSlug = this.cacheManager.getPostSlugByPath(postPath, locale);
 
-    const slug =
-      this.cache[locale].postSlugsByPath.get(postPath) ||
-      this.getPostSlug(postPath, grayMatterFile);
+    // Parse the post with the cached slug or let the parser generate one
+    const post = await this.contentParser.parsePostFile(postPath, cachedSlug);
 
-    let contentTree;
-
-    let title: string | undefined = grayMatterFile.data.title;
-
-    if (!title) {
-      contentTree = remark().parse(grayMatterFile.content);
-
-      const headings: string[] = [];
-
-      visit(
-        contentTree,
-        {
-          type: "heading",
-          depth: 1,
-        },
-        (node) => {
-          headings.push(toString(node));
-        },
-      );
-
-      title = headings[0] || "";
+    // Cache the slug if it wasn't already cached
+    if (!cachedSlug) {
+      this.cacheManager.setPostPathAndSlug(postPath, post.slug, locale);
     }
-
-    let summary: string | undefined = grayMatterFile.data.summary;
-
-    if (!summary) {
-      summary = (
-        await remark()
-          .use(remarkGfm)
-          .use(remarkSqueezeParagraphs)
-          .use(stripMarkdown)
-          .process(grayMatterFile.content)
-      )
-        .toString()
-        .replace(title, "")
-        .slice(0, 120)
-        .trim()
-        .concat("...");
-    }
-
-    let date: number;
-
-    if (grayMatterFile.data.date && grayMatterFile.data.date instanceof Date) {
-      date = grayMatterFile.data.date.getTime();
-    } else {
-      throw new Error(`Missing date on post ${postPath}`);
-    }
-
-    let coverImage: Post["coverImage"] = grayMatterFile.data.coverImage || null;
-
-    if (coverImage && typeof coverImage.src === "string") {
-      if (!path.isAbsolute(coverImage.src)) {
-        const postDirectoryPath = postPath.replace(path.basename(postPath), "");
-        coverImage.src = path
-          .resolve(postDirectoryPath, coverImage.src)
-          .replace(/.*\/public/, "");
-      }
-    }
-
-    const post: Post = {
-      content: grayMatterFile.content,
-      coverImage,
-      date,
-      draft: grayMatterFile.data.draft || false,
-      summary: summary,
-      slug,
-      title,
-    };
 
     return post;
   }
 
+  /**
+   * Get a post by its slug
+   */
   public async getPostBySlug({
     slug,
     locale,
   }: {
     slug: string;
     locale: Locale;
-  }) {
-    let postPath: string | undefined =
-      this.cache[locale].postPathsBySlug.get(slug);
+  }): Promise<Post> {
+    // Try to get the post path from cache first
+    let postPath = this.cacheManager.getPostPathBySlug(slug, locale);
 
     if (!postPath) {
-      await this.getPostSlugs(locale);
+      // If cache miss, get all slugs (which will populate the cache)
+      this.getPostSlugs(locale);
 
-      postPath = this.cache[locale].postPathsBySlug.get(slug);
+      // Try again from the now-populated cache
+      postPath = this.cacheManager.getPostPathBySlug(slug, locale);
 
       if (!postPath) {
-        throw new Error(`Post path not found for slug: ${slug}`);
+        throw new Error(
+          `Post with slug "${slug}" not found for locale "${locale}"`,
+        );
       }
     }
 
-    const post = await this.getPostByPath({ locale, postPath });
-
-    return post;
+    return this.getPostByPath({ locale, postPath });
   }
 
-  public async getPaginatedPostsPaths({
+  /**
+   * Get all post paths for a specific locale
+   */
+  public getPostPaths(locale: Locale): string[] {
+    let postPaths = this.cacheManager.getPostPaths(locale);
+
+    if (postPaths.length === 0) {
+      postPaths = this.pathResolver.resolvePostPaths(locale);
+      this.cacheManager.setPostPaths(postPaths, locale);
+    }
+
+    // Filter drafts if needed
+    const isHidingDrafts = process.env.NEXT_PUBLIC_SHOW_DRAFTS !== "true";
+
+    return isHidingDrafts
+      ? postPaths.filter(
+          (postPath) => !this.contentParser.isDraftPost(postPath),
+        )
+      : postPaths;
+  }
+
+  /**
+   * Get paginated post paths for a specific page
+   */
+  public getPaginatedPostsPaths({
     page,
     locale,
   }: {
     page: number;
     locale: Locale;
-  }): Promise<string[]> {
-    let postPaths: string[] = await this.getPostPaths(locale);
+  }): string[] {
+    const postPaths = this.getPostPaths(locale);
 
-    postPaths = postPaths.sort((pathA, pathB) => (pathA > pathB ? -1 : 1));
-
-    postPaths = postPaths.slice(
-      (page - 1) * Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),
-      page * Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),
+    return this.pathResolver.paginatePostPaths(
+      postPaths,
+      page,
+      this.postsPerPage,
     );
-
-    return postPaths;
   }
 
-  public async getPostPaths(locale: Locale): Promise<string[]> {
-    let postPaths: string[] = Array.from(this.cache[locale].postPaths.values());
+  /**
+   * Get all post slugs for a specific locale
+   */
+  public getPostSlugs(locale: Locale): string[] {
+    let postSlugs = this.cacheManager.getPostSlugs(locale);
 
-    if (postPaths.length === 0) {
-      const localizedPostsDirectoryPath: string = path.join(
-        postsDirectoryPath,
-        locale,
-      );
-      postPaths = await globby(
-        path.join(localizedPostsDirectoryPath, "**/*.md"),
-      );
+    if (postSlugs.length === 0) {
+      const postPaths = this.getPostPaths(locale);
 
-      if (postPaths.length === 0) {
-        console.warn(`No posts found in ${localizedPostsDirectoryPath}`);
-      }
-
-      postPaths.forEach((postPath) =>
-        this.cache[locale].postPaths.add(postPath),
+      postSlugs = postPaths.map((postPath) =>
+        this.getPostSlug(postPath, locale),
       );
+      this.cacheManager.setPostSlugs(postSlugs, locale);
     }
 
-    const isHidingDrafts = process.env.NEXT_PUBLIC_SHOW_DRAFTS !== "true";
-
-    if (isHidingDrafts) {
-      postPaths = postPaths.filter((postPath) => !this.isDraftPost(postPath));
-    }
-
-    return postPaths;
+    return postSlugs;
   }
 
-  private isDraftPost(postPath: string): boolean {
-    const grayMatterFile = grayMatter.read(postPath);
+  /**
+   * Get a post slug by its file path
+   */
+  private getPostSlug(postPath: string, locale: Locale): string {
+    let slug = this.cacheManager.getPostSlugByPath(postPath, locale);
 
-    return grayMatterFile.data.draft;
-  }
-
-  private getPostSlug(
-    postPath: string,
-    grayMatterFile?: grayMatter.GrayMatterFile<string>,
-  ) {
-    if (!grayMatterFile) {
-      grayMatterFile = grayMatter.read(postPath);
+    if (!slug) {
+      slug = this.contentParser.extractSlug(postPath);
+      this.cacheManager.setPostPathAndSlug(postPath, slug, locale);
     }
-
-    const slug: string =
-      typeof grayMatterFile.data.slug === "string"
-        ? grayMatterFile.data.slug
-        : this.generatePostSlugFromPath(postPath);
 
     return slug;
   }
 
-  public async getPostSlugs(locale: Locale): Promise<string[]> {
-    const postPaths: string[] = await this.getPostPaths(locale);
+  /**
+   * Get the total number of pages based on posts per page
+   */
+  public getTotalPages(locale: Locale): number {
+    const totalPosts = this.getTotalPosts(locale);
 
-    const slugs: string[] = postPaths.map((postPath) => {
-      const slug: string = this.getPostSlug(postPath);
-
-      this.cache[locale].postPathsBySlug.set(slug, postPath);
-      this.cache[locale].postSlugsByPath.set(postPath, slug);
-
-      return slug;
-    });
-
-    return slugs;
+    return Math.ceil(totalPosts / this.postsPerPage);
   }
 
-  public async getTotalPages(locale: Locale): Promise<number> {
-    const totalPosts = await this.getTotalPosts(locale);
+  /**
+   * Get the total number of posts
+   */
+  private getTotalPosts(locale: Locale): number {
+    const postPaths = this.getPostPaths(locale);
 
-    const totalPages: number = Math.ceil(
-      totalPosts / Number(process.env.NEXT_PUBLIC_POSTS_PER_PAGE),
-    );
-
-    return totalPages;
-  }
-
-  private async getTotalPosts(locale: Locale): Promise<number> {
-    return (await this.getPostPaths(locale)).length;
+    return postPaths.length;
   }
 }
 
-export const postsRepository = new PostsRepository();
+const pathResolver = new PostPathResolver();
+const contentParser = new PostContentParser(pathResolver);
+const cacheManager = new PostCacheManager();
+
+export const postsRepository = new PostsRepository(
+  pathResolver,
+  contentParser,
+  cacheManager,
+);
