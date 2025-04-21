@@ -1,8 +1,8 @@
 ---
 title: "Desarrolla un Juego de Acción 2D en Unity: Introducción"
 summary: ""
-date: 2024-10-30
-lastmod: null
+date: 9999-12-31
+lastmod: 2025-04-21
 draft: true
 author: AlbertoFdzM
 tags: []
