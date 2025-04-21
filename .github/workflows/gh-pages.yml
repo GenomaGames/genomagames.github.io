@@ -40,18 +40,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # - name: Generate .env file
-      #   run: |
-      #     touch .env
-      #     echo NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL }} >> .env
-      #     echo NEXT_PUBLIC_DISQUS_SHORTNAME=${{ secrets.NEXT_PUBLIC_DISQUS_SHORTNAME }} >> .env
-      #     echo NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=${{ secrets.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID }} >> .env
-      #     echo NEXT_PUBLIC_POSTS_PER_PAGE=${{ secrets.NEXT_PUBLIC_POSTS_PER_PAGE }} >> .env
-      #     echo NEXT_PUBLIC_SHOW_DRAFTS=${{ secrets.NEXT_PUBLIC_SHOW_DRAFTS }} >> .env
-      #     echo NEXT_PUBLIC_SITE_NAME=${{ secrets.NEXT_PUBLIC_SITE_NAME }} >> .env
-      #     echo NEXT_PUBLIC_X_USERNAME=${{ secrets.NEXT_PUBLIC_X_USERNAME }} >> .env
-      #     echo NEXT_PUBLIC_X_SHARE_POST_HASHTAGS=${{ secrets.NEXT_PUBLIC_X_SHARE_POST_HASHTAGS }} >> .env
-
       - name: Build
         env:
           NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
