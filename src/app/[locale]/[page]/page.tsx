@@ -2,7 +2,7 @@ import { ParsedUrlQuery } from "node:querystring";
 
 import { Metadata } from "next";
 import Link from "next/link";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import PostsList from "@/src/components/posts-list";
 import { getPostsPagesUseCase } from "@/src/Posts/application/GetPostsPagesUseCase";
@@ -70,7 +70,7 @@ const PaginatedPostsPage: React.JSXElementConstructor<Props> = async (
   const nextPage: number = currentPage + 1;
   const previousPage: number = currentPage - 1;
 
-  unstable_setRequestLocale((await props.params).locale);
+  setRequestLocale(locale);
 
   const t = await getTranslations({
     locale: locale,

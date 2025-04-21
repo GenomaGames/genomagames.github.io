@@ -1,4 +1,4 @@
-import { Locale } from "@/src/i18n";
+import { Locale } from "@/src/lib/Locale";
 import { List } from "@/src/Shared/domain/List";
 
 import { Game } from "./Game";

@@ -1,4 +1,4 @@
-import { Locale } from "@/src/i18n";
+import { Locale } from "@/src/lib/Locale";
 
 /**
  * Manages caching of post data to avoid repeated file system operations

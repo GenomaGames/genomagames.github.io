@@ -1,4 +1,4 @@
-import { defaultLocale, Locale } from "@/src/i18n";
+import { routing } from "@/src/i18n/routing";
 import { isLocale } from "@/src/lib/isEnumValue";
 import { UseCase } from "@/src/Shared/application/UseCase";
 import { List } from "@/src/Shared/domain/List";
@@ -14,7 +14,7 @@ export class ListPostsUseCase implements UseCase<Input, List<Game>> {
   constructor(private gamesRepository: GamesRepository) {}
 
   public async run({
-    locale = defaultLocale,
+    locale = routing.defaultLocale,
   }: Input): Promise<List<Game>> {
     if (!isLocale(locale)) {
       throw new Error(`Locale "${locale}" not valid`);

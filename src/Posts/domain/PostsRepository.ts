@@ -1,4 +1,4 @@
-import { Locale } from "@/src/i18n";
+import { Locale } from "@/src/lib/Locale";
 
 import { PostCacheManager } from "../infrastructure/PostCacheManager";
 import { PostContentParser } from "../infrastructure/PostContentParser";

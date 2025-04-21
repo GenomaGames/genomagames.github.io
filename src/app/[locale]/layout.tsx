@@ -6,11 +6,12 @@ import { ParsedUrlQuery } from "node:querystring";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 
 import Footer from "@/src/components/footer";
 import Header from "@/src/components/header";
-import { locales } from "@/src/i18n";
+import { routing } from "@/src/i18n/routing";
 
 config.autoAddCss = false;
 
@@ -58,23 +59,21 @@ export const metadata: Metadata = {
 };
 
 export const generateStaticParams = async (): Promise<Params[]> => {
-  const staticParams: Params[] = locales.map((locale) => ({ locale }));
+  const staticParams: Params[] = routing.locales.map((locale) => ({ locale }));
 
   return staticParams;
 };
 
-const LocaleLayout: React.JSXElementConstructor<Props> = async (props: Props) => {
+const LocaleLayout: React.JSXElementConstructor<Props> = async (
+  props: Props,
+) => {
   const params = await props.params;
 
-  const {
-    locale
-  } = params;
+  const { locale } = params;
 
-  const {
-    children
-  } = props;
+  const { children } = props;
 
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   return (
     <html
@@ -86,7 +85,7 @@ const LocaleLayout: React.JSXElementConstructor<Props> = async (props: Props) =>
         <Header />
         <div className="flex min-h-screen flex-col">
           <main className="mx-auto mt-16 w-full px-5 pt-4 sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
-            {children}
+            <NextIntlClientProvider>{children}</NextIntlClientProvider>
           </main>
           <Footer />
         </div>

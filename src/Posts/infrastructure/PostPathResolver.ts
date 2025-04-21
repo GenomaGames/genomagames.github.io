@@ -2,7 +2,7 @@ import path from "node:path";
 
 import { globbySync } from "globby";
 
-import { Locale } from "@/src/i18n";
+import { Locale } from "@/src/lib/Locale";
 
 export class PostPathResolver {
   private readonly postsDirectoryPath: string;
