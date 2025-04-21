@@ -2,9 +2,9 @@
 date: 2021-08-23
 summary: Install Android Build Support on Unity 2020.3.16f1 using Unity Hub 3.0.0-beta.2
 tags:
-  - unity
   - tip
-  - unity hub
+  - unity
+  - unity-hub
 coverImage:
   src: /posts/assets/2020-07-02-how-to-install-unity-2020/unity_2020_background.jpg
   alt: Unity 2020 Background
