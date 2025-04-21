@@ -1,0 +1,415 @@
+---
+title: Tutorial para crear un juego multijugador en Unity DOTS
+summary: Aprende a crear un juego multijugador en Unity DOTS con este tutorial paso a paso y mejora tus habilidades de desarrollo de videojuegos.
+coverImage:
+  src: /posts/es/2025/04/tutorial-para-crear-un-juego-multijugador-en-unity-dots/entities-splash-image.png
+  alt: Unity Entities
+date: 2025-04-21
+lastmod: 2025-04-21
+draft: true
+author: AlbertoFdzM
+tags:
+  - games
+  - intermediate
+  - tutorial
+  - unity-dots
+categories: []
+language: es
+keywords:
+  - Unity DOTS
+  - Unity ECS
+  - multijugador online
+---
+
+# Tutorial para crear un juego multijugador en Unity DOTS - Parte 1: Introducción y Configuración
+
+- **Prerrequisitos**: Conocimientos básicos de Unity y C#
+- **Versión de Unity**: Unity 6
+- **Rama Git**: tutorial/01
+
+## Introducción
+
+Bienvenidos a esta serie de tutoriales sobre Unity DOTS (Data-Oriented Technology Stack), una tecnología revolucionaria que está cambiando la forma en que desarrollamos juegos de alta performance en Unity. En esta serie aprenderás cómo implementar un sistema multijugador escalable utilizando un enfoque orientado a datos.
+
+Este primer tutorial te introducirá a los conceptos fundamentales de DOTS, explicará por qué es importante para el desarrollo de juegos modernos y te guiará a través de la configuración inicial de tu proyecto. Al final, tendrás un entendimiento sólido de los componentes principales de DOTS y habrás configurado tu entorno de desarrollo para comenzar a crear tu juego multijugador.
+
+## 1. Entendiendo los fundamentos de DOTS
+
+### 1.1 Los desafíos de rendimiento en el desarrollo de juegos modernos
+
+El desarrollo de videojuegos enfrenta constantemente el desafío de maximizar el rendimiento mientras se crean mundos cada vez más complejos e inmersivos. Tradicionalmente, nos encontramos con dos tipos de limitaciones:
+
+- **Aplicaciones limitadas por CPU**: Cuando la lógica del juego, la física y otros cálculos sobrecargan el procesador.
+- **Aplicaciones limitadas por GPU**: Cuando los gráficos y efectos visuales son el principal cuello de botella.
+
+En los juegos multijugador, la CPU suele ser el factor limitante debido a la necesidad de gestionar numerosas entidades, sincronización de red y lógica de juego.
+
+Uno de los problemas fundamentales en la programación tradicional orientada a objetos (OOP) es el patrón de acceso a memoria. Cuando los datos relacionados están dispersos en la memoria (como sucede en la jerarquía de GameObjects), se producen numerosos "fallos de caché" que reducen drásticamente el rendimiento.
+
+A medida que un juego escala con más entidades y jugadores, la arquitectura tradicional de GameObjects se vuelve ineficiente, causando caídas de FPS y experiencias de juego inconsistentes.
+
+### 1.2 Diseño de memoria: OOP tradicional vs. diseño orientado a datos
+
+Para entender la diferencia entre estos enfoques, imagina una biblioteca:
+
+- **Enfoque orientado a objetos**: Cada libro es una entidad completa con todas sus características (autor, título, género, contenido). Para leer información de 100 libros, necesitas recorrer toda la biblioteca y abrir cada libro.
+
+- **Enfoque orientado a datos**: La información está organizada por tipo: una estantería contiene todos los títulos, otra todos los autores, etc. Para leer los títulos de 100 libros, simplemente recorres la estantería de títulos secuencialmente.
+
+Este segundo enfoque aprovecha la "coherencia de caché", permitiendo al procesador cargar datos relacionados en secuencia, reduciendo drásticamente los tiempos de acceso a memoria.
+
+En términos prácticos, esto puede significar la diferencia entre gestionar 1,000 entidades a 60 FPS en la arquitectura tradicional, y poder manejar 100,000 entidades a la misma velocidad con DOTS.
+
+### 1.3 Breve historia de DOTS en Unity
+
+DOTS ha evolucionado significativamente desde su introducción en 2018:
+
+- **2018**: Primera preview de ECS y Job System
+- **2019-2021**: Iteraciones continuas, APIs experimentales
+- **2022-2023**: Estabilización de APIs, mejoras de rendimiento
+- **Unity 6**: DOTS alcanza madurez con APIs estables y listas para producción
+
+Esta evolución ha convertido a DOTS de una tecnología experimental a una solución robusta para el desarrollo de juegos de alta performance.
+
+### 1.4 Cuándo usar DOTS (y cuándo no)
+
+DOTS es ideal para:
+
+- Simulaciones con miles de entidades (RTS, simuladores de multitudes)
+- Juegos multijugador masivos
+- Proyectos con alta densidad de entidades o sistemas de partículas
+- Juegos que requieren máximo rendimiento en dispositivos móviles
+
+Sin embargo, DOTS podría no ser necesario para:
+
+- Juegos casuales simples
+- Proyectos enfocados principalmente en narrativa
+- Prototipos rápidos (donde la velocidad de desarrollo es prioritaria)
+
+Una aproximación híbrida (usando DOTS solo para sistemas críticos de rendimiento) es viable y recomendable para muchos proyectos.
+
+## 2. Componentes principales de DOTS
+
+### 2.1 Descripción general del Sistema de Entidades y Componentes (ECS)
+
+El Entity Component System (ECS) es el núcleo arquitectónico de DOTS, y representa un cambio fundamental en cómo estructuramos nuestros juegos:
+
+**Entidades**: Identificadores ligeros que reemplazan a los GameObjects. Una entidad por sí sola no hace nada; es simplemente un ID único.
+
+**Componentes**: Estructuras de datos puras que contienen solo propiedades, sin lógica. Por ejemplo:
+
+```csharp
+public struct Position : IComponentData
+{
+    public float3 Value;
+}
+
+public struct Velocity : IComponentData
+{
+    public float3 Value;
+}
+```
+
+**Sistemas**: Clases que contienen toda la lógica de juego y operan sobre grupos de entidades con componentes específicos.
+
+La diferencia principal con la arquitectura tradicional es la separación completa de datos (componentes) y lógica (sistemas), permitiendo un procesamiento más eficiente y paralelo.
+
+### 2.2 Fundamentos del Job System
+
+El Job System permite ejecutar código en paralelo de manera segura, aprovechando todos los núcleos del procesador:
+
+- **Ejecución multihilo**: Distribuye el trabajo automáticamente entre los hilos disponibles
+- **Modelo de ejecución paralela**: Procesa múltiples entidades simultáneamente
+- **Mecanismos de seguridad**: Previene condiciones de carrera y otros problemas de concurrencia
+- **Dependencias**: Permite especificar el orden de ejecución cuando es necesario
+
+Usando el Job System, podemos realizar operaciones como actualizar las posiciones de miles de entidades simultáneamente, en lugar de hacerlo secuencialmente.
+
+### 2.3 Introducción al Burst Compiler
+
+Burst es un compilador LLVM especializado que optimiza código .NET para máximo rendimiento:
+
+- Traduce código C# a instrucciones de máquina altamente optimizadas
+- Aprovecha instrucciones vectoriales (SIMD) automáticamente
+- Elimina las comprobaciones de seguridad innecesarias
+- Optimiza específicamente para la arquitectura CPU del dispositivo
+
+Las pruebas han demostrado mejoras de rendimiento de 2x a 20x usando Burst, dependiendo del código. Sin embargo, impone algunas restricciones, como evitar asignaciones dinámicas de memoria y ciertas características de C# como reflexión o delegados.
+
+## 3. Configuración del proyecto
+
+### 3.1 Creando un nuevo proyecto en Unity 6
+
+Para comenzar, necesitamos crear un nuevo proyecto en Unity 6:
+
+1. Abre Unity Hub y selecciona "Nuevo proyecto"
+2. Selecciona la versión Unity 6.x.x
+3. Usa la plantilla "Core" o "3D Core" (no URP/HDRP inicialmente para mantener la simplicidad)
+4. Dale un nombre como "DOTS-Multiplayer-Tutorial"
+5. Elige la ubicación de tu proyecto y haz clic en "Crear"
+
+<!-- REVISAR: No queremos usar las plantillas mencionadas queremos hacer un proyecto 2D -->
+
+### 3.2 Instalando los paquetes requeridos
+
+<!-- REVISAR: Asegurarse de que los paquetes mencionados son los adecuados -->
+
+Una vez que el proyecto esté abierto, instalamos los paquetes DOTS:
+
+1. Ve a Window > Package Manager
+2. Haz clic en "+" y selecciona "Add package by name"
+3. Añade cada uno de estos paquetes:
+   - `com.unity.entities` (ECS)
+   - `com.unity.jobs` (Job System)
+   - `com.unity.burst` (Burst Compiler)
+   - `com.unity.collections` (Estructuras de datos compatibles con Jobs)
+
+Para este tutorial, recomendamos usar las versiones más recientes y estables de cada paquete. Asegúrate de que las versiones sean compatibles entre sí (generalmente, usar la misma versión mayor para todos).
+
+### 3.3 Configurando los ajustes del proyecto
+
+Optimicemos el proyecto para trabajar con DOTS:
+
+1. Ve a Edit > Project Settings
+2. En "Player", establece el Scripting Backend a "IL2CPP" para mejor rendimiento
+3. En "Player > Other Settings", habilita "Allow 'unsafe' Code"
+4. Desde el Package Manager, selecciona "Burst" y activa "Enable Compilation" si no está activado
+
+### 3.4 Verificando la configuración
+
+Para asegurarnos de que todo está correctamente configurado, crearemos un script de diagnóstico básico. Crea un archivo llamado `DOTSVerification.cs` con el siguiente contenido:
+
+```csharp
+using Unity.Entities;
+using Unity.Jobs;
+using Unity.Burst;
+using UnityEngine;
+
+public class DOTSVerification : MonoBehaviour
+{
+    void Start()
+    {
+        // Verificar ECS
+        EntityManager entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        Entity entity = entityManager.CreateEntity();
+        Debug.Log($"ECS funcionando: Entidad creada con ID {entity.Index}");
+
+        // Verificar Burst con un job simple
+        new VerificationJob().Schedule().Complete();
+    }
+
+    [BurstCompile]
+    private struct VerificationJob : IJob
+    {
+        public void Execute()
+        {
+            Debug.Log("Burst y Job System funcionando correctamente");
+        }
+    }
+}
+```
+
+Crea un GameObject vacío en la escena, añade este componente, y ejecuta el juego. Si ves ambos mensajes en la consola, ¡tu configuración DOTS está lista!
+
+## 4. Visión general del proyecto de muestra
+
+### 4.1 Introducción a nuestro proyecto tutorial
+
+Para esta serie de tutoriales, crearemos un sistema de simulación de bandadas (boids) que luego convertiremos en un juego multijugador. Esta elección no es casual:
+
+- Los boids son un ejemplo perfecto de simulación emergente con muchas entidades
+- El algoritmo es fácil de entender pero ofrece resultados visualmente interesantes
+- Se beneficia enormemente del procesamiento paralelo
+- Sirve como base perfecta para un juego multijugador
+
+### 4.2 Objetivos de la simulación de boids
+
+Los boids siguen tres reglas simples:
+
+1. **Separación**: Evitan chocar entre ellos
+2. **Alineación**: Tienden a moverse en la misma dirección que sus vecinos
+3. **Cohesión**: Se mueven hacia el centro promedio de sus vecinos
+
+Estas simples reglas crean un comportamiento de bandada sorprendentemente realista, como pájaros o peces.
+
+En nuestro caso, representaremos cada boid como una entidad en DOTS, con componentes para posición, velocidad y propiedades de comportamiento.
+
+### 4.3 Requisitos de rendimiento
+
+Nuestros objetivos para este proyecto son:
+
+- Mantener 60+ FPS en dispositivos de gama media
+- Soportar al menos 10,000 boids simultáneos
+- Sincronizar el estado entre múltiples jugadores
+- Minimizar el uso de memoria y ancho de banda
+
+Con la arquitectura tradicional, estos objetivos serían extremadamente difíciles de alcanzar. Con DOTS, son perfectamente factibles.
+
+### 4.4 Hoja de ruta de desarrollo
+
+A lo largo de esta serie de tutoriales:
+
+1. Implementaremos los componentes básicos de ECS (este tutorial)
+2. Añadiremos sistemas para el movimiento de boids
+3. Optimizaremos con Jobs y Burst
+4. Añadiremos representación visual
+5. Implementaremos colisiones y interacciones
+6. Añadiremos entrada del jugador y control de cámara
+7. Implementaremos networking y multijugador
+8. Optimizaremos para plataformas específicas
+9. Puliremos la experiencia de juego
+10. Desplegaremos la versión final
+
+## 5. Primeros pasos
+
+### 5.1 Creando tu primera Entity
+
+Vamos a crear nuestra primera entidad en DOTS. Crea un nuevo script llamado `BoidsSpawner.cs`:
+
+```csharp
+using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
+using UnityEngine;
+
+public class BoidsSpawner : MonoBehaviour
+{
+    [SerializeField] private int boidsToSpawn = 100;
+    [SerializeField] private float spawnRadius = 10f;
+
+    private class BoidsSpawnerBaker : Baker<BoidsSpawner>
+    {
+        public override void Bake(BoidsSpawner authoring)
+        {
+            var entity = GetEntity(TransformUsageFlags.None);
+            AddComponent(entity, new BoidsSpawnerComponent
+            {
+                Count = authoring.boidsToSpawn,
+                Radius = authoring.spawnRadius
+            });
+        }
+    }
+}
+
+public struct BoidsSpawnerComponent : IComponentData
+{
+    public int Count;
+    public float Radius;
+}
+
+public partial struct SpawnBoidsSystem : ISystem
+{
+    public void OnCreate(ref SystemState state)
+    {
+        state.RequireForUpdate<BoidsSpawnerComponent>();
+    }
+
+    public void OnUpdate(ref SystemState state)
+    {
+        var spawnerComponent = SystemAPI.GetSingleton<BoidsSpawnerComponent>();
+        var random = Random.CreateFromIndex(1234); // Semilla fija para reproducibilidad
+
+        var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+
+        // Crear entidades boid
+        for (int i = 0; i < spawnerComponent.Count; i++)
+        {
+            var entity = ecb.CreateEntity();
+
+            // Posición aleatoria dentro del radio
+            float3 position = random.NextFloat3Direction() * random.NextFloat(0, spawnerComponent.Radius);
+
+            // Velocidad inicial aleatoria
+            float3 velocity = random.NextFloat3Direction() * 2f;
+
+            // Añadir componentes
+            ecb.AddComponent(entity, new LocalTransform
+            {
+                Position = position,
+                Rotation = quaternion.identity,
+                Scale = 1f
+            });
+
+            ecb.AddComponent(entity, new BoidComponent
+            {
+                Velocity = velocity
+            });
+        }
+
+        ecb.Playback(state.EntityManager);
+        ecb.Dispose();
+
+        // Desactivar este sistema después de la creación inicial
+        state.Enabled = false;
+    }
+}
+
+public struct BoidComponent : IComponentData
+{
+    public float3 Velocity;
+}
+```
+
+### 5.2 Añadiendo componentes básicos
+
+Hemos definido dos componentes principales:
+
+1. `BoidsSpawnerComponent`: Contiene los parámetros para generar boids
+2. `BoidComponent`: Almacena las propiedades de cada boid individual
+
+Los componentes en DOTS son estructuras ligeras que solo contienen datos. También estamos usando el componente integrado `LocalTransform` para manejar la posición de cada boid.
+
+### 5.3 Configurando un sistema simple
+
+El sistema `SpawnBoidsSystem` se encarga de crear todas las entidades boid durante la inicialización:
+
+1. Obtiene los parámetros del spawner
+2. Crea un búfer de comandos para operaciones en entidades
+3. Genera cada boid con posición y velocidad aleatorias
+4. Aplica los comandos al EntityManager
+5. Se desactiva a sí mismo para no seguir generando boids
+
+Para probarlo, crea un GameObject vacío, añade el componente `BoidsSpawner`, y configura la cantidad de boids a generar.
+
+### 5.4 Ejecución y observación
+
+Al ejecutar la escena, se crearán las entidades boid, pero no veremos nada todavía porque:
+
+1. No tenemos representación visual para los boids
+2. No hemos implementado el sistema de movimiento
+
+En tutoriales posteriores, añadiremos estas funcionalidades. Por ahora, puedes verificar que las entidades se hayan creado usando la ventana Entity Debugger (Window > DOTS > Entity Debugger).
+
+## 6. Recursos adicionales
+
+### 6.1 Documentación oficial de Unity DOTS
+
+- [Manual de Unity Entities](https://docs.unity3d.com/Packages/com.unity.entities@latest)
+- [Manual del Job System](https://docs.unity3d.com/Packages/com.unity.jobs@latest)
+- [Manual de Burst](https://docs.unity3d.com/Packages/com.unity.burst@latest)
+- [Tutoriales oficiales de DOTS en Unity Learn](https://learn.unity.com/search?k=%5B%22q%3ADOTS%22%5D)
+
+### 6.2 Recursos de la comunidad
+
+- [Foro oficial de DOTS](https://forum.unity.com/forums/data-oriented-technology-stack.147/)
+- [Canal de Discord de Unity ECS](https://discord.gg/unity-ecs)
+- [Ejemplos en GitHub](https://github.com/Unity-Technologies/EntityComponentSystemSamples)
+
+### 6.3 Herramientas de medición de rendimiento
+
+- **Entity Debugger**: Para visualizar entidades y sistemas (Window > DOTS > Entity Debugger)
+- **Burst Inspector**: Para analizar el código compilado por Burst (Window > Burst > Open Inspector)
+- **Unity Profiler**: Con marcadores específicos para DOTS (Window > Analysis > Profiler)
+- **Memory Profiler**: Para analizar el uso de memoria (disponible en Package Manager)
+
+## Próximos pasos
+
+En el próximo tutorial, profundizaremos en los fundamentos de ECS e implementaremos el sistema de movimiento para nuestros boids. Aprenderemos a utilizar consultas de entidades, trabajar con datos de componentes y crear sistemas más complejos.
+
+Para practicar lo aprendido, intenta:
+
+- Modificar el spawner para crear diferentes formas iniciales
+- Experimentar con diferentes cantidades de boids y observar el rendimiento
+- Intentar añadir un componente adicional con alguna propiedad (como color o tamaño)
+
+¡Esperamos verte en el próximo tutorial de esta serie sobre Unity DOTS!
