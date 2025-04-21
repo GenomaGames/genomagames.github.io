@@ -58,13 +58,13 @@
     "unist-util-visit": "5.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "4.1.4",
     "@types/hast": "3.0.4",
     "@types/mdast": "4.0.4",
     "@types/node": "20.14.9",
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
     "@types/unist": "3.0.3",
-    "autoprefixer": "10.4.21",
     "cssnano": "7.0.6",
     "eslint": "8.53.0",
     "eslint-config-next": "15.3.1",
@@ -72,10 +72,9 @@
     "eslint-plugin-simple-import-sort": "12.1.1",
     "http-server": "14.1.1",
     "postcss": "8.5.3",
-    "postcss-import": "16.1.0",
     "prettier": "3.5.3",
-    "prettier-plugin-tailwindcss": "0.6.5",
-    "tailwindcss": "3.4.4",
+    "prettier-plugin-tailwindcss": "0.6.11",
+    "tailwindcss": "4.1.4",
     "typescript": "5.8.3"
   },
   "overrides": {

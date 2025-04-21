@@ -16,7 +16,7 @@ const Header: React.JSXElementConstructor<Props> = (props: Props) => {
   const locale = useLocale();
 
   return (
-    <header className="fixed left-0 top-0 z-10 h-12 w-full bg-gradient-to-br from-slate-800 to-gray-900 shadow-md shadow-black">
+    <header className="fixed top-0 left-0 z-10 h-12 w-full bg-linear-to-br from-slate-800 to-gray-900 shadow-md shadow-black">
       <div className="container mx-auto flex h-full max-w-5xl items-center px-4">
         <h1 className="flex h-full items-center">
           <Link href={`/${locale}`} className="flex items-center">

@@ -1,3 +1,5 @@
+@reference "./globals.css";
+
 .markdown {
   @apply text-base text-slate-300;
 }
@@ -12,27 +14,27 @@
 }
 
 .markdown h1 {
-  @apply mb-4 mt-8 text-3xl font-bold leading-snug;
+  @apply mt-8 mb-4 text-3xl leading-snug font-bold;
 }
 
 .markdown h2 {
-  @apply mb-4 mt-7 text-2xl font-bold leading-snug;
+  @apply mt-7 mb-4 text-2xl leading-snug font-bold;
 }
 
 .markdown h3 {
-  @apply mb-4 mt-6 text-xl font-bold leading-snug;
+  @apply mt-6 mb-4 text-xl leading-snug font-bold;
 }
 
 .markdown h4 {
-  @apply mb-4 mt-4 text-lg font-bold leading-snug;
+  @apply mt-4 mb-4 text-lg leading-snug font-bold;
 }
 
 .markdown h5 {
-  @apply mb-4 mt-4 text-base font-bold leading-snug;
+  @apply mt-4 mb-4 text-base leading-snug font-bold;
 }
 
 .markdown h6 {
-  @apply mb-4 mt-4 text-sm font-bold leading-snug;
+  @apply mt-4 mb-4 text-sm leading-snug font-bold;
 }
 
 .markdown p,
@@ -52,7 +54,7 @@
 }
 
 .markdown blockquote {
-  @apply rounded-sm border-l-4 border-indigo-400 pb-0.5 pl-4 pt-1;
+  @apply rounded-sm border-l-4 border-indigo-400 pt-1 pb-0.5 pl-4;
 }
 
 .markdown ul,

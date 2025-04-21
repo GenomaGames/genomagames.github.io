@@ -51,7 +51,7 @@ const RootLayout: React.JSXElementConstructor<Props> = ({
   return (
     <html
       lang="en"
-      className="min-h-screen bg-gray-900 bg-gradient-to-b from-gray-900 to-black font-sans text-base text-slate-200"
+      className="min-h-screen bg-gray-900 bg-linear-to-b from-gray-900 to-black font-sans text-base text-slate-200"
     >
       <body className="min-h-screen">
         <div id="top"></div>

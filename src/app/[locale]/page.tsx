@@ -35,7 +35,7 @@ const IndexPage: React.JSXElementConstructor<Props> = async (props: Props) => {
       {hasMore && (
         <nav className="mx-auto max-w-sm sm:max-w-full">
           <Link
-            className="mb-4 block h-10 flex-1 rounded bg-emerald-600 text-center font-bold leading-10 text-slate-900 transition-colors ease-in-out hover:bg-emerald-400 focus:bg-emerald-400"
+            className="mb-4 block h-10 flex-1 rounded-sm bg-emerald-600 text-center leading-10 font-bold text-slate-900 transition-colors ease-in-out hover:bg-emerald-400 focus:bg-emerald-400"
             href={`/${locale}/2`}
             rel="next"
           >

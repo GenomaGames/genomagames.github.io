@@ -94,7 +94,7 @@ const PaginatedPostsPage: React.JSXElementConstructor<Props> = async (
       <nav className="mx-auto flex max-w-sm gap-4 sm:max-w-full">
         {previousPage > 0 && (
           <Link
-            className="mb-4 block h-10 flex-1 rounded bg-emerald-600 text-center font-bold leading-10 text-slate-900 transition-colors ease-in-out hover:bg-emerald-400 focus:bg-emerald-400"
+            className="mb-4 block h-10 flex-1 rounded-sm bg-emerald-600 text-center leading-10 font-bold text-slate-900 transition-colors ease-in-out hover:bg-emerald-400 focus:bg-emerald-400"
             href={previousPagePath}
             rel="prev"
           >
@@ -103,7 +103,7 @@ const PaginatedPostsPage: React.JSXElementConstructor<Props> = async (
         )}
         {hasMore && (
           <Link
-            className="mb-4 block h-10 flex-1 rounded bg-emerald-600 text-center font-bold leading-10 text-slate-900 transition-colors ease-in-out hover:bg-emerald-400 focus:bg-emerald-400"
+            className="mb-4 block h-10 flex-1 rounded-sm bg-emerald-600 text-center leading-10 font-bold text-slate-900 transition-colors ease-in-out hover:bg-emerald-400 focus:bg-emerald-400"
             href={nextPagePath}
             rel="next"
           >

@@ -8,7 +8,7 @@ const Footer: React.JSXElementConstructor<Props> = () => {
   const t = useTranslations("Footer");
 
   return (
-    <footer className="mt-auto h-12 w-full bg-gradient-to-br from-slate-800 to-gray-900 shadow-md shadow-black">
+    <footer className="mt-auto h-12 w-full bg-linear-to-br from-slate-800 to-gray-900 shadow-md shadow-black">
       <div className="container mx-auto flex h-full max-w-5xl items-center px-4">
         <div className="flex items-center">
           {/* TODO: implements language selector
@@ -22,7 +22,7 @@ const Footer: React.JSXElementConstructor<Props> = () => {
               <>
                 {" "}
                 <Link
-                  className="rounded bg-emerald-600 px-2 py-1 text-center font-bold text-slate-900 transition-colors ease-in-out hover:bg-emerald-400 focus:bg-emerald-400"
+                  className="rounded-sm bg-emerald-600 px-2 py-1 text-center font-bold text-slate-900 transition-colors ease-in-out hover:bg-emerald-400 focus:bg-emerald-400"
                   key={locale}
                   href={`/${locale}`}
                 >
@@ -35,7 +35,7 @@ const Footer: React.JSXElementConstructor<Props> = () => {
           <div className="text-xs text-slate-400">{t("copyright")}</div>
         </div>
         <a
-          className="ml-auto flex h-8 w-8 items-center justify-center justify-self-end rounded bg-emerald-800"
+          className="ml-auto flex h-8 w-8 items-center justify-center justify-self-end rounded-sm bg-emerald-800"
           href="#top"
         >
           <FontAwesomeIcon icon={faArrowUp} />

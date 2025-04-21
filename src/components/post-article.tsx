@@ -11,7 +11,7 @@ const PostArticle: React.JSXElementConstructor<Props> = (props: Props) => {
   const { content, draft, title, slug } = props;
 
   return (
-    <article className="container mx-auto mb-4 break-words rounded-md bg-gray-800 drop-shadow-xl">
+    <article className="container mx-auto mb-4 rounded-md bg-gray-800 break-words drop-shadow-xl">
       <DraftLabel isDraft={draft} />
       <PostHeader {...props} />
 

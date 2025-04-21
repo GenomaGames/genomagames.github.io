@@ -15,20 +15,20 @@ const PostHeader: React.JSXElementConstructor<Props> = ({
   return (
     <header>
       <div className="flex h-36 leading-[9rem] md:h-48 lg:h-64">
-        <div className="absolute left-0 right-0 top-0 -z-10 h-36 w-full overflow-hidden rounded-t-md md:h-48 lg:h-64">
+        <div className="absolute top-0 right-0 left-0 -z-10 h-36 w-full overflow-hidden rounded-t-md md:h-48 lg:h-64">
           {coverImage ? (
             <Image
               src={coverImage.src}
               alt={title}
-              className="absolute bottom-0 top-0 my-auto block h-full w-full object-cover opacity-40"
+              className="absolute top-0 bottom-0 my-auto block h-full w-full object-cover opacity-40"
               height={256}
               width={856}
               priority
             />
           ) : (
-            <div className="absolute bottom-0 top-0 h-full w-full bg-gradient-to-br from-emerald-900 to-indigo-900"></div>
+            <div className="absolute top-0 bottom-0 h-full w-full bg-linear-to-br from-emerald-900 to-indigo-900"></div>
           )}
-          <div className="h-full w-full bg-black bg-opacity-50 backdrop-blur-sm"></div>
+          <div className="bg-opacity-50 h-full w-full bg-black backdrop-blur-xs"></div>
         </div>
         <h1 className="inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
           {title}
