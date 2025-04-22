@@ -4,7 +4,6 @@ import "../../styles/globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { NextIntlClientProvider } from "next-intl";
 import React from "react";
 
 config.autoAddCss = false;
@@ -55,14 +54,12 @@ const RootLayout: React.JSXElementConstructor<Props> = ({
       className="min-h-screen bg-gray-900 bg-linear-to-b from-gray-900 to-black font-sans text-base text-slate-200"
     >
       <body className="min-h-screen">
-        <NextIntlClientProvider>
-          <div id="top"></div>
-          <div className="flex min-h-screen flex-col">
-            <main className="mx-auto mt-16 w-full px-5 pt-4 sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
-              {children}
-            </main>
-          </div>
-        </NextIntlClientProvider>
+        <div id="top"></div>
+        <div className="flex min-h-screen flex-col">
+          <main className="mx-auto mt-16 w-full px-5 pt-4 sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
+            {children}
+          </main>
+        </div>
       </body>
 
       <Script
