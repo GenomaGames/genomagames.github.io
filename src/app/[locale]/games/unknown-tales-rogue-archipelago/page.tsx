@@ -1,9 +1,7 @@
 import { ParsedUrlQuery } from "node:querystring";
 
 import { Metadata } from "next";
-import dynamic from "next/dynamic";
 
-import PostsList from "@/src/components/posts-list";
 import { Post } from "@/src/Posts/domain/Post";
 
 interface Params extends ParsedUrlQuery {
@@ -38,7 +36,7 @@ export const metadata: Metadata = {
   description: game.summary,
 };
 
-const GamePage: React.JSXElementConstructor<Props> = (props: Props) => {
+const GamePage: React.JSXElementConstructor<Props> = (_props: Props) => {
   return (
     <>
       <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">

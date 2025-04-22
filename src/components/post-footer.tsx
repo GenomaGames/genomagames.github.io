@@ -1,6 +1,6 @@
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { DiscussionEmbed } from "disqus-react";
+// import { DiscussionEmbed } from "disqus-react";
 
 interface Props {
   slug: string;
@@ -24,7 +24,7 @@ const PostFooter: React.JSXElementConstructor<Props> = ({
       <hr className="my-4 border-t-2 border-indigo-600" />
 
       <a
-        className="mb-4 inline-block h-8 rounded-md bg-slate-900 px-3 font-bold leading-8"
+        className="mb-4 inline-block h-8 rounded-md bg-slate-900 px-3 leading-8 font-bold"
         href={xShareUrl.href}
       >
         <FontAwesomeIcon className="mr-1" icon={faXTwitter} />

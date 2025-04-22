@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   description: "Genoma Invaders' Privacy Policy",
 };
 
-async function getPrivacyPolicyContent(locale: string) {
+async function getPrivacyPolicyContent(_locale: string) {
   // You might want to have localized versions in the future
   const filePath = path.join(
     process.cwd(),

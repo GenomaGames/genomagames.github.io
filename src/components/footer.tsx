@@ -1,8 +1,8 @@
-import { faArrowUp, faLanguage } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslations } from "next-intl";
 
-interface Props {}
+type Props = unknown;
 
 const Footer: React.JSXElementConstructor<Props> = () => {
   const t = useTranslations("Footer");

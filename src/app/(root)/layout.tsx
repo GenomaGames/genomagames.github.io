@@ -8,7 +8,7 @@ import React from "react";
 
 config.autoAddCss = false;
 
-interface Props extends React.PropsWithChildren {}
+type Props = React.PropsWithChildren;
 
 export const viewport: Viewport = {
   colorScheme: "dark",

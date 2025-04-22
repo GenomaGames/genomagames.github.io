@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 };
 
 const GamePage: React.JSXElementConstructor<Props> = async (props: Props) => {
-  const { locale } = await props.params;
+  const { _locale } = await props.params;
 
   return (
     <>

@@ -167,7 +167,8 @@ export class PostContentParser {
     grayMatterFile: grayMatter.GrayMatterFile<string>,
     postPath: string,
   ): Post["coverImage"] {
-    let coverImage: Post["coverImage"] = grayMatterFile.data.coverImage || null;
+    const coverImage: Post["coverImage"] =
+      grayMatterFile.data.coverImage || null;
 
     if (coverImage && typeof coverImage.src === "string") {
       coverImage.src = this.pathResolver.resolveRelativePath(

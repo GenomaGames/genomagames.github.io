@@ -10,9 +10,9 @@ import React from "react";
 
 import iconImage from "@/public/icon.png";
 
-interface Props {}
+type Props = unknown;
 
-const Header: React.JSXElementConstructor<Props> = (props: Props) => {
+const Header: React.JSXElementConstructor<Props> = (_props: Props) => {
   const locale = useLocale();
 
   return (
