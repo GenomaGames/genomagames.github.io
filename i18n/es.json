@@ -12,5 +12,15 @@
     "english": "Inglés",
     "languages": "Idiomas",
     "spanish": "Español"
+  },
+  "GamesPage": {
+    "title": "Nuestros Juegos",
+    "release_date": "Fecha de lanzamiento:",
+    "to_be_decided": "Por determinar",
+    "game_not_found": "Juego no encontrado",
+    "game_not_found_description": "El juego solicitado no pudo ser encontrado.",
+    "devlog": "Diario de desarrollo",
+    "meta_title": "Juegos",
+    "meta_description": "Lista de juegos publicados y en desarrollo por Genoma Games"
   }
 }

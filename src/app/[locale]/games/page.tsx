@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { listGamesUseCase } from "@/src/Games/application/ListGamesUserCase";
 
@@ -17,20 +18,40 @@ interface Props {
   params: Promise<Params>;
 }
 
-export const metadata: Metadata = {
-  title: `Games | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
-  description: "List of games released and being developed by Genoma Games",
+export const generateMetadata = async (
+  { params }: { params: Promise<Params> }
+): Promise<Metadata> => {
+  const { locale } = await params;
+  
+  setRequestLocale(locale);
+  
+  const t = await getTranslations({
+    locale,
+    namespace: "GamesPage",
+  });
+  
+  return {
+    title: `${t("meta_title")} | ${process.env.NEXT_PUBLIC_SITE_NAME}`,
+    description: t("meta_description"),
+  };
 };
 
 const GamesPage: React.JSXElementConstructor<Props> = async (props: Props) => {
   const { locale } = await props.params;
+  
+  setRequestLocale(locale);
+  
+  const t = await getTranslations({
+    locale,
+    namespace: "GamesPage",
+  });
   
   const { entities: games } = await listGamesUseCase.run({ locale });
 
   return (
     <div className="mb-8">
       <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
-        Our Games
+        {t("title")}
       </h1>
       <div className="mx-auto grid max-w-sm gap-x-4 gap-y-6 sm:max-w-full sm:grid-cols-2">
         {games.map(
@@ -66,13 +87,13 @@ const GamesPage: React.JSXElementConstructor<Props> = async (props: Props) => {
                           icon={faCalendarDay}
                           size="sm"
                         />
-                        <span className="mr-2">Release date:</span>
+                        <span className="mr-2">{t("release_date")}</span>
                         {releasedAt !== null ? (
                           <time dateTime={format(releasedAt, "yyyy-MM-dd")}>
                             {format(releasedAt, "yyyy-MM-dd")}
                           </time>
                         ) : (
-                          <abbr title="To be decided">TBD</abbr>
+                          <abbr title={t("to_be_decided")}>TBD</abbr>
                         )}
                       </div>
                     </footer>

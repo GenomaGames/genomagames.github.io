@@ -1,6 +1,7 @@
 import { ParsedUrlQuery } from "node:querystring";
 
 import { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import ItchioWidget from "@/src/components/itchio-widget";
 import PostsList from "@/src/components/posts-list";
@@ -30,12 +31,20 @@ const gameExtras: GameExtras = {
 export const generateMetadata = async (props: { params: Promise<Params> }): Promise<Metadata> => {
   const params = await props.params;
   const { locale } = params;
+  
+  setRequestLocale(locale);
+  
+  const t = await getTranslations({
+    locale,
+    namespace: "GamesPage",
+  });
+  
   const game = await getGameBySlugUseCase.run({ locale, slug: "genoma-invaders" });
 
   if (!game) {
     return {
-      title: "Game not found",
-      description: "The requested game could not be found.",
+      title: t("game_not_found"),
+      description: t("game_not_found_description"),
     };
   }
 
@@ -47,15 +56,23 @@ export const generateMetadata = async (props: { params: Promise<Params> }): Prom
 
 const GamePage: React.JSXElementConstructor<Props> = async (props: Props) => {
   const { locale } = await props.params;
+  
+  setRequestLocale(locale);
+  
+  const t = await getTranslations({
+    locale,
+    namespace: "GamesPage",
+  });
+  
   const game = await getGameBySlugUseCase.run({ locale, slug: "genoma-invaders" });
 
   if (!game) {
     return (
       <div>
         <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
-          Game not found
+          {t("game_not_found")}
         </h1>
-        <p className="text-center">The requested game could not be found.</p>
+        <p className="text-center">{t("game_not_found_description")}</p>
       </div>
     );
   }
@@ -91,7 +108,7 @@ const GamePage: React.JSXElementConstructor<Props> = async (props: Props) => {
       {gameExtras.posts.length > 0 && (
         <>
           <h2 className="mb-4 inline-block w-full self-center px-8 text-center text-xl font-bold md:text-2xl lg:text-3xl">
-            Devlog
+            {t("devlog")}
           </h2>
           <PostsList
             className="mx-auto max-w-sm sm:max-w-full"

@@ -12,5 +12,15 @@
   "PaginatedPostsPage": {
     "prev": "Prev",
     "next": "Next"
+  },
+  "GamesPage": {
+    "title": "Our Games",
+    "release_date": "Release date:",
+    "to_be_decided": "To be decided",
+    "game_not_found": "Game not found",
+    "game_not_found_description": "The requested game could not be found.",
+    "devlog": "Devlog",
+    "meta_title": "Games",
+    "meta_description": "List of games released and being developed by Genoma Games"
   }
 }
