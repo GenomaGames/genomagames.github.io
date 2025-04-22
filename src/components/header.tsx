@@ -6,9 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale } from "next-intl";
-import React from "react";
 
 import iconImage from "@/public/icon.png";
+
+import LanguageSelector from "./language-selector";
 
 type Props = unknown;
 
@@ -31,23 +32,7 @@ const Header: React.JSXElementConstructor<Props> = (_props: Props) => {
           </Link>
         </h1>
         <div className="ml-auto flex">
-          {locale === "en" ? (
-            <Link
-              className="flex h-12 w-12 items-center justify-center justify-self-end"
-              href="/es"
-              hrefLang="es"
-            >
-              <span className="fi fi-es"></span>
-            </Link>
-          ) : (
-            <Link
-              className="flex h-12 w-12 items-center justify-center justify-self-end"
-              href="/en"
-              hrefLang="en"
-            >
-              <span className="fi fi-us"></span>
-            </Link>
-          )}
+          <LanguageSelector />
           {process.env.NODE_ENV !== "production" && (
             <Link
               className="flex h-12 w-12 items-center justify-center justify-self-end"

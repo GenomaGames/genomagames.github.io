@@ -81,14 +81,16 @@ const LocaleLayout: React.JSXElementConstructor<Props> = async (
       className="min-h-screen bg-gray-900 bg-linear-to-b from-gray-900 to-black font-sans text-base text-slate-200"
     >
       <body className="min-h-screen">
-        <div id="top"></div>
-        <Header />
-        <div className="flex min-h-screen flex-col">
-          <main className="mx-auto mt-16 w-full px-5 pt-4 sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
-            <NextIntlClientProvider>{children}</NextIntlClientProvider>
-          </main>
-          <Footer />
-        </div>
+        <NextIntlClientProvider>
+          <div id="top"></div>
+          <Header />
+          <div className="flex min-h-screen flex-col">
+            <main className="mx-auto mt-16 w-full px-5 pt-4 sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </NextIntlClientProvider>
       </body>
 
       <Script
