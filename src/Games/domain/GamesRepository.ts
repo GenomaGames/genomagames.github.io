@@ -4,12 +4,24 @@ import path from "path";
 import { Locale } from "@/src/lib/Locale";
 import { List } from "@/src/Shared/domain/List";
 
-import { Game } from "./Game";
+import { Game, GameData } from "./Game";
 
 export class GamesRepository {
   constructor() {}
 
-  public async getGames(_locale: Locale): Promise<List<Game>> {
+  // Transforms GameData from storage to localized Game domain model
+  private mapToGame(gameData: GameData, locale: Locale): Game {
+    return {
+      coverImage: gameData.coverImage,
+      isInDevelopment: gameData.isInDevelopment,
+      name: gameData.name[locale],
+      releasedAt: gameData.releasedAt ? new Date(gameData.releasedAt) : null,
+      slug: gameData.slug,
+      summary: gameData.summary[locale],
+    };
+  }
+
+  public async getGames(locale: Locale): Promise<List<Game>> {
     try {
       const gamesFilePath = path.join(
         process.cwd(),
@@ -17,14 +29,12 @@ export class GamesRepository {
         "games",
         "games.json",
       );
-      const gamesData = await fs.readFile(gamesFilePath, "utf8");
-      const games: Game[] = JSON.parse(gamesData);
+      const fileContent = await fs.readFile(gamesFilePath, "utf8");
+      const gamesData: GameData[] = JSON.parse(fileContent);
 
+      // Map each GameData to a localized Game domain model
       return {
-        entities: games.map((game) => ({
-          ...game,
-          releasedAt: game.releasedAt ? new Date(game.releasedAt) : null,
-        })),
+        entities: gamesData.map(gameData => this.mapToGame(gameData, locale)),
       };
     } catch (error) {
       console.error("Error loading games:", error);
@@ -32,9 +42,9 @@ export class GamesRepository {
     }
   }
 
-  public async getGameBySlug(slug: string, _locale: Locale): Promise<Game | null> {
+  public async getGameBySlug(slug: string, locale: Locale): Promise<Game | null> {
     try {
-      const { entities } = await this.getGames(_locale);
+      const { entities } = await this.getGames(locale);
       
       return entities.find(game => game.slug === slug) || null;
     } catch (error) {

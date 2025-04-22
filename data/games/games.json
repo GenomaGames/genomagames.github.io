@@ -1,18 +1,30 @@
 [
   {
-    "name": "Genoma Invaders",
     "slug": "genoma-invaders",
-    "summary": "Fixed shooter (Shoot 'em up) where you control a microscopic 🔬 robot exploring the human body while fighting off bacteria, viruses, and other microorganisms 🦠.",
     "isInDevelopment": true,
     "releasedAt": null,
-    "coverImage": null
+    "coverImage": null,
+    "name": {
+      "en": "Genoma Invaders",
+      "es": "Genoma Invaders"
+    },
+    "summary": {
+      "en": "Fixed shooter (Shoot 'em up) where you control a microscopic 🔬 robot exploring the human body while fighting off bacteria, viruses, and other microorganisms 🦠.",
+      "es": "Juego de disparos fijo (Shoot 'em up) donde controlas un robot microscópico 🔬 explorando el cuerpo humano mientras luchas contra bacterias, virus y otros microorganismos 🦠."
+    }
   },
   {
-    "name": "Unknown Tales: Rogue Archipelago",
     "slug": "unknown-tales-rogue-archipelago",
-    "summary": "Procedurally generated roguelike adventure set in a mysterious archipelago filled with danger and treasure.",
     "isInDevelopment": true,
     "releasedAt": null,
-    "coverImage": null
+    "coverImage": null,
+    "name": {
+      "en": "Unknown Tales: Rogue Archipelago",
+      "es": "Unknown Tales: Rogue Archipelago"
+    },
+    "summary": {
+      "en": "Procedurally generated roguelike adventure set in a mysterious archipelago filled with danger and treasure.",
+      "es": "Aventura roguelike generada proceduralmente ambientada en un misterioso archipiélago lleno de peligros y tesoros."
+    }
   }
 ]
