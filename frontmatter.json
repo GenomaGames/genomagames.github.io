@@ -97,6 +97,72 @@
           }
         }
       }
+    },
+    {
+      "id": "games",
+      "title": "Games",
+      "file": "[[workspace]]/data/games/games.json",
+      "fileType": "json",
+      "labelField": "slug",
+      "schema": {
+        "title": "Games",
+        "type": "object",
+        "required": ["slug", "name", "summary", "isInDevelopment"],
+        "properties": {
+          "slug": {
+            "type": "string",
+            "title": "Slug"
+          },
+          "name": {
+            "type": "object",
+            "title": "Name",
+            "properties": {
+              "en": {
+                "type": "string",
+                "title": "English"
+              },
+              "es": {
+                "type": "string",
+                "title": "Spanish"
+              }
+            }
+          },
+          "summary": {
+            "type": "object",
+            "title": "Summary",
+            "properties": {
+              "en": {
+                "type": "string",
+                "title": "English"
+              },
+              "es": {
+                "type": "string",
+                "title": "Spanish"
+              }
+            }
+          },
+          "isInDevelopment": {
+            "type": "boolean",
+            "title": "Is In Development",
+            "default": true
+          },
+          "releasedAt": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Release Date"
+          },
+          "coverImage": {
+            "type": "object",
+            "title": "Cover Image",
+            "properties": {
+              "src": {
+                "type": "string",
+                "title": "Image Source"
+              }
+            }
+          }
+        }
+      }
     }
   ],
   "frontMatter.framework.id": "next",
