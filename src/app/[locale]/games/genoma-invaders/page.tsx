@@ -4,53 +4,66 @@ import { Metadata } from "next";
 
 import ItchioWidget from "@/src/components/itchio-widget";
 import PostsList from "@/src/components/posts-list";
+import { getGameBySlugUseCase } from "@/src/Games/application/GetGameBySlugUseCase";
 import { Post } from "@/src/Posts/domain/Post";
 
 interface Params extends ParsedUrlQuery {
   locale: string;
 }
 
-interface GameProps {
-  coverImage?: {
-    src: string;
-  };
+// Additional properties not part of the Game domain model
+interface GameExtras {
   posts: Post[];
-  isInDevelopment: boolean;
-  itchioPage?: string;
-  releasedAt?: Date;
-  slug: string;
-  summary: string;
-  title: string;
+  itchioPage: string;
 }
 
 interface Props {
   params: Promise<Params>;
 }
 
-const game: GameProps = {
-  coverImage: undefined,
-  isInDevelopment: true,
+// These are the additional properties not in the Game domain model
+const gameExtras: GameExtras = {
   posts: [],
-  releasedAt: undefined,
-  slug: "genoma-invaders",
   itchioPage: "https://genomagames.itch.io/genoma-invaders",
-  summary:
-    "Fixed shooter (Shoot 'em up) where you control a microscopic 🔬 robot exploring the human body while fighting off bacteria, viruses, and other microorganisms 🦠.",
-  title: "Genoma Invaders",
 };
 
-export const metadata: Metadata = {
-  title: game.title,
-  description: game.summary,
-};
+export const generateMetadata = async (props: { params: Promise<Params> }): Promise<Metadata> => {
+  const params = await props.params;
+  const { locale } = params;
+  const game = await getGameBySlugUseCase.run({ locale, slug: "genoma-invaders" });
+
+  if (!game) {
+    return {
+      title: "Game not found",
+      description: "The requested game could not be found.",
+    };
+  }
+
+  return {
+    title: game.name,
+    description: game.summary,
+  };
+}
 
 const GamePage: React.JSXElementConstructor<Props> = async (props: Props) => {
-  const { _locale } = await props.params;
+  const { locale } = await props.params;
+  const game = await getGameBySlugUseCase.run({ locale, slug: "genoma-invaders" });
+
+  if (!game) {
+    return (
+      <div>
+        <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
+          Game not found
+        </h1>
+        <p className="text-center">The requested game could not be found.</p>
+      </div>
+    );
+  }
 
   return (
     <>
       <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
-        {game?.title}
+        {game.name}
       </h1>
       <iframe
         className="mx-auto mb-4"
@@ -70,19 +83,19 @@ const GamePage: React.JSXElementConstructor<Props> = async (props: Props) => {
         gameId={726484}
         textColor="1de9a5"
       >
-        <a href="https://genomagames.itch.io/genoma-invaders">
-          {game.title} by Genoma Games
+        <a href={gameExtras.itchioPage}>
+          {game.name} by Genoma Games
         </a>
       </ItchioWidget>
-      <p className="mb-8">{game?.summary}</p>
-      {game?.posts.length && (
+      <p className="mb-8">{game.summary}</p>
+      {gameExtras.posts.length > 0 && (
         <>
           <h2 className="mb-4 inline-block w-full self-center px-8 text-center text-xl font-bold md:text-2xl lg:text-3xl">
             Devlog
           </h2>
           <PostsList
             className="mx-auto max-w-sm sm:max-w-full"
-            posts={game?.posts}
+            posts={gameExtras.posts}
           />
         </>
       )}

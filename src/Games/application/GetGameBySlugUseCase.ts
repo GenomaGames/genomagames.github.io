@@ -1,29 +1,34 @@
 import { routing } from "@/src/i18n/routing";
 import { isLocale } from "@/src/lib/isEnumValue";
 import { UseCase } from "@/src/Shared/application/UseCase";
-import { List } from "@/src/Shared/domain/List";
 
 import { Game } from "../domain/Game";
 import { GamesRepository, gamesRepository } from "../domain/GamesRepository";
 
 interface Input {
   locale: string;
+  slug: string;
 }
 
-export class ListGamesUseCase implements UseCase<Input, List<Game>> {
+export class GetGameBySlugUseCase implements UseCase<Input, Game | null> {
   constructor(private gamesRepository: GamesRepository) {}
 
   public async run({
     locale = routing.defaultLocale,
-  }: Input): Promise<List<Game>> {
+    slug,
+  }: Input): Promise<Game | null> {
     if (!isLocale(locale)) {
       throw new Error(`Locale "${locale}" not valid`);
     }
 
-    const games: List<Game> = await this.gamesRepository.getGames(locale);
+    if (!slug) {
+      throw new Error("Slug is required");
+    }
 
-    return games;
+    const game = await this.gamesRepository.getGameBySlug(slug, locale);
+
+    return game;
   }
 }
 
-export const listGamesUseCase = new ListGamesUseCase(gamesRepository);
+export const getGameBySlugUseCase = new GetGameBySlugUseCase(gamesRepository);

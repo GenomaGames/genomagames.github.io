@@ -2,47 +2,57 @@ import { ParsedUrlQuery } from "node:querystring";
 
 import { Metadata } from "next";
 
-import { Post } from "@/src/Posts/domain/Post";
+import { getGameBySlugUseCase } from "@/src/Games/application/GetGameBySlugUseCase";
 
 interface Params extends ParsedUrlQuery {
   locale: string;
-}
-
-interface GameProps {
-  coverImage?: {
-    src: string;
-  };
-  posts: Post[];
-  isInDevelopment: boolean;
-  itchioPage?: string;
-  releasedAt?: Date;
-  summary: string;
-  title: string;
 }
 
 interface Props {
   params: Promise<Params>;
 }
 
-const game: GameProps = {
-  isInDevelopment: true,
-  posts: [],
-  summary: "",
-  title: "Unknown Tales: Rogue Archipelago",
-};
+// This game doesn't have any extra properties yet
 
-export const metadata: Metadata = {
-  title: game.title,
-  description: game.summary,
-};
+export const generateMetadata = async (props: { params: Promise<Params> }): Promise<Metadata> => {
+  const params = await props.params;
+  const { locale } = params;
+  const game = await getGameBySlugUseCase.run({ locale, slug: "unknown-tales-rogue-archipelago" });
 
-const GamePage: React.JSXElementConstructor<Props> = (_props: Props) => {
+  if (!game) {
+    return {
+      title: "Game not found",
+      description: "The requested game could not be found.",
+    };
+  }
+
+  return {
+    title: game.name,
+    description: game.summary,
+  };
+}
+
+const GamePage: React.JSXElementConstructor<Props> = async (props: Props) => {
+  const { locale } = await props.params;
+  const game = await getGameBySlugUseCase.run({ locale, slug: "unknown-tales-rogue-archipelago" });
+
+  if (!game) {
+    return (
+      <div>
+        <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
+          Game not found
+        </h1>
+        <p className="text-center">The requested game could not be found.</p>
+      </div>
+    );
+  }
+
   return (
     <>
       <h1 className="mb-4 inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
-        {game?.title}
+        {game.name}
       </h1>
-      <p className="mb-8">{game?.summary}</p>
+      <p className="mb-8">{game.summary}</p>
     </>
   );
 };

@@ -7,19 +7,10 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { listGamesUseCase } from "@/src/Games/application/ListGamesUserCase";
+
 interface Params extends ParsedUrlQuery {
   locale: string;
-}
-
-interface GameProps {
-  coverImage: {
-    src: string;
-  } | null;
-  isInDevelopment: boolean;
-  releasedAt: Date | null;
-  slug: string;
-  summary: string;
-  name: string;
 }
 
 interface Props {
@@ -33,26 +24,8 @@ export const metadata: Metadata = {
 
 const GamesPage: React.JSXElementConstructor<Props> = async (props: Props) => {
   const { locale } = await props.params;
-
-  const games: GameProps[] = [
-    {
-      coverImage: null,
-      isInDevelopment: true,
-      releasedAt: null,
-      slug: "unknown-tales-rogue-archipelago",
-      summary: "",
-      name: "Unknown Tales: Rogue Archipelago",
-    },
-    {
-      coverImage: null,
-      isInDevelopment: true,
-      releasedAt: null,
-      slug: "genoma-invaders",
-      summary:
-        "Fixed shooter (Shoot 'em up) where you control a microscopic 🔬 robot exploring the human body while fighting off bacteria, viruses, and other microorganisms 🦠.",
-      name: "Genoma Invaders",
-    },
-  ];
+  
+  const { entities: games } = await listGamesUseCase.run({ locale });
 
   return (
     <div className="mb-8">

@@ -4,7 +4,7 @@ export interface Game {
   } | null;
   isInDevelopment: boolean;
   name: string;
-  releasedAt: Date;
+  releasedAt: Date | null;
   slug: string;
   summary: string;
 }
