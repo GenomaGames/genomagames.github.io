@@ -1,11 +1,11 @@
 ---
-title: Tutorial para crear un juego multijugador en Unity DOTS
+title: Cómo crear un juego multijugador en Unity DOTS con ECS
 summary: Aprende a crear un juego multijugador en Unity DOTS con este tutorial paso a paso y mejora tus habilidades de desarrollo de videojuegos.
 coverImage:
   src: /posts/es/2025/04/tutorial-para-crear-un-juego-multijugador-en-unity-dots/entities-splash-image.png
   alt: Unity Entities
 date: 2025-04-21
-lastmod: 2025-04-21
+lastmod: 2025-04-23
 draft: true
 author: AlbertoFdzM
 tags:
@@ -16,49 +16,49 @@ tags:
 categories: []
 language: es
 keywords:
+  - multijugador online
   - Unity DOTS
   - Unity ECS
-  - multijugador online
+  - desarrollo de videojuegos
 ---
 
-# Tutorial para crear un juego multijugador en Unity DOTS - Parte 1: Introducción y Configuración
+# Cómo crear un juego multijugador en Unity DOTS con ECS - Parte 1: Introducción y Configuración
 
 - **Prerrequisitos**: Conocimientos básicos de Unity y C#
 - **Versión de Unity**: Unity 6
-- **Rama Git**: tutorial/01
 
 ## Introducción
 
-Bienvenidos a esta serie de tutoriales sobre Unity DOTS (Data-Oriented Technology Stack), una tecnología revolucionaria que está cambiando la forma en que desarrollamos juegos de alta performance en Unity. En esta serie aprenderás cómo implementar un sistema multijugador escalable utilizando un enfoque orientado a datos.
+En esta serie de tutoriales sobre [Unity DOTS (Data-Oriented Technology Stack)](https://unity.com/dots), una nueva arquitectura para desarrollo de videojuegos con el motor de Unity. En esta serie aprenderás cómo implementar un sistema multijugador escalable utilizando un enfoque orientado a datos.
 
-Este primer tutorial te introducirá a los conceptos fundamentales de DOTS, explicará por qué es importante para el desarrollo de juegos modernos y te guiará a través de la configuración inicial de tu proyecto. Al final, tendrás un entendimiento sólido de los componentes principales de DOTS y habrás configurado tu entorno de desarrollo para comenzar a crear tu juego multijugador.
+Este primer tutorial te introducirá a los conceptos fundamentales de DOTS, explicará por qué es relevante para el desarrollo de videojuegos con alta cantidad de entidades y te guiará a través de la configuración inicial de tu proyecto en Unity. Al final, tendrás un entendimiento sólido de los componentes principales de DOTS y habrás configurado tu entorno de desarrollo para comenzar a crear tu juego multijugador.
 
-## 1. Entendiendo los fundamentos de DOTS
+## 1. Fundamentos de DOTS
 
-### 1.1 Los desafíos de rendimiento en el desarrollo de juegos modernos
+### 1.1 Rendimiento en desarrollo de videojuegos
 
-El desarrollo de videojuegos enfrenta constantemente el desafío de maximizar el rendimiento mientras se crean mundos cada vez más complejos e inmersivos. Tradicionalmente, nos encontramos con dos tipos de limitaciones:
+El desarrollo de videojuegos tiene el desafío de maximizar el rendimiento para crear mundos cada vez más complejos e inmersivos. Técnicamente, nos encontramos con dos tipos de limitaciones:
 
-- **Aplicaciones limitadas por CPU**: Cuando la lógica del juego, la física y otros cálculos sobrecargan el procesador.
-- **Aplicaciones limitadas por GPU**: Cuando los gráficos y efectos visuales son el principal cuello de botella.
+- **Aplicaciones limitadas por CPU**: Cuando las lógicas del juego, las físicas y otros cálculos saturan el procesador.
+- **Aplicaciones limitadas por GPU**: Cuando los gráficos y efectos visuales provocan un cuello de botella.
 
-En los juegos multijugador, la CPU suele ser el factor limitante debido a la necesidad de gestionar numerosas entidades, sincronización de red y lógica de juego.
+En los videojuegos multijugador, la CPU suele ser el factor limitante debido a la necesidad de gestionar numerosas entidades, sincronización de red y lógicas de juego.
 
-Uno de los problemas fundamentales en la programación tradicional orientada a objetos (OOP) es el patrón de acceso a memoria. Cuando los datos relacionados están dispersos en la memoria (como sucede en la jerarquía de GameObjects), se producen numerosos "fallos de caché" que reducen drásticamente el rendimiento.
+Uno de los problemas fundamentales en la [programación orientada a objetos (OOP)](https://es.wikipedia.org/wiki/Programaci%C3%B3n_orientada_a_objetos) es la gestión de la memoria. Cuando los datos relacionados están dispersos en la memoria (como sucede en la jerarquía de GameObjects de Unity), se suelen producir "fallos de caché" que impactan en el rendimiento.
 
-A medida que un juego escala con más entidades y jugadores, la arquitectura tradicional de GameObjects se vuelve ineficiente, causando caídas de FPS y experiencias de juego inconsistentes.
+A medida que un juego escala con más entidades y jugadores, la arquitectura tradicional de GameObjects se vuelve ineficiente, causando caídas de FPS y una experiencia de juego pobre.
 
-### 1.2 Diseño de memoria: OOP tradicional vs. diseño orientado a datos
+### 1.2 Enfoque orientado a objetos vs. enfoque orientado a datos
 
-Para entender la diferencia entre estos enfoques, imagina una biblioteca:
+Para entender la diferencia entre estos enfoques, imagina dos bibliotecas diferentes, cada una con miles de libros:
 
-- **Enfoque orientado a objetos**: Cada libro es una entidad completa con todas sus características (autor, título, género, contenido). Para leer información de 100 libros, necesitas recorrer toda la biblioteca y abrir cada libro.
+- **Enfoque orientado a objetos**: En esta biblioteca, cada libro es una unidad completa y autosuficiente. Si necesitas información sobre los autores de 100 libros específicos, deberás localizar cada libro individual (dispersos por toda la biblioteca), sacarlo del estante, abrirlo, leer la información y devolverlo a su lugar. Este proceso de ir y venir es lento e ineficiente.
 
-- **Enfoque orientado a datos**: La información está organizada por tipo: una estantería contiene todos los títulos, otra todos los autores, etc. Para leer los títulos de 100 libros, simplemente recorres la estantería de títulos secuencialmente.
+- **Enfoque orientado a datos**: Esta biblioteca está organizada por características: hay un registro centralizado de autores, otro de títulos, otro de géneros, etc. Si necesitas información sobre los autores de 100 libros, simplemente consultas el registro de autores, donde todos los datos están secuencialmente organizados. Tu procesador (tú como lector) puede recorrer esta información rápidamente sin tener que "saltar" de un lugar a otro.
 
-Este segundo enfoque aprovecha la "coherencia de caché", permitiendo al procesador cargar datos relacionados en secuencia, reduciendo drásticamente los tiempos de acceso a memoria.
+Este segundo enfoque aprovecha la "[coherencia de caché](https://es.wikipedia.org/wiki/Coherencia_de_cach%C3%A9)", permitiendo al procesador cargar datos relacionados en secuencia, reduciendo drásticamente los tiempos de acceso a memoria.
 
-En términos prácticos, esto puede significar la diferencia entre gestionar 1,000 entidades a 60 FPS en la arquitectura tradicional, y poder manejar 100,000 entidades a la misma velocidad con DOTS.
+En comparación, esto significa gestionar 1,000 entidades a 60 FPS en la arquitectura tradicional, y 100,000 entidades a la misma velocidad con DOTS.
 
 ### 1.3 Breve historia de DOTS en Unity
 
@@ -69,34 +69,34 @@ DOTS ha evolucionado significativamente desde su introducción en 2018:
 - **2022-2023**: Estabilización de APIs, mejoras de rendimiento
 - **Unity 6**: DOTS alcanza madurez con APIs estables y listas para producción
 
-Esta evolución ha convertido a DOTS de una tecnología experimental a una solución robusta para el desarrollo de juegos de alta performance.
+Esta evolución ha convertido a DOTS de una tecnología experimental a una solución robusta para el desarrollo de videojuegos que requieren de alto rendimiento.
 
 ### 1.4 Cuándo usar DOTS (y cuándo no)
 
 DOTS es ideal para:
 
-- Simulaciones con miles de entidades (RTS, simuladores de multitudes)
-- Juegos multijugador masivos
-- Proyectos con alta densidad de entidades o sistemas de partículas
-- Juegos que requieren máximo rendimiento en dispositivos móviles
+- Simulaciones con miles de entidades (como juegos de estrategia en tiempo real o simuladores con multitudes)
+- Juegos multijugador masivos (MMOs)
+- Proyectos con gran cantidad de entidades o sistemas de partículas
+- Juegos que requieren un alto rendimiento en dispositivos móviles
 
 Sin embargo, DOTS podría no ser necesario para:
 
 - Juegos casuales simples
-- Proyectos enfocados principalmente en narrativa
+- Videojuegos donde la mecánica principal es la narrativa
 - Prototipos rápidos (donde la velocidad de desarrollo es prioritaria)
 
-Una aproximación híbrida (usando DOTS solo para sistemas críticos de rendimiento) es viable y recomendable para muchos proyectos.
+También se puede realizar una implementación híbrida (usando DOTS solo para sistemas críticos de rendimiento).
 
-## 2. Componentes principales de DOTS
+## 2. Sistemas principales en Unity DOTS
 
-### 2.1 Descripción general del Sistema de Entidades y Componentes (ECS)
+### 2.1 Sistema de Entidades y Componentes (ECS)
 
-El Entity Component System (ECS) es el núcleo arquitectónico de DOTS, y representa un cambio fundamental en cómo estructuramos nuestros juegos:
+El [Entity Component System (ECS)](https://docs.unity3d.com/Packages/com.unity.entities@latest) es la base de la arquitectura de DOTS, y representa un cambio a cómo se suelen estructurar los proyectos:
 
-**Entidades**: Identificadores ligeros que reemplazan a los GameObjects. Una entidad por sí sola no hace nada; es simplemente un ID único.
+**Entidades**: Reemplazan a los GameObjects. Una entidad por sí sola no hace nada; es simplemente un ID único.
 
-**Componentes**: Estructuras de datos puras que contienen solo propiedades, sin lógica. Por ejemplo:
+**Componentes**: Estructuras que albergan únicamente datos en forma de propiedades, sin lógica. Un ejemplo:
 
 ```csharp
 public struct Position : IComponentData
@@ -110,31 +110,33 @@ public struct Velocity : IComponentData
 }
 ```
 
-**Sistemas**: Clases que contienen toda la lógica de juego y operan sobre grupos de entidades con componentes específicos.
+**Sistemas**: Clases que contienen la lógica del juego y operan sobre las entidades que tengan componentes específicos.
 
-La diferencia principal con la arquitectura tradicional es la separación completa de datos (componentes) y lógica (sistemas), permitiendo un procesamiento más eficiente y paralelo.
+La diferencia principal con la arquitectura tradicional es la separación completa de la capa de datos (componentes) y la lógica (sistemas), permitiendo un procesamiento más eficiente y paralelo.
 
-### 2.2 Fundamentos del Job System
+### 2.2 Sistema de jobs de Unity
 
-El Job System permite ejecutar código en paralelo de manera segura, aprovechando todos los núcleos del procesador:
+El [Job System](https://docs.unity3d.com/6000.0/Documentation/Manual/job-system.html) permite ejecutar código en paralelo, haciendo uso de todos los núcleos del procesador. Cuenta con las siguientes características:
 
-- **Ejecución multihilo**: Distribuye el trabajo automáticamente entre los hilos disponibles
-- **Modelo de ejecución paralela**: Procesa múltiples entidades simultáneamente
+- **Ejecución multihilo**: Distribuye el trabajo automáticamente entre los hilos de procesamiento disponibles
+- **"Work stealing"**: Equilibra automáticamente la cantidad de tareas repartidas entre los diferentes subprocesos
 - **Mecanismos de seguridad**: Previene condiciones de carrera y otros problemas de concurrencia
 - **Dependencias**: Permite especificar el orden de ejecución cuando es necesario
 
-Usando el Job System, podemos realizar operaciones como actualizar las posiciones de miles de entidades simultáneamente, en lugar de hacerlo secuencialmente.
+Usando el Job System, podemos realizar operaciones como actualizar la posición de miles de entidades simultáneamente en lugar de hacerlo secuencialmente.
 
-### 2.3 Introducción al Burst Compiler
+### 2.3 Burst Compiler
 
-Burst es un compilador LLVM especializado que optimiza código .NET para máximo rendimiento:
+El [compilador Burst de Unity](https://docs.unity3d.com/Packages/com.unity.burst@latest) es un [compilador LLVM](https://llvm.org/) especializado que optimiza el código C# para sacarle el máximo rendimiento a la CPU:
 
-- Traduce código C# a instrucciones de máquina altamente optimizadas
+- Traduce código C# a instrucciones de máquina optimizadas
 - Aprovecha instrucciones vectoriales (SIMD) automáticamente
 - Elimina las comprobaciones de seguridad innecesarias
 - Optimiza específicamente para la arquitectura CPU del dispositivo
 
-Las pruebas han demostrado mejoras de rendimiento de 2x a 20x usando Burst, dependiendo del código. Sin embargo, impone algunas restricciones, como evitar asignaciones dinámicas de memoria y ciertas características de C# como reflexión o delegados.
+Dependiendo del del proyecto se pueden llegar a obtener mejoras de rendimiento de 2x a 20x usando Burst. Sin embargo, añade algunas restricciones, como evitar asignaciones dinámicas de memoria y ciertas características de C# como reflexión o delegados.
+
+<!-- TODO: Revisar a partir de aquí -->
 
 ## 3. Configuración del proyecto
 
