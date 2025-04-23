@@ -42,7 +42,7 @@ const LanguageSelector: React.JSXElementConstructor<Props> = (
         <FontAwesomeIcon className="text-white" icon={faLanguage} size="xl" />
       </button>
       <div
-        className={`fixed top-0 right-0 z-30 h-full w-full bg-slate-800 py-6 shadow-lg transition-transform duration-300 ease-in-out md:w-xs ${
+        className={`fixed top-0 right-0 z-30 h-full w-full bg-slate-800 py-6 shadow-lg transition-transform duration-200 ease-in-out md:w-xs ${
           isDrawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -80,7 +80,7 @@ const LanguageSelector: React.JSXElementConstructor<Props> = (
         </div>
       </div>
       <div
-        className={`fixed inset-0 z-20 bg-black transition-opacity duration-300 ${
+        className={`fixed inset-0 z-20 bg-black transition-opacity duration-200 ${
           isDrawerOpen ? "opacity-70" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setIsDrawerOpen(false)}
