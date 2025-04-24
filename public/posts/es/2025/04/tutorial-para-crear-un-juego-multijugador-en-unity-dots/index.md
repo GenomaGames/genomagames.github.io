@@ -29,36 +29,75 @@ keywords:
 
 ## Introducción
 
-En esta serie de tutoriales sobre [Unity DOTS (Data-Oriented Technology Stack)](https://unity.com/dots), una nueva arquitectura para desarrollo de videojuegos con el motor de Unity. En esta serie aprenderás cómo implementar un sistema multijugador escalable utilizando un enfoque orientado a datos.
+¿Imaginas poder crear un juego multijugador con **miles de entidades** moviéndose simultáneamente con unos FPS estables? [Unity DOTS (Data-Oriented Technology Stack)](https://unity.com/dots) lo hace posible, revolucionando cómo desarrollamos videojuegos de alto rendimiento.
 
-Este primer tutorial te introducirá a los conceptos fundamentales de DOTS, explicará por qué es relevante para el desarrollo de videojuegos con alta cantidad de entidades y te guiará a través de la configuración inicial de tu proyecto en Unity. Al final, tendrás un entendimiento sólido de los componentes principales de DOTS y habrás configurado tu entorno de desarrollo para comenzar a crear tu juego multijugador.
+En esta serie de tutoriales, te guiaré paso a paso para dominar esta arquitectura y crear un sistema multijugador escalable utilizando un enfoque orientado a datos. Este primer tutorial introducirá en los fundamentos de DOTS, te mostrará por qué es crucial para juegos con gran cantidad de entidades, y te acompañará en la configuración inicial de tu proyecto.
+
+Al finalizar este tutorial, no solo comprenderás los componentes esenciales de DOTS, sino que tendrás tu entorno listo para comenzar a construir experiencias multijugador que antes parecían imposibles de alcanzar con el rendimiento tradicional de Unity.
 
 ## 1. Fundamentos de DOTS
 
-### 1.1 Rendimiento en desarrollo de videojuegos
+### 1.1 El rendimiento en videojuegos modernos
 
-El desarrollo de videojuegos tiene el desafío de maximizar el rendimiento para crear mundos cada vez más complejos e inmersivos. Técnicamente, nos encontramos con dos tipos de limitaciones:
+Los videojuegos actuales enfrentan un reto constante: **crear mundos más complejos e inmersivos sin sacrificar rendimiento**. Este desafío se manifiesta en dos limitaciones técnicas principales:
 
-- **Aplicaciones limitadas por CPU**: Cuando las lógicas del juego, las físicas y otros cálculos saturan el procesador.
-- **Aplicaciones limitadas por GPU**: Cuando los gráficos y efectos visuales provocan un cuello de botella.
+| Limitación | Descripción                                                     | Síntomas                                              | Ejemplos                                                                 |
+| ---------- | --------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------ |
+| **CPU**    | Las lógicas del juego, físicas y cálculos saturan el procesador | Caídas de FPS durante cálculos intensivos             | Simulaciones de multitudes, IA compleja, físicas detalladas              |
+| **GPU**    | Los gráficos y efectos visuales provocan cuellos de botella     | Ralentizaciones durante escenas visualmente complejas | Efectos de partículas, iluminación avanzada, texturas de alta resolución |
 
-En los videojuegos multijugador, la CPU suele ser el factor limitante debido a la necesidad de gestionar numerosas entidades, sincronización de red y lógicas de juego.
+En juegos multijugador, **la CPU suele ser el factor limitante crítico**. Esto se debe a la necesidad de:
 
-Uno de los problemas fundamentales en la [programación orientada a objetos (OOP)](https://es.wikipedia.org/wiki/Programaci%C3%B3n_orientada_a_objetos) es la gestión de la memoria. Cuando los datos relacionados están dispersos en la memoria (como sucede en la jerarquía de GameObjects de Unity), se suelen producir "fallos de caché" que impactan en el rendimiento.
+- Gestionar numerosas entidades simultáneamente
+- Mantener sincronización constante entre jugadores
+- Procesar lógicas de juego complejas en tiempo real
 
-A medida que un juego escala con más entidades y jugadores, la arquitectura tradicional de GameObjects se vuelve ineficiente, causando caídas de FPS y una experiencia de juego pobre.
+Uno de los problemas en la arquitectura tradicional de Unity (basada en [programación orientada a objetos](https://es.wikipedia.org/wiki/Programaci%C3%B3n_orientada_a_objetos)) es la **gestión de memoria**. Cuando los datos relacionados están dispersos (como ocurre en la jerarquía de GameObjects), se producen "fallos de caché" que degradan drásticamente el rendimiento.
+
+> **¿Sabías que?** Un fallo de caché puede costar entre 100-1000 ciclos de CPU, mientras que un acierto de caché solo requiere 1-3 ciclos.
+
+A medida que un juego crece en complejidad, estos problemas se magnifican exponencialmente, resultando en:
+
+- Caídas severas de FPS
+- Mayor consumo de memoria
+- Experiencia de juego pobre
+- Limitaciones en la escala del mundo y número de jugadores
 
 ### 1.2 Enfoque orientado a objetos vs. enfoque orientado a datos
 
 Para entender la diferencia entre estos enfoques, imagina dos bibliotecas diferentes, cada una con miles de libros:
 
-- **Enfoque orientado a objetos**: En esta biblioteca, cada libro es una unidad completa y autosuficiente. Si necesitas información sobre los autores de 100 libros específicos, deberás localizar cada libro individual (dispersos por toda la biblioteca), sacarlo del estante, abrirlo, leer la información y devolverlo a su lugar. Este proceso de ir y venir es lento e ineficiente.
+#### Biblioteca Orientada a Objetos
 
-- **Enfoque orientado a datos**: Esta biblioteca está organizada por características: hay un registro centralizado de autores, otro de títulos, otro de géneros, etc. Si necesitas información sobre los autores de 100 libros, simplemente consultas el registro de autores, donde todos los datos están secuencialmente organizados. Tu procesador (tú como lector) puede recorrer esta información rápidamente sin tener que "saltar" de un lugar a otro.
+- Cada libro es una **unidad completa y autosuficiente** (como un GameObject)
+- Los libros están organizados por temas generales, pero dispersos físicamente
+- Para obtener información sobre los autores de 100 libros específicos:
+  1. Debes localizar cada libro individualmente (dispersos por toda la biblioteca)
+  2. Sacar cada libro del estante
+  3. Abrirlo y buscar la página con la información del autor
+  4. Anotar la información
+  5. Devolver el libro y repetir 99 veces más
 
-Este segundo enfoque aprovecha la "[coherencia de caché](https://es.wikipedia.org/wiki/Coherencia_de_cach%C3%A9)", permitiendo al procesador cargar datos relacionados en secuencia, reduciendo drásticamente los tiempos de acceso a memoria.
+Este constante ir y venir es muy ineficiente, similar a cómo la CPU debe "saltar" por la memoria para procesar GameObjects tradicionales.
 
-En comparación, esto significa gestionar 1,000 entidades a 60 FPS en la arquitectura tradicional, y 100,000 entidades a la misma velocidad con DOTS.
+#### Biblioteca Orientada a Datos
+
+- Los datos están organizados por **características específicas**
+- Existe un registro centralizado para cada tipo de información:
+  - Un catálogo único de autores
+  - Un catálogo único de títulos
+  - Un catálogo único de géneros
+- Para obtener información sobre los autores de 100 libros:
+  1. Simplemente consultas el registro de autores
+  2. Recorres secuencialmente las entradas que necesitas
+  3. Toda la información está contigua y organizada
+
+Este enfoque aprovecha la "[coherencia de caché](https://es.wikipedia.org/wiki/Coherencia_de_cach%C3%A9)", permitiendo al procesador cargar datos relacionados en secuencia, reduciendo drásticamente los tiempos de acceso.
+
+**Comparación de rendimiento:**
+
+- **Arquitectura tradicional:** ~1,000 entidades con FPS estables
+- **Arquitectura DOTS:** ~100,000 entidades con los mismos FPS (100x más)
 
 ### 1.3 Breve historia de DOTS en Unity
 
