@@ -5,7 +5,7 @@ coverImage:
   src: /posts/es/2025/04/tutorial-para-crear-un-juego-multijugador-en-unity-dots/entities-splash-image.png
   alt: Unity Entities
 date: 2025-04-21
-lastmod: 2025-04-23
+lastmod: 2025-04-24
 draft: true
 author: AlbertoFdzM
 tags:
@@ -136,19 +136,19 @@ El [compilador Burst de Unity](https://docs.unity3d.com/Packages/com.unity.burst
 
 Dependiendo del del proyecto se pueden llegar a obtener mejoras de rendimiento de 2x a 20x usando Burst. Sin embargo, añade algunas restricciones, como evitar asignaciones dinámicas de memoria y ciertas características de C# como reflexión o delegados.
 
-<!-- TODO: Revisar a partir de aquí -->
-
 ## 3. Configuración del proyecto
 
-### 3.1 Creando un nuevo proyecto en Unity 6
+### 3.1 Cómo crear un proyecto en Unity 6 para DOTS
 
 Para comenzar, necesitamos crear un nuevo proyecto en Unity 6:
 
-1. Abre Unity Hub y selecciona "Nuevo proyecto"
-2. Selecciona la versión Unity 6.x.x
-3. Usa la plantilla "Core" o "3D Core" (no URP/HDRP inicialmente para mantener la simplicidad)
-4. Dale un nombre como "DOTS-Multiplayer-Tutorial"
-5. Elige la ubicación de tu proyecto y haz clic en "Crear"
+1. Abre Unity Hub y selecciona "Nuevo proyecto".
+2. Selecciona la versión **Unity 6000** (o la más reciente compatible).
+3. Selecciona la plantilla **Universal 2D**
+4. Dale un nombre como "DOTS-Multiplayer-Tutorial".
+5. Elige la ubicación de tu proyecto y haz clic en "Crear proyecto".
+
+![Captura de pantalla de Unity Hub en la vista de creación de un proyecto nuevo](01-unity-project-creation-on-unity-hub.png)
 
 <!-- REVISAR: No queremos usar las plantillas mencionadas queremos hacer un proyecto 2D -->
 
@@ -382,27 +382,16 @@ Al ejecutar la escena, se crearán las entidades boid, pero no veremos nada toda
 
 En tutoriales posteriores, añadiremos estas funcionalidades. Por ahora, puedes verificar que las entidades se hayan creado usando la ventana Entity Debugger (Window > DOTS > Entity Debugger).
 
-## 6. Recursos adicionales
-
-### 6.1 Documentación oficial de Unity DOTS
+## 6. Referencias adicionales
 
 - [Manual de Unity Entities](https://docs.unity3d.com/Packages/com.unity.entities@latest)
 - [Manual del Job System](https://docs.unity3d.com/Packages/com.unity.jobs@latest)
 - [Manual de Burst](https://docs.unity3d.com/Packages/com.unity.burst@latest)
 - [Tutoriales oficiales de DOTS en Unity Learn](https://learn.unity.com/search?k=%5B%22q%3ADOTS%22%5D)
-
-### 6.2 Recursos de la comunidad
-
 - [Foro oficial de DOTS](https://forum.unity.com/forums/data-oriented-technology-stack.147/)
 - [Canal de Discord de Unity ECS](https://discord.gg/unity-ecs)
 - [Ejemplos en GitHub](https://github.com/Unity-Technologies/EntityComponentSystemSamples)
-
-### 6.3 Herramientas de medición de rendimiento
-
-- **Entity Debugger**: Para visualizar entidades y sistemas (Window > DOTS > Entity Debugger)
-- **Burst Inspector**: Para analizar el código compilado por Burst (Window > Burst > Open Inspector)
-- **Unity Profiler**: Con marcadores específicos para DOTS (Window > Analysis > Profiler)
-- **Memory Profiler**: Para analizar el uso de memoria (disponible en Package Manager)
+- [Curso de Code Monkey sobre Unity DOTS](https://www.youtube.com/watch?v=1gSnTlUjs-s)
 
 ## Próximos pasos
 
