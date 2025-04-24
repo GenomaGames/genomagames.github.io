@@ -5,7 +5,7 @@ coverImage:
   src: /posts/es/2025/04/tutorial-para-crear-un-juego-multijugador-en-unity-dots/entities-splash-image.png
   alt: Unity Entities
 date: 2025-04-21
-lastmod: 2025-04-23
+lastmod: 2025-04-24
 draft: true
 author: AlbertoFdzM
 tags:
@@ -29,36 +29,75 @@ keywords:
 
 ## Introducción
 
-En esta serie de tutoriales sobre [Unity DOTS (Data-Oriented Technology Stack)](https://unity.com/dots), una nueva arquitectura para desarrollo de videojuegos con el motor de Unity. En esta serie aprenderás cómo implementar un sistema multijugador escalable utilizando un enfoque orientado a datos.
+¿Imaginas poder crear un juego multijugador con **miles de entidades** moviéndose simultáneamente con unos FPS estables? [Unity DOTS (Data-Oriented Technology Stack)](https://unity.com/dots) lo hace posible, revolucionando cómo desarrollamos videojuegos de alto rendimiento.
 
-Este primer tutorial te introducirá a los conceptos fundamentales de DOTS, explicará por qué es relevante para el desarrollo de videojuegos con alta cantidad de entidades y te guiará a través de la configuración inicial de tu proyecto en Unity. Al final, tendrás un entendimiento sólido de los componentes principales de DOTS y habrás configurado tu entorno de desarrollo para comenzar a crear tu juego multijugador.
+En esta serie de tutoriales, te guiaré paso a paso para dominar esta arquitectura y crear un sistema multijugador escalable utilizando un enfoque orientado a datos. Este primer tutorial introducirá en los fundamentos de DOTS, te mostrará por qué es crucial para juegos con gran cantidad de entidades, y te acompañará en la configuración inicial de tu proyecto.
+
+Al finalizar este tutorial, no solo comprenderás los componentes esenciales de DOTS, sino que tendrás tu entorno listo para comenzar a construir experiencias multijugador que antes parecían imposibles de alcanzar con el rendimiento tradicional de Unity.
 
 ## 1. Fundamentos de DOTS
 
-### 1.1 Rendimiento en desarrollo de videojuegos
+### 1.1 El rendimiento en videojuegos modernos
 
-El desarrollo de videojuegos tiene el desafío de maximizar el rendimiento para crear mundos cada vez más complejos e inmersivos. Técnicamente, nos encontramos con dos tipos de limitaciones:
+Los videojuegos actuales enfrentan un reto constante: **crear mundos más complejos e inmersivos sin sacrificar rendimiento**. Este desafío se manifiesta en dos limitaciones técnicas principales:
 
-- **Aplicaciones limitadas por CPU**: Cuando las lógicas del juego, las físicas y otros cálculos saturan el procesador.
-- **Aplicaciones limitadas por GPU**: Cuando los gráficos y efectos visuales provocan un cuello de botella.
+| Limitación | Descripción                                                     | Síntomas                                              | Ejemplos                                                                 |
+| ---------- | --------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------ |
+| **CPU**    | Las lógicas del juego, físicas y cálculos saturan el procesador | Caídas de FPS durante cálculos intensivos             | Simulaciones de multitudes, IA compleja, físicas detalladas              |
+| **GPU**    | Los gráficos y efectos visuales provocan cuellos de botella     | Ralentizaciones durante escenas visualmente complejas | Efectos de partículas, iluminación avanzada, texturas de alta resolución |
 
-En los videojuegos multijugador, la CPU suele ser el factor limitante debido a la necesidad de gestionar numerosas entidades, sincronización de red y lógicas de juego.
+En juegos multijugador, **la CPU suele ser el factor limitante crítico**. Esto se debe a la necesidad de:
 
-Uno de los problemas fundamentales en la [programación orientada a objetos (OOP)](https://es.wikipedia.org/wiki/Programaci%C3%B3n_orientada_a_objetos) es la gestión de la memoria. Cuando los datos relacionados están dispersos en la memoria (como sucede en la jerarquía de GameObjects de Unity), se suelen producir "fallos de caché" que impactan en el rendimiento.
+- Gestionar numerosas entidades simultáneamente
+- Mantener sincronización constante entre jugadores
+- Procesar lógicas de juego complejas en tiempo real
 
-A medida que un juego escala con más entidades y jugadores, la arquitectura tradicional de GameObjects se vuelve ineficiente, causando caídas de FPS y una experiencia de juego pobre.
+Uno de los problemas en la arquitectura tradicional de Unity (basada en [programación orientada a objetos](https://es.wikipedia.org/wiki/Programaci%C3%B3n_orientada_a_objetos)) es la **gestión de memoria**. Cuando los datos relacionados están dispersos (como ocurre en la jerarquía de GameObjects), se producen "fallos de caché" que degradan drásticamente el rendimiento.
+
+> **¿Sabías que?** Un fallo de caché puede costar entre 100-1000 ciclos de CPU, mientras que un acierto de caché solo requiere 1-3 ciclos.
+
+A medida que un juego crece en complejidad, estos problemas se magnifican exponencialmente, resultando en:
+
+- Caídas severas de FPS
+- Mayor consumo de memoria
+- Experiencia de juego pobre
+- Limitaciones en la escala del mundo y número de jugadores
 
 ### 1.2 Enfoque orientado a objetos vs. enfoque orientado a datos
 
 Para entender la diferencia entre estos enfoques, imagina dos bibliotecas diferentes, cada una con miles de libros:
 
-- **Enfoque orientado a objetos**: En esta biblioteca, cada libro es una unidad completa y autosuficiente. Si necesitas información sobre los autores de 100 libros específicos, deberás localizar cada libro individual (dispersos por toda la biblioteca), sacarlo del estante, abrirlo, leer la información y devolverlo a su lugar. Este proceso de ir y venir es lento e ineficiente.
+#### Biblioteca Orientada a Objetos
 
-- **Enfoque orientado a datos**: Esta biblioteca está organizada por características: hay un registro centralizado de autores, otro de títulos, otro de géneros, etc. Si necesitas información sobre los autores de 100 libros, simplemente consultas el registro de autores, donde todos los datos están secuencialmente organizados. Tu procesador (tú como lector) puede recorrer esta información rápidamente sin tener que "saltar" de un lugar a otro.
+- Cada libro es una **unidad completa y autosuficiente** (como un GameObject)
+- Los libros están organizados por temas generales, pero dispersos físicamente
+- Para obtener información sobre los autores de 100 libros específicos:
+  1. Debes localizar cada libro individualmente (dispersos por toda la biblioteca)
+  2. Sacar cada libro del estante
+  3. Abrirlo y buscar la página con la información del autor
+  4. Anotar la información
+  5. Devolver el libro y repetir 99 veces más
 
-Este segundo enfoque aprovecha la "[coherencia de caché](https://es.wikipedia.org/wiki/Coherencia_de_cach%C3%A9)", permitiendo al procesador cargar datos relacionados en secuencia, reduciendo drásticamente los tiempos de acceso a memoria.
+Este constante ir y venir es muy ineficiente, similar a cómo la CPU debe "saltar" por la memoria para procesar GameObjects tradicionales.
 
-En comparación, esto significa gestionar 1,000 entidades a 60 FPS en la arquitectura tradicional, y 100,000 entidades a la misma velocidad con DOTS.
+#### Biblioteca Orientada a Datos
+
+- Los datos están organizados por **características específicas**
+- Existe un registro centralizado para cada tipo de información:
+  - Un catálogo único de autores
+  - Un catálogo único de títulos
+  - Un catálogo único de géneros
+- Para obtener información sobre los autores de 100 libros:
+  1. Simplemente consultas el registro de autores
+  2. Recorres secuencialmente las entradas que necesitas
+  3. Toda la información está contigua y organizada
+
+Este enfoque aprovecha la "[coherencia de caché](https://es.wikipedia.org/wiki/Coherencia_de_cach%C3%A9)", permitiendo al procesador cargar datos relacionados en secuencia, reduciendo drásticamente los tiempos de acceso.
+
+**Comparación de rendimiento:**
+
+- **Arquitectura tradicional:** ~1,000 entidades con FPS estables
+- **Arquitectura DOTS:** ~100,000 entidades con los mismos FPS (100x más)
 
 ### 1.3 Breve historia de DOTS en Unity
 
@@ -136,19 +175,19 @@ El [compilador Burst de Unity](https://docs.unity3d.com/Packages/com.unity.burst
 
 Dependiendo del del proyecto se pueden llegar a obtener mejoras de rendimiento de 2x a 20x usando Burst. Sin embargo, añade algunas restricciones, como evitar asignaciones dinámicas de memoria y ciertas características de C# como reflexión o delegados.
 
-<!-- TODO: Revisar a partir de aquí -->
-
 ## 3. Configuración del proyecto
 
-### 3.1 Creando un nuevo proyecto en Unity 6
+### 3.1 Cómo crear un proyecto en Unity 6 para DOTS
 
 Para comenzar, necesitamos crear un nuevo proyecto en Unity 6:
 
-1. Abre Unity Hub y selecciona "Nuevo proyecto"
-2. Selecciona la versión Unity 6.x.x
-3. Usa la plantilla "Core" o "3D Core" (no URP/HDRP inicialmente para mantener la simplicidad)
-4. Dale un nombre como "DOTS-Multiplayer-Tutorial"
-5. Elige la ubicación de tu proyecto y haz clic en "Crear"
+1. Abre Unity Hub y selecciona "Nuevo proyecto".
+2. Selecciona la versión **Unity 6000** (o la más reciente compatible).
+3. Selecciona la plantilla **Universal 2D**
+4. Dale un nombre como "DOTS-Multiplayer-Tutorial".
+5. Elige la ubicación de tu proyecto y haz clic en "Crear proyecto".
+
+![Captura de pantalla de Unity Hub en la vista de creación de un proyecto nuevo](01-unity-project-creation-on-unity-hub.png)
 
 <!-- REVISAR: No queremos usar las plantillas mencionadas queremos hacer un proyecto 2D -->
 
@@ -382,27 +421,16 @@ Al ejecutar la escena, se crearán las entidades boid, pero no veremos nada toda
 
 En tutoriales posteriores, añadiremos estas funcionalidades. Por ahora, puedes verificar que las entidades se hayan creado usando la ventana Entity Debugger (Window > DOTS > Entity Debugger).
 
-## 6. Recursos adicionales
-
-### 6.1 Documentación oficial de Unity DOTS
+## 6. Referencias adicionales
 
 - [Manual de Unity Entities](https://docs.unity3d.com/Packages/com.unity.entities@latest)
 - [Manual del Job System](https://docs.unity3d.com/Packages/com.unity.jobs@latest)
 - [Manual de Burst](https://docs.unity3d.com/Packages/com.unity.burst@latest)
 - [Tutoriales oficiales de DOTS en Unity Learn](https://learn.unity.com/search?k=%5B%22q%3ADOTS%22%5D)
-
-### 6.2 Recursos de la comunidad
-
 - [Foro oficial de DOTS](https://forum.unity.com/forums/data-oriented-technology-stack.147/)
 - [Canal de Discord de Unity ECS](https://discord.gg/unity-ecs)
 - [Ejemplos en GitHub](https://github.com/Unity-Technologies/EntityComponentSystemSamples)
-
-### 6.3 Herramientas de medición de rendimiento
-
-- **Entity Debugger**: Para visualizar entidades y sistemas (Window > DOTS > Entity Debugger)
-- **Burst Inspector**: Para analizar el código compilado por Burst (Window > Burst > Open Inspector)
-- **Unity Profiler**: Con marcadores específicos para DOTS (Window > Analysis > Profiler)
-- **Memory Profiler**: Para analizar el uso de memoria (disponible en Package Manager)
+- [Curso de Code Monkey sobre Unity DOTS](https://www.youtube.com/watch?v=1gSnTlUjs-s)
 
 ## Próximos pasos
 
