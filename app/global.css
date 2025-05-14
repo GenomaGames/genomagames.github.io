@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;700&display=swap");
+@font-face {
+  font-family: "Born2bSporty FS";
+  src: url("/Born2bSportyFS.otf");
+  font-weight: 400;
+}
+@import "tailwindcss/theme.css";
+@import "tailwindcss/utilities.css";
+@config "../tailwind.config.js";
+
+body {
+  @apply leading-[normal] m-0;
+}
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-width: 0;
+  }
+}
