@@ -19,10 +19,10 @@ const Iconstar: NextPage<IconstarType> = ({
   className = "",
   property1 = 1,
   vector,
-  subtract,
+  subtract: _subtract,
   subtractIconHeight,
 }) => {
-  const subtractIconStyle: CSSProperties = useMemo(() => {
+  const _subtractIconStyle: CSSProperties = useMemo(() => {
     return {
       height: subtractIconHeight,
     };
@@ -45,8 +45,8 @@ const Iconstar: NextPage<IconstarType> = ({
         className="relative hidden h-5 w-[17px]"
         fill
         alt=""
-        src={subtract}
-        style={subtractIconStyle}
+        src={_subtract}
+        style={_subtractIconStyle}
       /> */}
     </div>
   );
