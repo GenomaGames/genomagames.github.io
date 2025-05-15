@@ -1,5 +1,5 @@
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import "../../styles/globals.css";
+import "@/src/styles/globals.css";
 
 import { ParsedUrlQuery } from "node:querystring";
 

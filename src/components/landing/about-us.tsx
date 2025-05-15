@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Image from "next/image";
+
 import AboutContent from "./about-content";
 import Card1 from "./card1";
 
@@ -10,19 +11,19 @@ export type AboutUsType = {
 const AboutUs: NextPage<AboutUsType> = ({ className = "" }) => {
   return (
     <section
-      className={`self-stretch flex flex-col items-start justify-start py-10 px-32 gap-10 text-left text-45xl text-white font-born2bsporty-fs ${className}`}
+      className={`text-45xl font-born2bsporty-fs flex flex-col items-start justify-start gap-10 self-stretch px-32 py-10 text-left text-white ${className}`}
     >
       <AboutContent
         aboutGenomaGames="About Genoma Games"
         foundedInWereATeamOfPa="Founded in 2015, we're a team of passionate gamers creating experiences "
         weveAlwaysWantedToPlay="we've always wanted to play."
       />
-      <div className="self-stretch flex flex-row items-start justify-start gap-6 text-13xl">
-        <div className="flex-1 flex flex-col items-start justify-start gap-6">
-          <h2 className="m-0 relative text-[length:inherit] leading-[50px] uppercase font-normal font-[inherit]">
+      <div className="text-13xl flex flex-row items-start justify-start gap-6 self-stretch">
+        <div className="flex flex-1 flex-col items-start justify-start gap-6">
+          <h2 className="relative m-0 font-[inherit] text-[length:inherit] leading-[50px] font-normal uppercase">
             Our Story
           </h2>
-          <div className="self-stretch relative text-xl leading-[20px] font-josefin-sans">
+          <div className="font-josefin-sans relative self-stretch text-xl leading-[20px]">
             <p className="m-0">{`Nexus Studios began with five friends sharing a small apartment and a big dream: to create games that would push the boundaries of the medium. `}</p>
             <p className="m-0">&nbsp;</p>
             <p className="m-0">
@@ -34,22 +35,22 @@ const AboutUs: NextPage<AboutUsType> = ({ className = "" }) => {
             <p className="m-0">&nbsp;</p>
             <p className="m-0">
               With each project, we aim to push our creative boundaries further
-              and deliver experiences that stay with players long after they've
-              put down the controller.
+              and deliver experiences that stay with players long after
+              they&apos;ve put down the controller.
             </p>
           </div>
         </div>
-        <div className="h-[376px] flex-1 max-w-full overflow-hidden relative flex items-center justify-center">
+        <div className="relative flex h-[376px] max-w-full flex-1 items-center justify-center overflow-hidden">
           <Image
-            className="h-full flex-1 overflow-hidden object-cover absolute left-[0px] top-[0px] w-full [transform:scale(1)]"
+            className="absolute top-[0px] left-[0px] h-full w-full flex-1 [transform:scale(1)] overflow-hidden object-cover"
             loading="lazy"
             fill
             alt=""
-            src="/frame-15@2x.png"
+            src="/landing/frame-15@2x.png"
           />
         </div>
       </div>
-      <div className="self-stretch flex flex-row items-start justify-start gap-10 text-xl font-josefin-sans">
+      <div className="font-josefin-sans flex flex-row items-start justify-start gap-10 self-stretch text-xl">
         <Card1
           gameGamingJoystickMedia="/6363267-game-gaming-joystick-media-play-icon-1.svg"
           playerCenteringDesign="Player-Centering Design"

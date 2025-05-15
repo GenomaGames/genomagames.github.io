@@ -1,7 +1,7 @@
 "use client";
 import type { NextPage } from "next";
-import { useMemo, type CSSProperties } from "react";
 import Image from "next/image";
+import { type CSSProperties, useMemo } from "react";
 
 export type IconstarType = {
   className?: string;
@@ -30,24 +30,24 @@ const Iconstar: NextPage<IconstarType> = ({
 
   return (
     <div
-      className={`w-2.5 relative h-2.5 overflow-hidden shrink-0 ${className}`}
+      className={`relative h-2.5 w-2.5 shrink-0 overflow-hidden ${className}`}
       data-property1={property1}
     >
-      <div className="absolute h-[83%] w-[83%] top-[8%] right-[9%] bottom-[9%] left-[8%] max-w-full max-h-full overflow-hidden flex items-center justify-center">
+      <div className="absolute top-[8%] right-[9%] bottom-[9%] left-[8%] flex h-[83%] max-h-full w-[83%] max-w-full items-center justify-center overflow-hidden">
         <Image
-          className="h-full w-full overflow-hidden object-cover absolute left-[0px] top-[0px] [transform:scale(1)]"
+          className="absolute top-[0px] left-[0px] h-full w-full [transform:scale(1)] overflow-hidden object-cover"
           fill
           alt=""
           src={vector}
         />
       </div>
-      <Image
-        className="relative w-[17px] h-5 hidden"
+      {/* <Image
+        className="relative hidden h-5 w-[17px]"
         fill
         alt=""
         src={subtract}
         style={subtractIconStyle}
-      />
+      /> */}
     </div>
   );
 };

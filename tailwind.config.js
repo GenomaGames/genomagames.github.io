@@ -5,19 +5,19 @@ module.exports = {
     extend: {
       colors: {
         gray: {
-          "100": "#172032",
-          "200": "#111226",
-          "300": "rgba(255, 255, 255, 0.1)",
+          100: "#172032",
+          200: "#111226",
+          300: "rgba(255, 255, 255, 0.1)",
         },
         white: "#fff",
         "Color-Main": "#0bb3de",
-        "Color-Light": "#8ee8ff",
+        "color-light": "#8ee8ff",
         "color-4": "#ffe015",
         "color-3": "#d946ef",
         "color-2": "#8b5cf6",
         darkslategray: {
-          "100": "#2c3944",
-          "200": "rgba(30, 45, 58, 0.8)",
+          100: "#2c3944",
+          200: "rgba(30, 45, 58, 0.8)",
         },
         burlywood: "rgba(255, 200, 158, 0.1)",
       },

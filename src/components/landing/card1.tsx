@@ -1,7 +1,7 @@
 "use client";
 import type { NextPage } from "next";
-import { useMemo, type CSSProperties } from "react";
 import Image from "next/image";
+import { type CSSProperties,useMemo } from "react";
 
 export type Card1Type = {
   className?: string;
@@ -31,22 +31,22 @@ const Card1: NextPage<Card1Type> = ({
 
   return (
     <div
-      className={`h-[264px] flex-1 rounded-2xl bg-gray-100 border-color-2 border-solid border-t-[1px] box-border flex flex-col items-start justify-start p-6 gap-3.5 text-left text-xl text-white font-josefin-sans ${className}`}
+      className={`border-color-2 font-josefin-sans box-border flex h-[264px] flex-1 flex-col items-start justify-start gap-3.5 rounded-2xl border-t-[1px] border-solid bg-gray-100 p-6 text-left text-xl text-white ${className}`}
       style={card1Style}
     >
-      <div className="w-12 relative max-h-full overflow-hidden h-12 flex items-center justify-center">
+      <div className="relative flex h-12 max-h-full w-12 items-center justify-center overflow-hidden">
         <Image
-          className="w-full overflow-hidden object-cover absolute left-[0px] top-[0px] h-full [transform:scale(1)]"
+          className="absolute top-[0px] left-[0px] h-full w-full [transform:scale(1)] overflow-hidden object-cover"
           loading="lazy"
           fill
           alt=""
           src={gameGamingJoystickMedia}
         />
       </div>
-      <b className="self-stretch relative leading-[20px]">
+      <b className="relative self-stretch leading-[20px]">
         {playerCenteringDesign}
       </b>
-      <div className="self-stretch relative leading-[20px] font-light">
+      <div className="relative self-stretch leading-[20px] font-light">
         {weCreateGamesWithPlayersAt}
       </div>
     </div>
