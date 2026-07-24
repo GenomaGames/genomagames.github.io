@@ -4,13 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-- Build: `npm run build`
-- Lint: `npm run lint`
-- Lint and fix: `npm run lint:fix`
-- Type check: `npm run typecheck`
-- Development server: `npm start`
-- Production server: `npm run start:prod`
-- Test: `npm run test`
+The project runs on Node.js 24 and uses pnpm as its package manager.
+
+- Install dependencies: `pnpm install`
+- Build: `pnpm build`
+- Lint: `pnpm lint`
+- Lint and fix: `pnpm lint:fix`
+- Type check: `pnpm typecheck`
+- Development server: `pnpm start`
+- Production server: `pnpm start:prod`
+- Test: `pnpm test`
 
 ## Code Style
 

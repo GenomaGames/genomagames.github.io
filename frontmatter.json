@@ -166,7 +166,7 @@
     }
   ],
   "frontMatter.framework.id": "next",
-  "frontMatter.framework.startCommand": "npm start",
+  "frontMatter.framework.startCommand": "pnpm start",
   "frontMatter.git.enabled": true,
   "frontMatter.git.commitMessage": "✍️ update content by Front Matter",
   "frontMatter.panel.actions.disabled": [],

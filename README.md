@@ -9,10 +9,13 @@
 
 ## 🚀 Quick start
 
-1. **Install npm dependencies**
+1. **Install the dependencies**
+
+   The project runs on Node.js 24 (see `.nvmrc`) and uses pnpm as its package
+   manager.
 
    ```shell
-   npm ci
+   pnpm install
    ```
 
 1. **Set up the environment**
@@ -25,7 +28,7 @@
    Start project.
 
    ```shell
-   npm start
+   pnpm start
    ```
 
    Running at http://localhost:3000
@@ -33,7 +36,7 @@
 1. **Test Production Build**
 
    ```shell
-   npm run start:prod
+   pnpm start:prod
    ```
 
    Running at http://localhost:3000

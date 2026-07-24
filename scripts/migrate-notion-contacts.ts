@@ -11,8 +11,8 @@
  * reported as skipped instead of migrated.
  *
  * Usage:
- *   npx tsx scripts/migrate-notion-contacts.ts --dry-run   # prints the plan
- *   npx tsx scripts/migrate-notion-contacts.ts --apply     # inserts the rows
+ *   pnpm tsx scripts/migrate-notion-contacts.ts --dry-run   # prints the plan
+ *   pnpm tsx scripts/migrate-notion-contacts.ts --apply     # inserts the rows
  *
  * Required environment variables:
  *   NOTION_TOKEN, NOTION_PLAYERS_DB_ID, SUPABASE_URL, SUPABASE_SECRET_KEY
