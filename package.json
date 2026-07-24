@@ -4,6 +4,9 @@
   "private": true,
   "description": "Genoma Games' website",
   "author": "Alberto Fernandez <albertofdzm@gmail.com> (http://onlythepixel.com)",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "build": "next build",
     "lint": "next lint && npm run typecheck",
