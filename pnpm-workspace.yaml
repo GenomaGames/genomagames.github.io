@@ -1,8 +1,10 @@
 allowBuilds:
+  '@parcel/watcher': false
+  '@swc/core': false
   esbuild: false
   sharp: false
   unrs-resolver: false
 
 overrides:
-  "@types/react": "19.1.2"
-  "@types/react-dom": "19.1.2"
+  "@types/react": "19.2.17"
+  "@types/react-dom": "19.2.3"

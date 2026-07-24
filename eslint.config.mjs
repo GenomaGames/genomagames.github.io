@@ -1,15 +1,17 @@
-import { FlatCompat } from "@eslint/eslintrc";
-import js from "@eslint/js";
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+import prettier from "eslint-config-prettier/flat";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-  recommendedConfig: js.configs.recommended,
-});
-
-const eslintConfig = [
-  ...compat.config({
-    extends: ["next/core-web-vitals", "next/typescript", "prettier"],
-    plugins: ["simple-import-sort"],
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  prettier,
+  {
+    plugins: {
+      "simple-import-sort": simpleImportSort,
+    },
     rules: {
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error",
@@ -21,7 +23,9 @@ const eslintConfig = [
         },
       ],
     },
-  }),
-];
+  },
+  // Override default ignores of eslint-config-next.
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+]);
 
 export default eslintConfig;

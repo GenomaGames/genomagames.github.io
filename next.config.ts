@@ -21,9 +21,6 @@ const nextConfig: NextConfig = () => {
       unoptimized: true,
     },
     reactStrictMode: true,
-    webpack: (config, _context) => {
-      return config;
-    },
   };
 
   return plugins.reduce((result, plugin) => plugin(result), baseConfig);

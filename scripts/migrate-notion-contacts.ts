@@ -110,10 +110,20 @@ const genreTokens = {
 
 type TokenMap = Record<string, string>;
 
+/** The property types the Players database uses, as the Notion API returns them. */
+type NotionProperty =
+  | { type: "title"; title: { plain_text: string }[] }
+  | { type: "rich_text"; rich_text: { plain_text: string }[] }
+  | { type: "email"; email: string | null }
+  | { type: "number"; number: number | null }
+  | { type: "select"; select: { name: string } | null }
+  | { type: "multi_select"; multi_select: { name: string }[] }
+  | { type: "created_time"; created_time: string };
+
 /** A page of the Players database as the Notion API returns it. */
 type NotionPage = {
   id: string;
-  properties: Record<string, any>;
+  properties: Record<string, NotionProperty>;
 };
 
 type NotionPropertyValue = string | string[] | number | null;
@@ -181,11 +191,13 @@ function propertyValue(page: NotionPage, name: string): NotionPropertyValue {
     case "select":
       return property.select?.name ?? null;
     case "multi_select":
-      return property.multi_select.map((option: { name: string }) => option.name);
+      return property.multi_select.map((option) => option.name);
     case "created_time":
       return property.created_time;
-    default:
-      throw new Error(`Unhandled Notion property type "${property.type}"`);
+    default: {
+      const { type } = property as { type: string };
+      throw new Error(`Unhandled Notion property type "${type}"`);
+    }
   }
 }
 

@@ -1,20 +1,24 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
     "inlineSourceMap": true,
     "inlineSources": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "lib": ["DOM", "ES2021"],
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "ES2021"
+    ],
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "paths": {
-      "@/*": ["*"]
+      "@/*": [
+        "./*"
+      ]
     },
     "skipLibCheck": true,
     "strict": true,
@@ -31,7 +35,10 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "additional.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
