@@ -18,7 +18,6 @@ const baseUrl: string = process.env.NEXT_PUBLIC_BASE_URL;
 const staticPaths: string[] = [
   "",
   "/games",
-  "/landing",
   "/games/blood-and-bytes-kagura/privacy-policy",
   "/games/genoma-invaders",
   "/games/genoma-invaders/privacy-policy",
