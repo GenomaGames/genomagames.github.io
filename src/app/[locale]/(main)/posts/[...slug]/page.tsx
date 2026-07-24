@@ -22,6 +22,7 @@ import type unist from "unist";
 import { remove } from "unist-util-remove";
 
 import PostArticle from "@/src/components/post-article";
+import { routing } from "@/src/i18n/routing";
 import { getPostBySlugUseCase } from "@/src/Posts/application/GetPostBySlugUseCase";
 import { getPostSlugsUseCase } from "@/src/Posts/application/GetPostSlugsUseCase";
 
@@ -38,25 +39,19 @@ interface Props {
 // looking the post up, which surfaces as a 500.
 export const dynamicParams = false;
 
-export const generateStaticParams = async ({
-  params: { locale },
-}: {
-  params: {
-    locale: string;
-  };
-}): Promise<Params[]> => {
-  const postSlugs: string[] = await getPostSlugsUseCase.run({
-    locale,
-  });
+export const generateStaticParams = async (): Promise<Params[]> => {
+  const staticParamsByLocale: Params[][] = await Promise.all(
+    routing.locales.map(async (locale): Promise<Params[]> => {
+      const postSlugs: string[] = await getPostSlugsUseCase.run({ locale });
 
-  const staticParams: Params[] = postSlugs.map((postSlug) => {
-    return {
-      locale: locale,
-      slug: postSlug.split("/"),
-    };
-  });
+      return postSlugs.map((postSlug) => ({
+        locale,
+        slug: postSlug.split("/"),
+      }));
+    }),
+  );
 
-  return staticParams;
+  return staticParamsByLocale.flat();
 };
 
 export const generateMetadata = async (props: { params: Promise<Params> }) => {

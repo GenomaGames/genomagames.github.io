@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import PostsList from "@/src/components/posts-list";
+import { routing } from "@/src/i18n/routing";
 import { getPostsPagesUseCase } from "@/src/Posts/application/GetPostsPagesUseCase";
 import { listPostsUseCase } from "@/src/Posts/application/ListPostsUseCase";
 
@@ -21,25 +22,19 @@ interface Props {
 // renders an empty listing: /en/whatever would answer 200 instead of 404.
 export const dynamicParams = false;
 
-export const generateStaticParams = async ({
-  params: { locale },
-}: {
-  params: {
-    locale: string;
-  };
-}): Promise<Params[]> => {
-  const pages: number[] = await getPostsPagesUseCase.run({
-    locale,
-  });
+export const generateStaticParams = async (): Promise<Params[]> => {
+  const staticParamsByLocale: Params[][] = await Promise.all(
+    routing.locales.map(async (locale): Promise<Params[]> => {
+      const pages: number[] = await getPostsPagesUseCase.run({ locale });
 
-  const staticParams: Params[] = pages.map((page) => {
-    return {
-      locale,
-      page: page.toString(),
-    };
-  });
+      return pages.map((page) => ({
+        locale,
+        page: page.toString(),
+      }));
+    }),
+  );
 
-  return staticParams;
+  return staticParamsByLocale.flat();
 };
 
 export const generateMetadata = async (props: { params: Promise<Params> }) => {
