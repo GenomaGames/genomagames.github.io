@@ -116,7 +116,7 @@ const PostPage: React.JSXElementConstructor<Props> = async (props: Props) => {
           ),
         ),
       })
-      .use(rehypeRaw) // This plugin breaks rehypePrismPlus if comes before
+      .use(rehypeRaw) // Must come after the highlighting plugins, it breaks them otherwise
       .use(rehypeStringify)
       .process(post.content)
   ).toString();
