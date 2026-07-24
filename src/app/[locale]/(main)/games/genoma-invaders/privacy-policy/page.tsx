@@ -9,12 +9,12 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
+import rehypeUnwrapImages from "rehype-unwrap-images";
 import remarkEmoji from "remark-emoji";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import remarkSqueezeParagraphs from "remark-squeeze-paragraphs";
-import remarkUnwrapImages from "remark-unwrap-images";
 import { unified } from "unified";
 
 import markdownStyles from "@/src/styles/markdown-styles.module.css";
@@ -53,8 +53,8 @@ async function getPrivacyPolicyContent(_locale: string) {
       .use(remarkSqueezeParagraphs)
       .use(remarkEmoji)
       .use(remarkGfm)
-      .use(remarkUnwrapImages)
       .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeUnwrapImages)
       .use(rehypeExternalLinks)
       .use(rehypeSlug)
       .use(rehypeAutolinkHeadings)

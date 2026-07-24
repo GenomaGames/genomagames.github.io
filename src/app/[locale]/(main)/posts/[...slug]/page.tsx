@@ -11,12 +11,12 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
+import rehypeUnwrapImages from "rehype-unwrap-images";
 import remarkEmoji from "remark-emoji";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import remarkSqueezeParagraphs from "remark-squeeze-paragraphs";
-import remarkUnwrapImages from "remark-unwrap-images";
 import { unified } from "unified";
 import type unist from "unist";
 import { remove } from "unist-util-remove";
@@ -102,8 +102,8 @@ const PostPage: React.JSXElementConstructor<Props> = async (props: Props) => {
       .use(remarkSqueezeParagraphs)
       .use(remarkEmoji)
       .use(remarkGfm)
-      .use(remarkUnwrapImages)
       .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeUnwrapImages)
       .use(rehypeExternalLinks)
       .use(rehypeSlug)
       .use(rehypeAutolinkHeadings)
