@@ -17,9 +17,10 @@ export class GetPostsPagesUseCase implements UseCase<Input, number[]> {
 
     const totalPages: number = await this.postsRepository.getTotalPages(locale);
 
-    const pages: number[] = new Array(totalPages)
-      .fill(0)
-      .map((value, index) => index + 1);
+    const pages: number[] = Array.from(
+      { length: totalPages },
+      (_, index) => index + 1,
+    );
 
     return pages;
   }

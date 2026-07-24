@@ -99,11 +99,10 @@ const buildPostEntries = async (
 const sitemap = async (): Promise<MetadataRoute.Sitemap> => {
   const { locales } = routing;
 
-  const [blogPageEntries, postEntries]: MetadataRoute.Sitemap[] =
-    await Promise.all([
-      buildBlogPageEntries(locales),
-      buildPostEntries(locales),
-    ]);
+  const [blogPageEntries, postEntries] = await Promise.all([
+    buildBlogPageEntries(locales),
+    buildPostEntries(locales),
+  ]);
 
   return [
     ...staticPaths.flatMap((path) => buildEntriesForPath(path, locales)),
