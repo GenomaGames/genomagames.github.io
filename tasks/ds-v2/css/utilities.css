@@ -1,0 +1,69 @@
+/* Genoma Games DS v2 — utilidades nuevas (complementan a Tailwind; los biseles
+   pixel no existen en el set stock). Requiere tokens.css. */
+
+/* Tipografía */
+.font-pixel { font-family: var(--font-pixel); }
+.font-display { font-family: var(--font-display); }
+.font-mono-ui { font-family: var(--font-mono); }
+.text-crisp { -webkit-font-smoothing: none; }
+
+/* Color de texto y fondo */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-accent { color: var(--accent-text); }
+.text-danger { color: var(--danger); }
+.bg-page { background: var(--surface-page); }
+.bg-ground { background: var(--surface-ground); }
+.bg-sunken { background: var(--surface-sunken); }
+.bg-raised { background: var(--surface-raised); }
+.bg-control { background: var(--surface-control); }
+
+/* Contornos interiores (sustituyen a border para no mover el layout) */
+.inset-ring-2 { box-shadow: inset 0 0 0 2px var(--border-default); }
+.inset-ring-3 { box-shadow: inset 0 0 0 3px var(--border-default); }
+.inset-ring-strong { box-shadow: inset 0 0 0 2px var(--border-strong); }
+
+/* Biseles pixel: luz arriba-izquierda, sombra abajo-derecha */
+.bevel-raised { box-shadow: inset 2px 2px 0 0 var(--surface-hi), inset -2px -2px 0 0 var(--surface-lo); }
+.bevel-sunken { box-shadow: inset 2px 2px 0 0 var(--surface-lo), inset -2px -2px 0 0 var(--surface-hi); }
+.bevel-accent { background: var(--accent); color: var(--text-on-accent); box-shadow: inset 2px 2px 0 0 var(--accent-hi), inset -2px -2px 0 0 var(--accent-lo); }
+.bevel-accent-2 { background: var(--accent-2); color: var(--text-primary); box-shadow: inset 2px 2px 0 0 var(--accent-2-hi), inset -2px -2px 0 0 var(--accent-2-lo); }
+.bevel-danger { background: var(--danger); color: var(--text-on-accent); box-shadow: inset 2px 2px 0 0 var(--danger-hi), inset -2px -2px 0 0 var(--danger-lo); }
+
+/* Base de controles */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 15px 16px; border: none; border-radius: 0; cursor: pointer; font: 700 14px var(--font-pixel); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; }
+.btn:hover { filter: brightness(1.12); }
+.btn:active { filter: brightness(.85); transform: translateY(2px); }
+.btn:disabled { opacity: .75; cursor: wait; }
+.chip { display: inline-block; padding: 3px 6px; font: 700 9px var(--font-pixel); letter-spacing: .08em; text-transform: uppercase; }
+.chip-devlog { color: var(--accent-hi); box-shadow: inset 0 0 0 2px var(--accent); }
+.chip-postmortem { color: var(--warning); box-shadow: inset 0 0 0 2px var(--amber-700); }
+.chip-tutorial { color: var(--cyan-400); box-shadow: inset 0 0 0 2px var(--cyan-700); }
+.chip-experience { color: var(--purple-400); box-shadow: inset 0 0 0 2px var(--purple-600); }
+.chip-status { padding: 4px 7px; letter-spacing: .1em; }
+.input { min-height: 48px; background: var(--surface-sunken); border: none; border-radius: 0; box-shadow: inset 0 0 0 2px var(--border-default); padding: 0 12px; font: 400 12px var(--font-mono); color: var(--text-secondary); }
+.input[aria-invalid="true"] { box-shadow: inset 0 0 0 2px var(--danger); }
+.field-label { font: 700 10px var(--font-pixel); color: var(--text-muted); letter-spacing: .12em; text-transform: uppercase; }
+
+/* Cristal, bezel y ranura */
+.glass { background: var(--glass-bg); -webkit-backdrop-filter: blur(var(--glass-blur)); backdrop-filter: blur(var(--glass-blur)); }
+.glass-bezel { box-shadow: inset 0 3px 0 0 var(--glass-bezel-1), inset 0 6px 0 0 var(--glass-bezel-2); }
+.groove { height: 8px; background: var(--groove-bg); box-shadow: inset 0 2px 0 0 var(--groove-shadow), inset 0 -2px 0 0 var(--groove-lip); }
+
+/* Imagen pixel */
+.pixelated { image-rendering: pixelated; }
+
+/* Motion */
+@keyframes gg-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes gg-shake { 0%, 100% { transform: translateX(0); } 15% { transform: translateX(-10px); } 35% { transform: translateX(9px); } 55% { transform: translateX(-8px); } 75% { transform: translateX(7px); } 90% { transform: translateX(-4px); } }
+@keyframes gg-block-fade { 0%, 39% { opacity: 0; } 40%, 54% { opacity: .4; } 55%, 69% { opacity: .8; } 70%, 79% { opacity: 1; } 80%, 89% { opacity: .8; } 90%, 100% { opacity: .4; } }
+.blink { animation: gg-blink var(--dur-blink) steps(1, end) infinite; }
+.shake { animation: gg-shake var(--dur-shake) linear; }
+.block-fade { animation: gg-block-fade var(--dur-blocks) linear infinite; }
+
+/* Foco y reduced motion */
+.focus-ring:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .blink, .shake, .block-fade { animation: none; }
+}

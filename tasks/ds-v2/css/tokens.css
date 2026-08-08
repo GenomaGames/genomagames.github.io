@@ -1,0 +1,95 @@
+/* Genoma Games DS v2 — tokens. Sustituye la paleta emerald/indigo de v1. */
+:root {
+  /* Escala */
+  --navy-950: #02080B;
+  --navy-900: #0A0B1A;
+  --navy-850: #111226;
+  --navy-800: #15172E;
+  --navy-750: #181A33;
+  --navy-700: #1B1E3A;
+  --navy-650: #1D2040;
+  --navy-500: #2A2E55;
+  --navy-400: #3C4278;
+  --green-300: #A9F09A;
+  --green-400: #80E56C;
+  --green-500: #29B841;
+  --green-700: #17762B;
+  --lime-300: #C8FF7A;
+  --lime-400: #A6F045;
+  --purple-300: #A99CFF;
+  --purple-400: #8B7BFF;
+  --purple-600: #4F39F6;
+  --purple-800: #31219B;
+  --cyan-100: #DDF3F5;
+  --cyan-200: #BEEDED;
+  --cyan-400: #47D6E0;
+  --cyan-700: #17858F;
+  --amber-300: #FFD98A;
+  --amber-400: #FFC24B;
+  --amber-700: #9C6C0C;
+  --red-300: #FFA79C;
+  --red-400: #FF6B5B;
+  --red-600: #C63B2F;
+  --red-800: #8F241A;
+  --white: #EAF7F8;
+  --muted-400: #9AA3C8;
+
+  /* Semánticos — superficie */
+  --surface-page: var(--navy-950);
+  --surface-ground: var(--navy-850);
+  --surface-sunken: var(--navy-900);
+  --surface-raised: var(--navy-750);
+  --surface-control: var(--navy-700);
+  --surface-active: var(--navy-650);
+  --border-default: var(--navy-500);
+  --border-strong: var(--navy-400);
+  --surface-hi: var(--navy-400);   /* bisel luz */
+  --surface-lo: var(--navy-900);   /* bisel sombra */
+
+  /* Semánticos — texto */
+  --text-primary: var(--white);
+  --text-secondary: var(--cyan-100);
+  --text-muted: var(--muted-400);
+  --text-on-accent: var(--navy-850);
+
+  /* Semánticos — acción */
+  --accent: var(--green-500);
+  --accent-hi: var(--green-400);
+  --accent-lo: var(--green-700);
+  --accent-text: var(--green-400);
+  --accent-2: var(--purple-600);       /* suscripción / secundario */
+  --accent-2-hi: var(--purple-400);
+  --accent-2-lo: var(--purple-800);
+  --link: var(--lime-400);
+  --link-hover: var(--lime-300);
+  --focus: var(--cyan-400);
+
+  /* Semánticos — estado */
+  --info: var(--cyan-200);
+  --warning: var(--amber-400);
+  --danger: var(--red-400);
+  --danger-hi: var(--red-300);
+  --danger-lo: var(--red-800);
+
+  /* Cristal y ranura */
+  --glass-bg: rgba(17, 18, 38, .55);
+  --glass-blur: 3px;
+  --glass-bezel-1: rgba(190, 237, 237, .25);
+  --glass-bezel-2: rgba(190, 237, 237, .08);
+  --groove-bg: rgba(2, 8, 11, .72);
+  --groove-shadow: rgba(2, 8, 11, .9);
+  --groove-lip: rgba(190, 237, 237, .35);
+
+  /* Tipografía (v1 Born2bSporty FS / Josefin Sans quedan retiradas) */
+  --font-pixel: "Silkscreen", monospace;
+  --font-display: "Pixelify Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  /* Motion */
+  --dur-blink: 1.1s;
+  --dur-shake: .25s;
+  --dur-blocks: 1.5s;
+
+  /* Radios: el sistema es cuadrado */
+  --radius: 0px;
+}
