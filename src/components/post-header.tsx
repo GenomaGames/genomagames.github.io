@@ -28,7 +28,7 @@ const PostHeader: React.JSXElementConstructor<Props> = ({
           ) : (
             <div className="absolute top-0 bottom-0 h-full w-full bg-linear-to-br from-emerald-900 to-indigo-900"></div>
           )}
-          <div className="bg-opacity-50 h-full w-full bg-black backdrop-blur-xs"></div>
+          <div className="h-full w-full bg-black/50 backdrop-blur-xs"></div>
         </div>
         <h1 className="inline-block w-full self-center px-8 text-center text-2xl font-bold md:text-3xl lg:text-4xl">
           {title}
