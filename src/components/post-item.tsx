@@ -11,16 +11,24 @@ import DraftLabel from "./draft-label";
 
 type Props = Post;
 
-const PostItem: React.JSXElementConstructor<Props> = async ({
+export type PostItemViewProps = Post & {
+  locale: string;
+};
+
+/**
+ * The post card itself. Split out of the default export so it can render
+ * outside a request scope — it takes the locale it needs instead of awaiting
+ * it, which is what lets it render in a browser (Claude Design previews).
+ */
+export const PostItemView: React.JSXElementConstructor<PostItemViewProps> = ({
   coverImage,
   date,
   draft,
+  locale,
   summary,
   title,
   slug,
-}: Props) => {
-  const locale = await getLocale();
-
+}: PostItemViewProps) => {
   return (
     <article className="mx-auto mb-4">
       <Link
@@ -73,6 +81,12 @@ const PostItem: React.JSXElementConstructor<Props> = async ({
       </Link>
     </article>
   );
+};
+
+const PostItem: React.JSXElementConstructor<Props> = async (props: Props) => {
+  const locale = await getLocale();
+
+  return <PostItemView {...props} locale={locale} />;
 };
 
 export default PostItem;
