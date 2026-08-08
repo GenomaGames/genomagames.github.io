@@ -2,18 +2,35 @@
  * Brand faces, lifted from src/styles/globals.css with repo-relative url()s so
  * the converter can find the files and copy them into the bundle's fonts/.
  *
- * Note: no component currently sets these families — the site renders in the
- * stock `font-sans` stack. They ship as available brand assets, not as the
- * active type stack.
+ * Note: no component currently sets these families — the site still renders in
+ * the stock `font-sans` stack. They ship as the DS v2 type stack, reachable
+ * through `font-pixel`, `font-display` and `font-mono-ui`, ahead of the
+ * components that adopt it.
  */
 @font-face {
-  font-family: "Born2bSporty FS";
-  src: url("../public/fonts/Born2bSportyFS.otf");
-  font-weight: 400;
+  font-family: "Silkscreen";
+  src: url("../public/fonts/Silkscreen-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: "Josefin Sans";
-  src: url("../public/fonts/JosefinSans.ttf");
+  font-family: "Pixelify Sans";
+  src: url("../public/fonts/PixelifySans-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../public/fonts/IBMPlexMono-400.woff2") format("woff2");
   font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../public/fonts/IBMPlexMono-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
 }
