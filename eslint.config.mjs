@@ -25,7 +25,16 @@ const eslintConfig = defineConfig([
     },
   },
   // Override default ignores of eslint-config-next.
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+  globalIgnores([
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    // design-sync: staged converter scripts and its generated bundle.
+    ".ds-sync/**",
+    "ds-bundle/**",
+    ".design-sync/.cache/**",
+  ]),
 ]);
 
 export default eslintConfig;

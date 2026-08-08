@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "..",
+    "paths": {
+      "@/src/i18n/navigation": ["./.design-sync/shims/i18n-navigation.tsx"],
+      "next/image": ["./.design-sync/shims/next-image.tsx"],
+      "next/link": ["./.design-sync/shims/next-link.tsx"],
+      "next-intl/server": ["./.design-sync/shims/next-intl-server.tsx"],
+      "next-intl": ["./.design-sync/shims/next-intl.tsx"]
+    }
+  }
+}

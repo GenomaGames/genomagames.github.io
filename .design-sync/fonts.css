@@ -1,0 +1,19 @@
+/*
+ * Brand faces, lifted from src/styles/globals.css with repo-relative url()s so
+ * the converter can find the files and copy them into the bundle's fonts/.
+ *
+ * Note: no component currently sets these families — the site renders in the
+ * stock `font-sans` stack. They ship as available brand assets, not as the
+ * active type stack.
+ */
+@font-face {
+  font-family: "Born2bSporty FS";
+  src: url("../public/fonts/Born2bSportyFS.otf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("../public/fonts/JosefinSans.ttf");
+  font-weight: 400;
+}

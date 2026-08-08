@@ -1,0 +1,63 @@
+{
+  "projectId": "bb361602-5f73-4da6-b538-14ac7f1d6be5",
+  "pkg": "genoma-games-website",
+  "globalName": "GenomaGamesDS",
+  "shape": "package",
+  "entry": ".design-sync/entry.tsx",
+  "buildCmd": "node .design-sync/build-css.mjs",
+  "srcDir": "src/components",
+  "tsconfig": ".design-sync/tsconfig.sync.json",
+  "cssEntry": ".design-sync/.cache/ds.css",
+  "extraFonts": [
+    ".design-sync/fonts.css"
+  ],
+  "componentSrcMap": {
+    "AlphaSignUpForm": "src/components/alpha-sign-up-form.tsx",
+    "DraftLabel": "src/components/draft-label.tsx",
+    "Footer": "src/components/footer.tsx",
+    "Header": "src/components/header.tsx",
+    "ItchioWidget": "src/components/itchio-widget.tsx",
+    "LanguageSelector": "src/components/language-selector.tsx",
+    "Meta": null,
+    "PostArticle": "src/components/post-article.tsx",
+    "PostFooter": "src/components/post-footer.tsx",
+    "PostHeader": "src/components/post-header.tsx",
+    "PostItem": "src/components/post-item.tsx",
+    "PostsList": "src/components/posts-list.tsx"
+  },
+  "dtsPropsFor": {
+    "AlphaSignUpForm": "",
+    "DraftLabel": "isDraft: boolean;",
+    "Footer": "",
+    "Header": "",
+    "ItchioWidget": "gameId: number;\n  backgroundColor?: string;\n  borderColor?: string;\n  borderSize?: number;\n  buttonColor?: string;\n  children?: React.ReactNode;\n  className?: string;\n  textColor?: string;\n  width?: number;",
+    "LanguageSelector": "",
+    "PostArticle": "content: string;\n  coverImage: { src: string } | null;\n  date: number;\n  draft: boolean;\n  summary: string;\n  slug: string;\n  title: string;",
+    "PostFooter": "slug: string;\n  title: string;",
+    "PostHeader": "content: string;\n  coverImage: { src: string } | null;\n  date: number;\n  draft: boolean;\n  summary: string;\n  slug: string;\n  title: string;",
+    "PostItem": "content: string;\n  coverImage: { src: string } | null;\n  date: number;\n  draft: boolean;\n  summary: string;\n  slug: string;\n  title: string;\n  locale: string;",
+    "PostsList": "posts: Array<{\n    content: string;\n    coverImage: { src: string } | null;\n    date: number;\n    draft: boolean;\n    summary: string;\n    slug: string;\n    title: string;\n  }>;\n  locale: string;\n  className?: string;"
+  },
+  "overrides": {
+    "AlphaSignUpForm": {
+      "cardMode": "single",
+      "viewport": "760x1100"
+    },
+    "Header": {
+      "cardMode": "single",
+      "primaryStory": "OverPageContent"
+    },
+    "LanguageSelector": {
+      "cardMode": "single",
+      "primaryStory": "Opened",
+      "viewport": "520x400"
+    },
+    "PostItem": {
+      "cardMode": "column"
+    },
+    "PostsList": {
+      "cardMode": "column"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}
