@@ -122,8 +122,11 @@
     filter: brightness(0.85);
     transform: translateY(2px);
   }
+  /* El .75 de opacidad a secas del handoff apenas se distinguía del reposo:
+     la desaturación es la que hace que un botón apagado se lea como apagado. */
   &:disabled {
-    opacity: 0.75;
+    opacity: 0.5;
+    filter: saturate(0.15);
     cursor: wait;
   }
 }
@@ -231,18 +234,26 @@
     transform: translateX(-4px);
   }
 }
-/* Foco: tres fotogramas de aterrizaje y tres de respiración, sin interpolar
-   (los `steps` de quien los use), como el cursor de un menú que se engancha a
-   la opción y se queda latiendo en ella. */
+/* Foco: el cursor de un menú que se engancha a la opción y se queda latiendo en
+   ella. Sin interpolar (los `steps` de quien los use).
+
+   El aterrizaje es el gesto grande —cae desde 10px y va cuajando de
+   transparente a opaco en tres fotogramas—; el latido que viene después es un
+   vaivén corto, para acompañar sin robar atención mientras se escribe. La
+   opacidad va en el color del contorno, no en `opacity`, que atenuaría el
+   elemento entero en vez del recuadro. */
 @keyframes gg-focus-snap {
   0% {
-    outline-offset: 5px;
+    outline-offset: 10px;
+    outline-color: color-mix(in srgb, var(--focus) 25%, transparent);
   }
   50% {
-    outline-offset: 3px;
+    outline-offset: 6px;
+    outline-color: color-mix(in srgb, var(--focus) 60%, transparent);
   }
   100% {
     outline-offset: 2px;
+    outline-color: var(--focus);
   }
 }
 @keyframes gg-focus-pulse {
@@ -250,11 +261,12 @@
   100% {
     outline-offset: 2px;
   }
-  33% {
-    outline-offset: 4px;
-  }
-  66% {
+  25%,
+  75% {
     outline-offset: 3px;
+  }
+  50% {
+    outline-offset: 4px;
   }
 }
 @keyframes gg-block-fade {

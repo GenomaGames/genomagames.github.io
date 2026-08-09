@@ -1,5 +1,7 @@
 import React from "react";
 
+import ShakeDemo from "./shake-demo";
+
 /**
  * Living catalog of the DS v2 vocabulary. It is not scaffolding: it stays for
  * as long as the migration lasts and after it, as the place to check what a
@@ -342,7 +344,7 @@ const DesignSystemPage: React.JSXElementConstructor<Props> = (
     <Section
       index={4}
       title="Botones"
-      note="Altura mínima 48px, texto Silkscreen 14px en mayúsculas. El hover aclara un 12%, el pulsado oscurece un 15% y baja 2px, y el deshabilitado baja la opacidad y pone el cursor en espera."
+      note="Altura mínima 48px, texto Silkscreen 14px en mayúsculas. El hover aclara un 12%, el pulsado oscurece un 15% y baja 2px, y el deshabilitado pierde saturación y opacidad, además de poner el cursor en espera."
     >
       {BUTTON_VARIANTS.map((variant) => (
         <Figure key={variant.label} caption={variant.label}>
@@ -457,13 +459,8 @@ const DesignSystemPage: React.JSXElementConstructor<Props> = (
           />
         </span>
       </Figure>
-      <Figure caption="shake — daño (.25s, una vez por golpe: pásale el ratón o enfócalo con el tabulador)">
-        <button
-          type="button"
-          className="bevel-danger hover:shake focus-visible:shake flex h-16 w-40 items-center justify-center text-[12px]"
-        >
-          ¡Golpe!
-        </button>
+      <Figure caption="shake — daño (.25s, una vez por golpe: púlsalo para repetirlo)">
+        <ShakeDemo />
       </Figure>
       <Figure caption="block-fade — bloques de carga">
         <span className="flex gap-2">
