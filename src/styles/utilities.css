@@ -14,6 +14,8 @@
 @utility font-mono-ui {
   font-family: var(--font-mono-ui);
 }
+/* Redundante con el global de `globals.css`, que además se hereda. Llega del
+   handoff y se mantiene por fidelidad; no hace falta ponerla en ningún sitio. */
 @utility text-crisp {
   -webkit-font-smoothing: none;
 }
@@ -266,6 +268,8 @@
 }
 
 /* Foco y reduced motion */
+/* Igual que `text-crisp`: el foco ya es global y esta utilidad no cambia nada
+   allí donde se aplique. Se mantiene por fidelidad al handoff. */
 @utility focus-ring {
   &:focus-visible {
     outline: 3px solid var(--focus);

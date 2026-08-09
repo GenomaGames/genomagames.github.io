@@ -393,7 +393,7 @@ const DesignSystemPage: React.JSXElementConstructor<Props> = (
             Nombre en pantalla
           </label>
           <input
-            className="input w-72"
+            className="input w-full max-w-72"
             defaultValue="ZAGATO"
             id="catalog-input"
             readOnly
@@ -407,7 +407,7 @@ const DesignSystemPage: React.JSXElementConstructor<Props> = (
           </label>
           <input
             aria-invalid="true"
-            className="input w-72"
+            className="input w-full max-w-72"
             defaultValue="no-es-un-correo"
             id="catalog-input-error"
             readOnly
@@ -446,8 +446,15 @@ const DesignSystemPage: React.JSXElementConstructor<Props> = (
       note="Las tres animaciones del sistema. Con la reducción de movimiento activada en el sistema operativo, las tres se detienen y esta sección queda quieta."
     >
       <Figure caption="blink — cursor y llamadas a la acción">
-        <span className="font-pixel text-accent blink text-[24px] uppercase">
-          Pulsa start ▮
+        {/* El cursor es un bloque dibujado, no un carácter: ni Silkscreen ni
+            Pixelify Sans traen glifos de bloque, y el sistema los serviría con
+            otra tipografía justo en la pieza que enseña el cursor pixel. */}
+        <span className="font-pixel text-accent blink flex items-center gap-2 text-[24px] uppercase">
+          Pulsa start
+          <span
+            aria-hidden
+            className="inline-block h-[18px] w-[9px] bg-current"
+          />
         </span>
       </Figure>
       <Figure caption="shake — daño (se dispara una vez, .25s)">

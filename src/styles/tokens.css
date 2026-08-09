@@ -100,6 +100,8 @@
   --dur-shake: 0.25s;
   --dur-blocks: 1.5s;
 
-  /* Radios: el sistema es cuadrado */
+  /* Radios: el sistema es cuadrado. Las utilidades escriben `border-radius: 0`
+     literal y este token no lo lee nadie; queda como declaración de intenciones
+     hasta que la limpieza final retire las `rounded-*` de Tailwind. */
   --radius: 0px;
 }

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const CatalogLayout: React.JSXElementConstructor<Props> = ({
   children,
 }: Props) => (
-  <html lang="es" className="bg-page">
+  <html lang="es" data-scroll-behavior="smooth" className="bg-page">
     <body className="bg-page font-mono-ui text-secondary min-h-screen">
       {children}
     </body>

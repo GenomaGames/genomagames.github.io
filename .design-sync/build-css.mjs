@@ -34,10 +34,7 @@ const withResolvedImports = globals.replace(
 );
 
 // Drop the @font-face blocks — fonts.css owns them.
-const withoutFonts = withResolvedImports.replace(
-  /@font-face\s*\{[^}]*\}\s*/g,
-  "",
-);
+const withoutFonts = withResolvedImports.replace(/@font-face\s*\{[^}]*\}\s*/g, "");
 
 // `#__next` is a Next.js host-page hook that never exists in a rendered design.
 const withoutHostHooks = withoutFonts.replace(/#__next\s*\{[^}]*\}\s*/g, "");
@@ -71,10 +68,7 @@ const appShell = `
 // That name is derived from the FILE NAME: rename the module and this mapping
 // silently stops matching. See .design-sync/NOTES.md.
 const MARKDOWN_CLASS = "markdown_styles_markdown";
-const markdown = readFileSync(
-  join(ROOT, "src/styles/markdown-styles.module.css"),
-  "utf8",
-)
+const markdown = readFileSync(join(ROOT, "src/styles/markdown-styles.module.css"), "utf8")
   .replace(/@reference\s+[^;]+;/g, "")
   .replace(/\.markdown\b/g, `.${MARKDOWN_CLASS}`);
 
@@ -87,18 +81,12 @@ const sources = [
   .join("\n");
 
 mkdirSync(CACHE, { recursive: true });
-writeFileSync(
-  ENTRY,
-  `${withoutHostHooks}\n${sources}\n${appShell}\n${markdown}`,
-);
+writeFileSync(ENTRY, `${withoutHostHooks}\n${sources}\n${appShell}\n${markdown}`);
 
-const result = await postcss([tailwind()]).process(
-  readFileSync(ENTRY, "utf8"),
-  {
-    from: ENTRY,
-    to: OUT,
-  },
-);
+const result = await postcss([tailwind()]).process(readFileSync(ENTRY, "utf8"), {
+  from: ENTRY,
+  to: OUT,
+});
 
 writeFileSync(OUT, result.css);
 
@@ -107,6 +95,4 @@ if (!existsSync(OUT) || result.css.length < 1000) {
   process.exit(1);
 }
 
-console.error(
-  `» build-css: ${OUT} (${Math.round(result.css.length / 1024)} KB)`,
-);
+console.error(`» build-css: ${OUT} (${Math.round(result.css.length / 1024)} KB)`);
