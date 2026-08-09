@@ -27,10 +27,7 @@ const OUT = join(CACHE, "ds.css");
 
 const globals = readFileSync(join(ROOT, "src/styles/globals.css"), "utf8");
 
-// globals.css pulls in ./tokens.css and ./utilities.css by a path relative to
-// itself, and the entry this script writes lives in .cache/ — where those
-// relative paths resolve to nothing. Absolutising them keeps the entry a
-// faithful copy from anywhere on disk.
+/** Imports relative to globals.css resolve to nothing from .cache/, where ENTRY lives. */
 const withResolvedImports = globals.replace(
   /@import\s+"\.\/([^"]+)"/g,
   (_match, file) => `@import "${join(ROOT, "src/styles", file)}"`,

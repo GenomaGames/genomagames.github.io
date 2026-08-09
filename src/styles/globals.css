@@ -53,9 +53,8 @@ html {
 }
 
 /*
-  Los dos únicos globales del DS v2 que se ven ya sobre la UI v1: el borde de
-  píxel nítido y el foco cyan. El resto del vocabulario v2 se aplica pieza a
-  pieza en las entregas siguientes.
+  Los dos únicos globales que esta entrega aplica ya sobre la UI v1; el resto
+  del vocabulario v2 llega pieza a pieza en las siguientes.
 */
 html {
   -webkit-font-smoothing: none;
