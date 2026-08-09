@@ -154,10 +154,10 @@ const Figure: React.JSXElementConstructor<FigureProps> = ({
   children,
 }: FigureProps) => (
   <figure className="flex flex-col gap-2">
+    <figcaption className="field-label">{caption}</figcaption>
     <div className="bg-ground flex flex-wrap items-center gap-4 p-4">
       {children}
     </div>
-    <figcaption className="field-label">{caption}</figcaption>
   </figure>
 );
 
@@ -457,10 +457,13 @@ const DesignSystemPage: React.JSXElementConstructor<Props> = (
           />
         </span>
       </Figure>
-      <Figure caption="shake — daño (se dispara una vez, .25s)">
-        <span className="bevel-danger shake flex h-16 w-40 items-center justify-center text-[12px]">
+      <Figure caption="shake — daño (.25s, una vez por golpe: pásale el ratón o enfócalo con el tabulador)">
+        <button
+          type="button"
+          className="bevel-danger hover:shake focus-visible:shake flex h-16 w-40 items-center justify-center text-[12px]"
+        >
           ¡Golpe!
-        </span>
+        </button>
       </Figure>
       <Figure caption="block-fade — bloques de carga">
         <span className="flex gap-2">

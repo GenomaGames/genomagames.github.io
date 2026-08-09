@@ -257,14 +257,29 @@
     opacity: 0.4;
   }
 }
+/* La guarda de movimiento reducido va dentro de cada utilidad, no en una regla
+   aparte que liste las tres clases: así la heredan también sus variantes
+   (`hover:shake`, `md:blink`), que una regla por nombre de clase no alcanza. */
 @utility blink {
   animation: gg-blink var(--dur-blink) steps(1, end) infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 @utility shake {
   animation: gg-shake var(--dur-shake) linear;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 @utility block-fade {
   animation: gg-block-fade var(--dur-blocks) linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
 
 /* Foco y reduced motion */
@@ -274,14 +289,5 @@
   &:focus-visible {
     outline: 3px solid var(--focus);
     outline-offset: 2px;
-  }
-}
-/* Fuera de `@layer`: gana a las utilidades pase lo que pase con la
-   especificidad, que es justo lo que se quiere de una preferencia del sistema. */
-@media (prefers-reduced-motion: reduce) {
-  .blink,
-  .shake,
-  .block-fade {
-    animation: none;
   }
 }

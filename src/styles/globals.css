@@ -60,9 +60,15 @@ html {
   -webkit-font-smoothing: none;
 }
 
-:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
+/*
+  Dentro de `base` a propósito: fuera de capa ganaría a cualquier utilidad y
+  ningún componente podría tocar su foco nunca.
+*/
+@layer base {
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
 }
 
 #__next {
