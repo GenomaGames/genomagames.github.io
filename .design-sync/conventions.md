@@ -16,15 +16,11 @@ const { Header, PostsList, Footer } = window.GenomaGamesDS;
   <Header />
   <div className="flex min-h-screen flex-col">
     <main className="mx-auto mt-16 w-full px-5 pt-4 sm:max-w-2xl md:max-w-3xl lg:max-w-4xl">
-      <PostsList
-        className="mx-auto max-w-sm sm:max-w-full"
-        locale="en"
-        posts={posts}
-      />
+      <PostsList className="mx-auto max-w-sm sm:max-w-full" locale="en" posts={posts} />
     </main>
     <Footer />
   </div>
-</div>;
+</div>
 ```
 
 `Header` is `position: fixed` — that `mt-16` on `<main>` is what keeps content
@@ -49,16 +45,16 @@ Style your own layout with Tailwind classes — that is what the components use.
 class outside that set resolves to nothing and your element renders unstyled.
 The vocabulary, in full families:
 
-| Role                    | Classes                                                                                                                                                                                                 |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Ground / surfaces       | `bg-gray-900` `bg-gray-800` `bg-gray-800/40` `bg-slate-800` `bg-slate-900` `bg-black` `bg-black/50`                                                                                                     |
-| Gradients               | `bg-linear-to-b` `bg-linear-to-br` `bg-linear-to-r` + `from-gray-900` `from-slate-800` `from-emerald-500` `from-emerald-900` `via-emerald-700` `to-black` `to-gray-900` `to-indigo-800` `to-indigo-900` |
-| Accent (actions, links) | `bg-emerald-600` `bg-emerald-800` `text-emerald-500` `text-emerald-200` `hover:bg-emerald-400` `focus:bg-emerald-400`                                                                                   |
-| Secondary accent        | `bg-indigo-600` `bg-indigo-700` `hover:bg-indigo-500` `border-indigo-600` `focus:ring-indigo-400`                                                                                                       |
-| Text                    | `text-slate-200` (body) `text-slate-300` `text-slate-400` (muted) `text-white` `text-red-400` (errors) `text-slate-900` (on emerald)                                                                    |
-| Sizes                   | `text-xs` `text-sm` `text-base` `text-lg` `text-xl` `text-2xl` `text-3xl`                                                                                                                               |
-| Shape                   | `rounded-sm` `rounded-md` `rounded-lg` `drop-shadow-xl` `shadow-md` `shadow-black`                                                                                                                      |
-| Variants                | `sm:` `md:` `lg:` `hover:` `focus:` `group-hover:` `group-focus:` `disabled:`                                                                                                                           |
+| Role | Classes |
+|---|---|
+| Ground / surfaces | `bg-gray-900` `bg-gray-800` `bg-gray-800/40` `bg-slate-800` `bg-slate-900` `bg-black` `bg-black/50` |
+| Gradients | `bg-linear-to-b` `bg-linear-to-br` `bg-linear-to-r` + `from-gray-900` `from-slate-800` `from-emerald-500` `from-emerald-900` `via-emerald-700` `to-black` `to-gray-900` `to-indigo-800` `to-indigo-900` |
+| Accent (actions, links) | `bg-emerald-600` `bg-emerald-800` `text-emerald-500` `text-emerald-200` `hover:bg-emerald-400` `focus:bg-emerald-400` |
+| Secondary accent | `bg-indigo-600` `bg-indigo-700` `hover:bg-indigo-500` `border-indigo-600` `focus:ring-indigo-400` |
+| Text | `text-slate-200` (body) `text-slate-300` `text-slate-400` (muted) `text-white` `text-red-400` (errors) `text-slate-900` (on emerald) |
+| Sizes | `text-xs` `text-sm` `text-base` `text-lg` `text-xl` `text-2xl` `text-3xl` |
+| Shape | `rounded-sm` `rounded-md` `rounded-lg` `drop-shadow-xl` `shadow-md` `shadow-black` |
+| Variants | `sm:` `md:` `lg:` `hover:` `focus:` `group-hover:` `group-focus:` `disabled:` |
 
 Beyond that set, use inline styles with the theme custom properties, which ARE
 all defined: `--color-emerald-500`, `--color-slate-400`, `--color-gray-800`,
