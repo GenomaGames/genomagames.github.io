@@ -62,9 +62,10 @@ all defined: `--color-emerald-500`, `--color-slate-400`, `--color-gray-800`,
 emerald/indigo/slate/gray 200–950). Example:
 `style={{ background: "var(--color-gray-800)" }}`.
 
-Brand faces `'Born2bSporty FS'` and `'Josefin Sans'` ship in `fonts/` and are
-available via `font-family`. Nothing currently uses them — the site's type is
-the stock `font-sans` stack.
+Brand faces `'Silkscreen'` 700, `'Pixelify Sans'` 600 and `'IBM Plex Mono'`
+400/500 ship in `fonts/` and are available via `font-family` or the DS v2
+utilities `font-pixel`, `font-display` and `font-mono-ui`. No synced component
+sets them yet — the site's type is still the stock `font-sans` stack.
 
 ### Where the truth is
 

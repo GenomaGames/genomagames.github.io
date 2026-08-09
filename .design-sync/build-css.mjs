@@ -27,8 +27,14 @@ const OUT = join(CACHE, "ds.css");
 
 const globals = readFileSync(join(ROOT, "src/styles/globals.css"), "utf8");
 
+/** Imports relative to globals.css resolve to nothing from .cache/, where ENTRY lives. */
+const withResolvedImports = globals.replace(
+  /@import\s+"\.\/([^"]+)"/g,
+  (_match, file) => `@import "${join(ROOT, "src/styles", file)}"`,
+);
+
 // Drop the @font-face blocks — fonts.css owns them.
-const withoutFonts = globals.replace(/@font-face\s*\{[^}]*\}\s*/g, "");
+const withoutFonts = withResolvedImports.replace(/@font-face\s*\{[^}]*\}\s*/g, "");
 
 // `#__next` is a Next.js host-page hook that never exists in a rendered design.
 const withoutHostHooks = withoutFonts.replace(/#__next\s*\{[^}]*\}\s*/g, "");

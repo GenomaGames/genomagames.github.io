@@ -1,0 +1,110 @@
+/* Genoma Games DS v2 — tokens. Sustituye la paleta emerald/indigo de v1. */
+
+/*
+  La escala vive en `@theme` para que Tailwind genere sus utilidades
+  (`bg-navy-800`, `text-green-400`, …). `static` fuerza a emitir todas las
+  variables, también las que solo se consumen desde los semánticos de abajo.
+*/
+@theme static {
+  --color-navy-950: #02080b;
+  --color-navy-900: #0a0b1a;
+  --color-navy-850: #111226;
+  --color-navy-800: #15172e;
+  --color-navy-750: #181a33;
+  --color-navy-700: #1b1e3a;
+  --color-navy-650: #1d2040;
+  --color-navy-500: #2a2e55;
+  --color-navy-400: #3c4278;
+  --color-green-300: #a9f09a;
+  --color-green-400: #80e56c;
+  --color-green-500: #29b841;
+  --color-green-700: #17762b;
+  --color-lime-300: #c8ff7a;
+  --color-lime-400: #a6f045;
+  --color-purple-300: #a99cff;
+  --color-purple-400: #8b7bff;
+  --color-purple-600: #4f39f6;
+  --color-purple-800: #31219b;
+  --color-cyan-100: #ddf3f5;
+  --color-cyan-200: #beeded;
+  --color-cyan-400: #47d6e0;
+  --color-cyan-700: #17858f;
+  --color-amber-300: #ffd98a;
+  --color-amber-400: #ffc24b;
+  --color-amber-700: #9c6c0c;
+  --color-red-300: #ffa79c;
+  --color-red-400: #ff6b5b;
+  --color-red-600: #c63b2f;
+  --color-red-800: #8f241a;
+  --color-white: #eaf7f8;
+  --color-muted-400: #9aa3c8;
+}
+
+:root {
+  /* Semánticos — superficie */
+  --surface-page: var(--color-navy-950);
+  --surface-ground: var(--color-navy-850);
+  --surface-sunken: var(--color-navy-900);
+  --surface-raised: var(--color-navy-750);
+  --surface-control: var(--color-navy-700);
+  --surface-active: var(--color-navy-650);
+  --border-default: var(--color-navy-500);
+  --border-strong: var(--color-navy-400);
+  --surface-hi: var(--color-navy-400); /* bisel luz */
+  --surface-lo: var(--color-navy-900); /* bisel sombra */
+
+  /* Semánticos — texto */
+  --text-primary: var(--color-white);
+  --text-secondary: var(--color-cyan-100);
+  --text-muted: var(--color-muted-400);
+  --text-on-accent: var(--color-navy-850);
+
+  /* Semánticos — acción */
+  --accent: var(--color-green-500);
+  --accent-hi: var(--color-green-400);
+  --accent-lo: var(--color-green-700);
+  --accent-text: var(--color-green-400);
+  --accent-2: var(--color-purple-600); /* suscripción / secundario */
+  --accent-2-hi: var(--color-purple-400);
+  --accent-2-lo: var(--color-purple-800);
+  --link: var(--color-lime-400);
+  --link-hover: var(--color-lime-300);
+  --focus: var(--color-cyan-400);
+
+  /* Semánticos — estado */
+  --info: var(--color-cyan-200);
+  --warning: var(--color-amber-400);
+  --danger: var(--color-red-400);
+  --danger-hi: var(--color-red-300);
+  --danger-lo: var(--color-red-800);
+
+  /* Cristal y ranura */
+  --glass-bg: rgba(17, 18, 38, 0.55);
+  --glass-blur: 3px;
+  --glass-bezel-1: rgba(190, 237, 237, 0.25);
+  --glass-bezel-2: rgba(190, 237, 237, 0.08);
+  --groove-bg: rgba(2, 8, 11, 0.72);
+  --groove-shadow: rgba(2, 8, 11, 0.9);
+  --groove-lip: rgba(190, 237, 237, 0.35);
+
+  /* Tipografía (v1 Born2bSporty FS / Josefin Sans quedan retiradas) */
+  --font-pixel: "Silkscreen", monospace;
+  --font-display: "Pixelify Sans", sans-serif;
+  /* `--font-mono` a secas es una variable de tema de Tailwind: redefinirla
+     cambiaría `font-mono` y el `code`/`pre` del preflight. El sufijo -ui es
+     el mismo que el plan da a la utilidad. */
+  --font-mono-ui: "IBM Plex Mono", monospace;
+
+  /* Motion */
+  --dur-blink: 1.1s;
+  --dur-shake: 0.25s;
+  --dur-blocks: 1.5s;
+  /* Añadidos al vocabulario del handoff: el foco engancha y luego respira. */
+  --dur-focus-snap: 0.15s;
+  --dur-focus-pulse: 1.2s;
+
+  /* Radios: el sistema es cuadrado. Las utilidades escriben `border-radius: 0`
+     literal y este token no lo lee nadie; queda como declaración de intenciones
+     hasta que la limpieza final retire las `rounded-*` de Tailwind. */
+  --radius: 0px;
+}

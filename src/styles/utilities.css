@@ -1,0 +1,342 @@
+/* Genoma Games DS v2 — utilidades nuevas (complementan a Tailwind; los biseles
+   pixel no existen en el set stock). Requiere tokens.css.
+
+   Se declaran con `@utility` (Tailwind 4) en vez de con clases sueltas para que
+   admitan variantes: `hover:bevel-sunken`, `md:glass`, `active:bg-control`. */
+
+/* Tipografía */
+@utility font-pixel {
+  font-family: var(--font-pixel);
+}
+@utility font-display {
+  font-family: var(--font-display);
+}
+@utility font-mono-ui {
+  font-family: var(--font-mono-ui);
+}
+/* Redundante con el global de `globals.css`, que además se hereda. Llega del
+   handoff y se mantiene por fidelidad; no hace falta ponerla en ningún sitio. */
+@utility text-crisp {
+  -webkit-font-smoothing: none;
+}
+
+/* Color de texto y fondo */
+@utility text-primary {
+  color: var(--text-primary);
+}
+@utility text-secondary {
+  color: var(--text-secondary);
+}
+@utility text-muted {
+  color: var(--text-muted);
+}
+@utility text-accent {
+  color: var(--accent-text);
+}
+@utility text-danger {
+  color: var(--danger);
+}
+@utility bg-page {
+  background: var(--surface-page);
+}
+@utility bg-ground {
+  background: var(--surface-ground);
+}
+@utility bg-sunken {
+  background: var(--surface-sunken);
+}
+@utility bg-raised {
+  background: var(--surface-raised);
+}
+@utility bg-control {
+  background: var(--surface-control);
+}
+
+/* Contornos interiores (sustituyen a border para no mover el layout).
+   `inset-ring-2` e `inset-ring-3` existen también en el set stock de Tailwind,
+   que los deja en `currentcolor`: estas ganan por ir después en la hoja, que es
+   el orden en el que Tailwind emite las utilidades declaradas aquí. */
+@utility inset-ring-2 {
+  box-shadow: inset 0 0 0 2px var(--border-default);
+}
+@utility inset-ring-3 {
+  box-shadow: inset 0 0 0 3px var(--border-default);
+}
+@utility inset-ring-strong {
+  box-shadow: inset 0 0 0 2px var(--border-strong);
+}
+
+/* Biseles pixel: luz arriba-izquierda, sombra abajo-derecha */
+@utility bevel-raised {
+  box-shadow:
+    inset 2px 2px 0 0 var(--surface-hi),
+    inset -2px -2px 0 0 var(--surface-lo);
+}
+@utility bevel-sunken {
+  box-shadow:
+    inset 2px 2px 0 0 var(--surface-lo),
+    inset -2px -2px 0 0 var(--surface-hi);
+}
+@utility bevel-accent {
+  background: var(--accent);
+  color: var(--text-on-accent);
+  box-shadow:
+    inset 2px 2px 0 0 var(--accent-hi),
+    inset -2px -2px 0 0 var(--accent-lo);
+}
+@utility bevel-accent-2 {
+  background: var(--accent-2);
+  color: var(--text-primary);
+  box-shadow:
+    inset 2px 2px 0 0 var(--accent-2-hi),
+    inset -2px -2px 0 0 var(--accent-2-lo);
+}
+@utility bevel-danger {
+  background: var(--danger);
+  color: var(--text-on-accent);
+  box-shadow:
+    inset 2px 2px 0 0 var(--danger-hi),
+    inset -2px -2px 0 0 var(--danger-lo);
+}
+
+/* Base de controles */
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 15px 16px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  font: 700 14px var(--font-pixel);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:hover {
+    filter: brightness(1.12);
+  }
+  &:active {
+    filter: brightness(0.85);
+    transform: translateY(2px);
+  }
+  /* Dos estados donde el handoff traía uno. Apagado: el botón no se puede usar,
+     así que pierde el color y lo dice el cursor. Trabajando: el botón sí sirve
+     y está a lo suyo, así que conserva su color y solo se retira un poco.
+     Va después para ganar al de arriba, porque un botón ocupado suele venir
+     además deshabilitado para que no se pulse dos veces. */
+  &:disabled {
+    opacity: 0.5;
+    filter: saturate(0.15);
+    cursor: not-allowed;
+  }
+  &[aria-busy="true"] {
+    opacity: 0.75;
+    filter: none;
+    cursor: wait;
+  }
+}
+@utility chip {
+  display: inline-block;
+  padding: 3px 6px;
+  font: 700 9px var(--font-pixel);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+@utility chip-devlog {
+  color: var(--accent-hi);
+  box-shadow: inset 0 0 0 2px var(--accent);
+}
+@utility chip-postmortem {
+  color: var(--warning);
+  box-shadow: inset 0 0 0 2px var(--color-amber-700);
+}
+@utility chip-tutorial {
+  color: var(--color-cyan-400);
+  box-shadow: inset 0 0 0 2px var(--color-cyan-700);
+}
+@utility chip-experience {
+  color: var(--color-purple-400);
+  box-shadow: inset 0 0 0 2px var(--color-purple-600);
+}
+@utility chip-status {
+  padding: 4px 7px;
+  letter-spacing: 0.1em;
+}
+@utility input {
+  min-height: 48px;
+  background: var(--surface-sunken);
+  border: none;
+  border-radius: 0;
+  box-shadow: inset 0 0 0 2px var(--border-default);
+  padding: 0 12px;
+  font: 400 12px var(--font-mono-ui);
+  color: var(--text-secondary);
+
+  &[aria-invalid="true"] {
+    box-shadow: inset 0 0 0 2px var(--danger);
+  }
+}
+@utility field-label {
+  font: 700 10px var(--font-pixel);
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Cristal, bezel y ranura */
+@utility glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+@utility glass-bezel {
+  box-shadow:
+    inset 0 3px 0 0 var(--glass-bezel-1),
+    inset 0 6px 0 0 var(--glass-bezel-2);
+}
+@utility groove {
+  height: 8px;
+  background: var(--groove-bg);
+  box-shadow:
+    inset 0 2px 0 0 var(--groove-shadow),
+    inset 0 -2px 0 0 var(--groove-lip);
+}
+
+/* Imagen pixel */
+@utility pixelated {
+  image-rendering: pixelated;
+}
+
+/* Motion */
+@keyframes gg-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes gg-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-10px);
+  }
+  35% {
+    transform: translateX(9px);
+  }
+  55% {
+    transform: translateX(-8px);
+  }
+  75% {
+    transform: translateX(7px);
+  }
+  90% {
+    transform: translateX(-4px);
+  }
+}
+/* Foco: el cursor de un menú que se engancha a la opción y se queda latiendo en
+   ella. Sin interpolar (los `steps` de quien los use).
+
+   El aterrizaje es el gesto grande —cae desde 10px y va cuajando de
+   transparente a opaco en tres fotogramas—; el latido que viene después es un
+   vaivén corto, para acompañar sin robar atención mientras se escribe. La
+   opacidad va en el color del contorno, no en `opacity`, que atenuaría el
+   elemento entero en vez del recuadro. */
+@keyframes gg-focus-snap {
+  0% {
+    outline-width: 7px;
+    outline-offset: 10px;
+    outline-color: color-mix(in srgb, var(--focus) 25%, transparent);
+  }
+  50% {
+    outline-width: 5px;
+    outline-offset: 6px;
+    outline-color: color-mix(in srgb, var(--focus) 60%, transparent);
+  }
+  100% {
+    outline-width: 3px;
+    outline-offset: 2px;
+    outline-color: var(--focus);
+  }
+}
+@keyframes gg-focus-pulse {
+  0%,
+  100% {
+    outline-offset: 2px;
+  }
+  25%,
+  75% {
+    outline-offset: 3px;
+  }
+  50% {
+    outline-offset: 4px;
+  }
+}
+@keyframes gg-block-fade {
+  0%,
+  39% {
+    opacity: 0;
+  }
+  40%,
+  54% {
+    opacity: 0.4;
+  }
+  55%,
+  69% {
+    opacity: 0.8;
+  }
+  70%,
+  79% {
+    opacity: 1;
+  }
+  80%,
+  89% {
+    opacity: 0.8;
+  }
+  90%,
+  100% {
+    opacity: 0.4;
+  }
+}
+/* La guarda de movimiento reducido va dentro de cada utilidad, no en una regla
+   aparte que liste las tres clases: así la heredan también sus variantes
+   (`hover:shake`, `md:blink`), que una regla por nombre de clase no alcanza. */
+@utility blink {
+  animation: gg-blink var(--dur-blink) steps(1, end) infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+@utility shake {
+  animation: gg-shake var(--dur-shake) linear;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+@utility block-fade {
+  animation: gg-block-fade var(--dur-blocks) linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+/* Foco y reduced motion */
+/* Igual que `text-crisp`: el foco ya es global y esta utilidad no cambia nada
+   allí donde se aplique. Se mantiene por fidelidad al handoff. */
+@utility focus-ring {
+  &:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+}

@@ -102,7 +102,7 @@ const sessionLengthHours = ["0.5", "1", "2", "4", "8"] as const;
 
 const labelClass = "mb-1 block font-semibold";
 const inputClass =
-  "w-full rounded-md border border-gray-600 bg-gray-900 p-2 text-white transition-colors placeholder:text-gray-500 focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 focus:outline-none";
+  "w-full rounded-md border border-gray-600 bg-gray-900 p-2 text-white transition-colors placeholder:text-gray-500 focus:border-indigo-400";
 const fieldClass = "mb-5";
 const checkboxClass = "size-4 shrink-0 accent-indigo-500";
 const checkboxGridClass = "grid grid-cols-2 gap-2 sm:grid-cols-3";

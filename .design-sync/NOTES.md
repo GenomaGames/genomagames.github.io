@@ -64,8 +64,9 @@ unstyled) into `.design-sync/.cache/ds.css`, which `cfg.cssEntry` points at.
   Deleted at the owner's request. Its brand palette (`Color-Main`,
   `born2bsporty-fs`, …) was never live and is deliberately absent from
   `conventions.md`.
-- The two brand faces are declared but unused — the site's type is stock
-  `font-sans`. They ship as available assets via `cfg.extraFonts`.
+- The three brand faces (Silkscreen 700, Pixelify Sans 600, IBM Plex Mono
+  400/500) are declared but unused — the site's type is stock `font-sans`. They
+  ship as available assets via `cfg.extraFonts`.
 
 ## Preview conventions
 
