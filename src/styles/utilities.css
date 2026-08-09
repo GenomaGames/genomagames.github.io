@@ -231,6 +231,32 @@
     transform: translateX(-4px);
   }
 }
+/* Foco: tres fotogramas de aterrizaje y tres de respiración, sin interpolar
+   (los `steps` de quien los use), como el cursor de un menú que se engancha a
+   la opción y se queda latiendo en ella. */
+@keyframes gg-focus-snap {
+  0% {
+    outline-offset: 5px;
+  }
+  50% {
+    outline-offset: 3px;
+  }
+  100% {
+    outline-offset: 2px;
+  }
+}
+@keyframes gg-focus-pulse {
+  0%,
+  100% {
+    outline-offset: 2px;
+  }
+  33% {
+    outline-offset: 4px;
+  }
+  66% {
+    outline-offset: 3px;
+  }
+}
 @keyframes gg-block-fade {
   0%,
   39% {

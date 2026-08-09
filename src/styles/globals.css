@@ -65,9 +65,24 @@ html {
   ningún componente podría tocar su foco nunca.
 */
 @layer base {
+  /*
+    El `outline-offset` estático es el que vale sin animación y el que deja la
+    reducción de movimiento. La respiración arranca cuando termina el
+    aterrizaje, así que las dos nunca escriben el offset a la vez.
+  */
   :focus-visible {
     outline: 3px solid var(--focus);
     outline-offset: 2px;
+    animation:
+      gg-focus-snap var(--dur-focus-snap) steps(1, end),
+      gg-focus-pulse var(--dur-focus-pulse) steps(1, end) var(--dur-focus-snap)
+        infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :focus-visible {
+      animation: none;
+    }
   }
 }
 
