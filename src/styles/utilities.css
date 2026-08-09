@@ -122,11 +122,19 @@
     filter: brightness(0.85);
     transform: translateY(2px);
   }
-  /* El .75 de opacidad a secas del handoff apenas se distinguía del reposo:
-     la desaturación es la que hace que un botón apagado se lea como apagado. */
+  /* Dos estados donde el handoff traía uno. Apagado: el botón no se puede usar,
+     así que pierde el color y lo dice el cursor. Trabajando: el botón sí sirve
+     y está a lo suyo, así que conserva su color y solo se retira un poco.
+     Va después para ganar al de arriba, porque un botón ocupado suele venir
+     además deshabilitado para que no se pulse dos veces. */
   &:disabled {
     opacity: 0.5;
     filter: saturate(0.15);
+    cursor: not-allowed;
+  }
+  &[aria-busy="true"] {
+    opacity: 0.75;
+    filter: none;
     cursor: wait;
   }
 }
@@ -244,14 +252,17 @@
    elemento entero en vez del recuadro. */
 @keyframes gg-focus-snap {
   0% {
+    outline-width: 7px;
     outline-offset: 10px;
     outline-color: color-mix(in srgb, var(--focus) 25%, transparent);
   }
   50% {
+    outline-width: 5px;
     outline-offset: 6px;
     outline-color: color-mix(in srgb, var(--focus) 60%, transparent);
   }
   100% {
+    outline-width: 3px;
     outline-offset: 2px;
     outline-color: var(--focus);
   }

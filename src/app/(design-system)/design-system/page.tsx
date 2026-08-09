@@ -107,14 +107,28 @@ const BUTTON_VARIANTS: ButtonVariant[] = [
   { className: "btn text-accent inset-ring-3", label: "contorno" },
 ];
 
+interface ButtonState {
+  busy?: boolean;
+  disabled?: boolean;
+  label: string;
+  style?: React.CSSProperties;
+}
+
 // `:hover` and `:active` only exist while the pointer is on the control, so the
-// catalog reproduces their declared effect inline to show all four states at
-// once. The interactive button of each row is the one labelled «reposo».
-const HOVER_STYLE: React.CSSProperties = { filter: "brightness(1.12)" };
-const ACTIVE_STYLE: React.CSSProperties = {
-  filter: "brightness(0.85)",
-  transform: "translateY(2px)",
-};
+// catalog reproduces their declared effect inline to show every state at once.
+// The interactive button of each row is the one labelled «reposo».
+const BUTTON_STATES: ButtonState[] = [
+  { label: "reposo" },
+  { label: "hover", style: { filter: "brightness(1.12)" } },
+  {
+    label: "pulsado",
+    style: { filter: "brightness(0.85)", transform: "translateY(2px)" },
+  },
+  { disabled: true, label: "deshabilitado" },
+  // Un botón ocupado suele venir además deshabilitado, para que no se pulse
+  // dos veces: así se ve el estado tal y como se usa.
+  { busy: true, disabled: true, label: "cargando" },
+];
 
 interface SectionProps extends React.PropsWithChildren {
   index: number;
@@ -344,42 +358,27 @@ const DesignSystemPage: React.JSXElementConstructor<Props> = (
     <Section
       index={4}
       title="Botones"
-      note="Altura mínima 48px, texto Silkscreen 14px en mayúsculas. El hover aclara un 12%, el pulsado oscurece un 15% y baja 2px, y el deshabilitado pierde saturación y opacidad, además de poner el cursor en espera."
+      note="Altura mínima 48px, texto Silkscreen 14px en mayúsculas. El hover aclara un 12% y el pulsado oscurece un 15% y baja 2px. Deshabilitado y cargando son estados distintos: el primero pierde el color, porque el botón no se puede usar, y el segundo lo conserva, porque sí sirve y está a lo suyo. Cada uno lleva su cursor."
     >
       {BUTTON_VARIANTS.map((variant) => (
         <Figure key={variant.label} caption={variant.label}>
-          <span className="flex flex-col items-center gap-2">
-            <button type="button" className={variant.className}>
-              Reposo
-            </button>
-            <span className="field-label">reposo</span>
-          </span>
-          <span className="flex flex-col items-center gap-2">
-            <button
-              type="button"
-              className={variant.className}
-              style={HOVER_STYLE}
+          {BUTTON_STATES.map((state) => (
+            <span
+              key={state.label}
+              className="flex flex-col items-center gap-2"
             >
-              Hover
-            </button>
-            <span className="field-label">hover</span>
-          </span>
-          <span className="flex flex-col items-center gap-2">
-            <button
-              type="button"
-              className={variant.className}
-              style={ACTIVE_STYLE}
-            >
-              Pulsado
-            </button>
-            <span className="field-label">pulsado</span>
-          </span>
-          <span className="flex flex-col items-center gap-2">
-            <button type="button" className={variant.className} disabled>
-              Deshabilitado
-            </button>
-            <span className="field-label">deshabilitado</span>
-          </span>
+              <button
+                type="button"
+                aria-busy={state.busy}
+                className={variant.className}
+                disabled={state.disabled}
+                style={state.style}
+              >
+                {state.label}
+              </button>
+              <span className="field-label">{state.label}</span>
+            </span>
+          ))}
         </Figure>
       ))}
     </Section>
