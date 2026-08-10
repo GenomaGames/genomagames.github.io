@@ -93,3 +93,26 @@
    el documento. Se mantiene por fidelidad, pero nadie debería alcanzarla
    esperando que añada algo. */
 .focus-ring:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* El foco global, que es donde vive de verdad. Va en `@layer base`: fuera de una
+   capa ganaría a toda utilidad de Tailwind y ningún componente podría alterar el
+   suyo. Aterriza y luego respira; la opacidad va en el color del contorno, no en
+   `opacity`, que atenuaría el elemento entero. Ver `specs/foundations.md`. */
+@keyframes gg-focus-snap {
+  0% { outline-width: 7px; outline-offset: 10px; outline-color: color-mix(in srgb, var(--focus) 25%, transparent); }
+  50% { outline-width: 5px; outline-offset: 6px; outline-color: color-mix(in srgb, var(--focus) 60%, transparent); }
+  100% { outline-width: 3px; outline-offset: 2px; outline-color: var(--focus); }
+}
+@keyframes gg-focus-pulse {
+  0%, 100% { outline-offset: 2px; }
+  25%, 75% { outline-offset: 3px; }
+  50% { outline-offset: 4px; }
+}
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  animation:
+    gg-focus-snap var(--dur-focus-snap) steps(1, end),
+    gg-focus-pulse var(--dur-focus-pulse) steps(1, end) var(--dur-focus-snap) infinite;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}

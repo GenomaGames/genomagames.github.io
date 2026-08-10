@@ -1,5 +1,7 @@
 # Navigation & Shell — v2
 
+Reconciliada con lo que el PR 1 construyó: donde esta spec y el paquete original no coincidan, manda esta, y el porqué está en los mensajes de commit del [PR #42](https://github.com/GenomaGames/genomagames-web/pull/42).
+
 ## HeroMenu (sustituye al Header fijo v1)
 `<nav aria-label>` en grid 2×2 (≥820px) / 1 col (móvil): items `bg-control` bevel-raised,
 48–50px, label Silkscreen 14px `--text-primary` + índice «01» mono 9px a la derecha.
@@ -35,4 +37,4 @@ clickable, padding 4px 10px; hover aclara, active verde.
 - v1: bloque oscuro con navegación repetida. v2: barra mínima `bg-sunken`: icono pixel 20px + lema mono 10px a la izquierda, LanguageSelector a la derecha. `mt-auto` se mantiene.
 
 ## LanguageSelector — Migración v1 → v2
-- v1: dropdown con banderas. v2: par de botones cuadrados 44px «ES/EN» Silkscreen 14px; activo `bg: --accent` texto `--text-on-accent`, inactivo transparente + `.inset-ring-2`; `role="group" aria-label="Idioma"` + `aria-pressed`.
+- v1: drawer con banderas. v2: par de botones cuadrados 44px «ES/EN» Silkscreen 14px; activo `bg: --accent` texto `--text-on-accent`, inactivo transparente + `.inset-ring-2`; `role="group" aria-label="Idioma"` + `aria-pressed`.

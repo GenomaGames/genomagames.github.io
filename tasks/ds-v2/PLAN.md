@@ -13,15 +13,15 @@ pipeline de sync en `.design-sync/`. Specs de referencia: `ds-v2/specs/*.md` de 
 ## PR 1 — Fundaciones (solo CSS + fuentes; la UI v1 sigue en pie)
 
 **`public/fonts/`**
-- Añadir los woff2 de `assets/fonts/` de este proyecto: Silkscreen 700, Pixelify Sans 600, IBM Plex Mono 400/500, con sus `OFL.txt`.
+- Añadir las tres familias a partir de los TTF de `fonts/` de este proyecto —Silkscreen 700, Pixelify Sans 600 (variable, instanciada a ese peso), IBM Plex Mono 400/500—, convertidas a woff2 y servidas desde el dominio propio, con sus licencias `OFL-Silkscreen.txt`, `OFL-PixelifySans.txt` y `OFL-IBMPlexMono.txt` al lado. El `IBMPlexMono-SemiBold.ttf` queda sin convertir a propósito (ver `specs/content.md`).
 - Borrar `Born2bSportyFS.otf` y `JosefinSans.ttf` — NOTES.md confirma que nada los usa.
 
 **`src/styles/globals.css`**
 - Sustituir los dos `@font-face` por los de las tres familias nuevas (mismo patrón actual, sin `next/font`).
 - Tras `@import "tailwindcss"`, añadir `@import "./tokens.css"` y `@import "./utilities.css"` (copiados de `ds-v2/`).
 - La **escala** de color va dentro de `@theme static` → genera utilidades (`bg-navy-800`, `text-green-400`). Ahí Tailwind exige el prefijo `--color-`: los tokens son `--color-navy-800`, `--color-green-400`…, y así es como los citan las specs y como los consumen los semánticos. Los **semánticos** (`--surface-*`, `--accent*`, `--text-*`, `--focus`) quedan en `:root` como están.
-- Globales nuevos: `-webkit-font-smoothing: none`, `:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px }`.
-- En `utilities.css`, declarar los biseles/rings como `@utility` (sintaxis v4) para que funcionen con variantes `hover:`/`active:`.
+- Globales nuevos: `-webkit-font-smoothing: none` y el foco `:focus-visible` de 3px con offset 2px, que además aterriza y late (`specs/foundations.md`). Va dentro de `@layer base`: fuera de una capa ganaría a toda utilidad de Tailwind y ningún componente podría alterar su propio foco.
+- En `utilities.css`, declarar como `@utility` (sintaxis v4) **todas** las utilidades, no solo los biseles y los rings, para que cualquiera admita variantes `hover:`/`active:`/`md:`.
 - No tocar la capa de compatibilidad `border-color` ni `scroll-behavior`.
 
 ## PR 2 — Shell y fondo
@@ -81,7 +81,7 @@ pipeline de sync en `.design-sync/`. Specs de referencia: `ds-v2/specs/*.md` de 
 
 ## Reglas transversales en cada review
 
-Radius 0 · profundidad solo biseles inset 2px (nunca `border` ni sombra exterior) · texto de botón 14px · Silkscreen solo MAYÚSCULAS · hit targets ≥ 44px · `prefers-reduced-motion` congela blink/shake/fade y el canvas · foco 3px `--focus`.
+Radius 0 · profundidad solo biseles inset 2px (nunca `border` ni sombra exterior como contorno o profundidad; un divisor de un solo lado sí es `border-top`) · texto de botón 14px · Silkscreen solo MAYÚSCULAS · hit targets ≥ 44px · `prefers-reduced-motion` congela blink/shake/fade y el canvas · foco 3px `--focus`.
 
 ### Símbolos que las fuentes pixel no traen
 

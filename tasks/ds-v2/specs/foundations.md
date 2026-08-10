@@ -23,10 +23,11 @@ meta 10–11px · chip 9px · field label 10px. `-webkit-font-smoothing: none` g
 ## Forma y profundidad
 - Radius 0 en todo. `--radius: 0px` existe como declaración de intenciones, pero no lo lee nadie: las dos utilidades que necesitan anularlo —`.btn` y `.input`— escriben `border-radius: 0` literal, y las otras 37 sencillamente no declaran radius. Lo que queda por barrer son las `rounded-*` que la UI v1 todavía trae, y eso lo hace el PR 6.
 - Profundidad con biseles inset 2px (`.bevel-*`): luz arriba-izquierda, sombra abajo-derecha; `:active` invierte el bisel y baja 2px.
-- Contornos con `box-shadow` interior (`.inset-ring-*`), nunca `border`.
+- Contornos con `box-shadow` interior (`.inset-ring-*`), nunca `border`. La regla es sobre el contorno y la profundidad: un divisor de un solo lado —el `border-top 2px --border-default` que separan cards y pies— sí se escribe como `border`, porque un ring no puede darlo.
 
 ## Motion
-`gg-blink` (cursor/CTA), `gg-shake` (daño, .25s), `gg-block-fade` (bloques de carga).
+`gg-blink` (cursor/CTA), `gg-shake` (daño, .25s), `gg-block-fade` (bloques de carga), más
+`gg-focus-snap` y `gg-focus-pulse` del foco de aquí abajo: cinco animaciones en total.
 Todo respeta `prefers-reduced-motion`.
 
 ### Foco animado

@@ -1,5 +1,7 @@
 # Forms & Feedback — v2
 
+Reconciliada con lo que el PR 1 construyó: donde esta spec y el paquete original no coincidan, manda esta, y el porqué está en los mensajes de commit del [PR #42](https://github.com/GenomaGames/genomagames-web/pull/42).
+
 ## FieldLabel + TextInput / TextArea
 Label `.field-label` sobre `.input` (48px, `bg-sunken`, ring 2px). Error → `aria-invalid`
 cambia el ring a `--danger`. Textarea: padding 12px, `resize: none`.

@@ -1,5 +1,7 @@
 # Content — v2 (PostArticle, PostHeader, PostFooter, ItchioWidget)
 
+Reconciliada con lo que el PR 1 construyó: donde esta spec y el paquete original no coincidan, manda esta, y el porqué está en los mensajes de commit del [PR #42](https://github.com/GenomaGames/genomagames-web/pull/42).
+
 ## PostHeader — Migración v1 → v2
 - Título: Pixelify Sans 600, clamp(24→34px), `--text-primary`; fecha mono 11px `--text-muted`.
 - Chip de categoría v2 encima del título; tag de proyecto al lado (mono 9px `--info`).

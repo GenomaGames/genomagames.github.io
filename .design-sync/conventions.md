@@ -81,7 +81,11 @@ of them looks the way it does is in the commit messages of
 Beyond that set, use inline styles with the theme custom properties, which ARE
 all defined: `--color-emerald-500`, `--color-slate-400`, `--color-gray-800`,
 `--color-indigo-600`, `--radius-md`, `--font-sans` (and the same scale for
-emerald/indigo/slate/gray 200–950). Example:
+emerald/indigo/slate/gray 200–950). The DS v2 scale is defined too, under the
+same prefix: `--color-navy-*`, `--color-green-*`, `--color-lime-*`,
+`--color-purple-*`, `--color-cyan-*`, `--color-amber-*`, `--color-red-*`,
+`--color-muted-400`. Note that `--color-white` and `--color-red-400` now carry
+their v2 values. Example:
 `style={{ background: "var(--color-gray-800)" }}`.
 
 Brand faces `'Silkscreen'` 700, `'Pixelify Sans'` 600 and `'IBM Plex Mono'`
