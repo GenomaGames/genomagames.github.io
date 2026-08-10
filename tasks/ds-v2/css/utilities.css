@@ -20,6 +20,11 @@
 .bg-sunken { background: var(--surface-sunken); }
 .bg-raised { background: var(--surface-raised); }
 .bg-control { background: var(--surface-control); }
+/* La sexta superficie de la familia. El PR 1 emitió las cinco de arriba y esta
+   no, aunque `--surface-active` sí quedó definido: la utilidad está pendiente y
+   la crea el PR 4, que es la primera entrega que la necesita (`specs/cards.md`).
+   Hasta entonces `bg-active` no existe en el código. */
+.bg-active { background: var(--surface-active); }
 
 /* Contornos interiores (sustituyen a border para no mover el layout).
    Ojo: `inset-ring-2` e `inset-ring-3` existen en el set stock de Tailwind y
@@ -48,9 +53,9 @@
 .btn[aria-busy="true"] { opacity: .75; filter: none; cursor: wait; }
 .chip { display: inline-block; padding: 3px 6px; font: 700 9px var(--font-pixel); letter-spacing: .08em; text-transform: uppercase; }
 .chip-devlog { color: var(--accent-hi); box-shadow: inset 0 0 0 2px var(--accent); }
-.chip-postmortem { color: var(--warning); box-shadow: inset 0 0 0 2px var(--amber-700); }
-.chip-tutorial { color: var(--cyan-400); box-shadow: inset 0 0 0 2px var(--cyan-700); }
-.chip-experience { color: var(--purple-400); box-shadow: inset 0 0 0 2px var(--purple-600); }
+.chip-postmortem { color: var(--warning); box-shadow: inset 0 0 0 2px var(--color-amber-700); }
+.chip-tutorial { color: var(--color-cyan-400); box-shadow: inset 0 0 0 2px var(--color-cyan-700); }
+.chip-experience { color: var(--color-purple-400); box-shadow: inset 0 0 0 2px var(--color-purple-600); }
 .chip-status { padding: 4px 7px; letter-spacing: .1em; }
 .input { min-height: 48px; background: var(--surface-sunken); border: none; border-radius: 0; box-shadow: inset 0 0 0 2px var(--border-default); padding: 0 12px; font: 400 12px var(--font-mono-ui); color: var(--text-secondary); }
 .input[aria-invalid="true"] { box-shadow: inset 0 0 0 2px var(--danger); }

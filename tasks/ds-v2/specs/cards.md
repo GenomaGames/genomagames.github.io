@@ -2,6 +2,9 @@
 
 Base común: `bg-raised .inset-ring-2`, padding 14px, gap 6–10px; hover → ring strong;
 active → `bg-active` + `translateY(2px)`. Sin radius, sin sombra exterior.
+`bg-active` **todavía no existe en el código**: el PR 1 emitió cinco de las seis superficies de
+la familia y dejó fuera esta, aunque `--surface-active` sí está definido. Emitirla es parte de
+esta entrega, antes de usarla.
 
 ## PostItem
 Chip de categoría + tag de proyecto (`font-mono-ui` 9px `--info`) · título Pixelify 600 15px

@@ -1,5 +1,9 @@
 # Foundations — v2
 
+Reconciliada con lo que el PR 1 construyó. Donde esta spec y el paquete original no coincidan,
+manda esta: el porqué de cada decisión está en los mensajes de commit del
+[PR #42](https://github.com/GenomaGames/genomagames-web/pull/42).
+
 ## Color
 Roles semánticos sobre la escala (ver `tokens.css`). Regla: superficie navy, texto
 frío, un acento por bloque (verde = acción principal, morado = suscripción/alt,
@@ -17,7 +21,7 @@ Escala: botón 14px · h2 sección clamp(18px→24px) · cuerpo 12px (14px en de
 meta 10–11px · chip 9px · field label 10px. `-webkit-font-smoothing: none` global.
 
 ## Forma y profundidad
-- Radius 0 en todo. `--radius: 0px` existe como declaración de intenciones, pero no lo lee nadie: las utilidades escriben `border-radius: 0` literal.
+- Radius 0 en todo. `--radius: 0px` existe como declaración de intenciones, pero no lo lee nadie: las dos utilidades que necesitan anularlo —`.btn` y `.input`— escriben `border-radius: 0` literal, y las otras 37 sencillamente no declaran radius. Lo que queda por barrer son las `rounded-*` que la UI v1 todavía trae, y eso lo hace el PR 6.
 - Profundidad con biseles inset 2px (`.bevel-*`): luz arriba-izquierda, sombra abajo-derecha; `:active` invierte el bisel y baja 2px.
 - Contornos con `box-shadow` interior (`.inset-ring-*`), nunca `border`.
 

@@ -19,7 +19,7 @@ pipeline de sync en `.design-sync/`. Specs de referencia: `ds-v2/specs/*.md` de 
 **`src/styles/globals.css`**
 - Sustituir los dos `@font-face` por los de las tres familias nuevas (mismo patrón actual, sin `next/font`).
 - Tras `@import "tailwindcss"`, añadir `@import "./tokens.css"` y `@import "./utilities.css"` (copiados de `ds-v2/`).
-- La **escala** de color (`--navy-*`, `--green-*`, …) va dentro de `@theme` → genera utilidades (`bg-navy-800`, `text-green-400`). Los **semánticos** (`--surface-*`, `--accent*`, `--text-*`, `--focus`) quedan en `:root` como están.
+- La **escala** de color va dentro de `@theme static` → genera utilidades (`bg-navy-800`, `text-green-400`). Ahí Tailwind exige el prefijo `--color-`: los tokens son `--color-navy-800`, `--color-green-400`…, y así es como los citan las specs y como los consumen los semánticos. Los **semánticos** (`--surface-*`, `--accent*`, `--text-*`, `--focus`) quedan en `:root` como están.
 - Globales nuevos: `-webkit-font-smoothing: none`, `:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px }`.
 - En `utilities.css`, declarar los biseles/rings como `@utility` (sintaxis v4) para que funcionen con variantes `hover:`/`active:`.
 - No tocar la capa de compatibilidad `border-color` ni `scroll-behavior`.
@@ -47,6 +47,7 @@ pipeline de sync en `.design-sync/`. Specs de referencia: `ds-v2/specs/*.md` de 
 ## PR 4 — Cards y listas
 
 - `src/components/posts-list.tsx` (`PostsListView`): lista vertical → grid `repeat(auto-fit, minmax(300px, 1fr))` gap 8px; el primer post renderiza como FeaturedPostItem. El split View/async y la prop `locale` del view **no se tocan** (los necesita design-sync).
+- `src/styles/utilities.css`: emitir `bg-active`, la sexta superficie de la familia, que el PR 1 dejó fuera aunque `--surface-active` sí quedó definido. La necesita el estado activo de las cards y sube a 40 el set que design-sync compila.
 - `src/components/post-item.tsx` (`PostItemView`): card `bg-raised inset-ring-2` + título Pixelify (spec `cards.md`). Fuera `faCalendarDay`, `rounded-*`, `drop-shadow-*`, `hover:scale`.
   - **Sin chips por ahora**: `category`/`project` no existen en el dominio `Post` — la card v2 se aplica sin chip (título + meta). Los chips quedan pospuestos hasta decidir frontmatter vs. derivación; `DraftLabel` es el único chip visible.
 - `src/components/draft-label.tsx`: `chip chip-status` en `--warning`, radius 0; fuera `faHammer`.
@@ -90,8 +91,8 @@ comprobado sobre el cmap de los woff2 servidos; IBM Plex Mono sí. Los triángul
 dentro del sistema, la sirve una fuente del sistema operativo. Escritos como carácter, el
 navegador los serviría con otra tipografía en mitad de un texto pixel.
 
-**Ningún símbolo se escribe como carácter: se pone como pieza.** El texto que lo acompaña carga
-el significado, y la pieza va `aria-hidden`. Dos formas, por este orden:
+**Ningún símbolo monocromo se escribe como carácter: se pone como pieza.** El texto que lo
+acompaña carga el significado, y la pieza va `aria-hidden`. Dos formas, por este orden:
 
 1. **El icono pixel del paquete**, si existe en `icons/` (pixelarticons, MIT): `check.svg`,
    `arrow-up.svg` y compañía son rectángulos sobre un `viewBox` de 24 con `fill="currentColor"`,
@@ -103,13 +104,21 @@ Descartadas: cambiar el copy (el símbolo aporta el gesto) y aceptar el salto de
 unidad tipográfica justo en las piezas más visibles). Una pieza dibujada, además, no necesita
 pareja ES/EN en `i18n/`.
 
+Los **emoji** quedan fuera de esta regla: los sirve la fuente de color del sistema a propósito, y
+así siguen los de `i18n/*.json` (💥 🗺 🕹 …). Lo que la regla persigue es el símbolo monocromo
+incrustado en una tirada de texto pixel, que es donde el salto de tipografía canta.
+
 ## El margen de alcance de cada entrega
 
 El PR 1 se declaró «solo CSS + fuentes, la UI v1 sigue en pie» y acabó tocando tres veces cosas
-que decía no tocar, las tres con permiso y por buenas razones: el formulario de alpha perdió su
-`focus:outline-none focus:ring-*` (mostraba el ring indigo v1 y el contorno cyan v2 a la vez), y
-el catálogo dejó de ser cien por cien estático (el ejemplo de daño es una isla de cliente,
-porque la animación se dispara una vez por golpe).
+que decía no tocar, las tres con permiso y por buenas razones:
+
+1. El formulario de alpha perdió su `focus:outline-none focus:ring-*`, que mostraba el ring
+   indigo v1 y el contorno cyan v2 a la vez.
+2. La UI v1 cambió de aspecto donde usa `text-white` y `text-red-400`, porque la escala v2 pisa
+   esos dos colores de Tailwind. Aislarlos habría partido la paleta en dos.
+3. El catálogo dejó de ser cien por cien estático: el ejemplo de daño es una isla de cliente,
+   porque la animación se dispara una vez por golpe.
 
 No es un fallo del plan: es lo que pasa cuando una capa nueva destapa un conflicto en la vieja.
 Las entregas siguientes **declaran ese margen** en vez de prometer que no existe: tocar fuera de

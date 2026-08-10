@@ -4,7 +4,7 @@
 `<nav aria-label>` en grid 2×2 (≥820px) / 1 col (móvil): items `bg-control` bevel-raised,
 48–50px, label Silkscreen 14px `--text-primary` + índice «01» mono 9px a la derecha.
 Cursor: triángulo verde 9px que **se mueve al item bajo hover/focus** (opacity por item,
-reset en `mouseleave`/`blur`). Active: bisel invertido + fondo `--navy-800` + 2px abajo.
+reset en `mouseleave`/`blur`). Active: bisel invertido + fondo `--color-navy-800` + 2px abajo.
 CTA «START GAME» Silkscreen 14px `--warning` con `.blink`, flanqueado por dos triángulos
 `--warning` de 9px, `aria-hidden`: el mismo triángulo dibujado del cursor de arriba, girado. No
 se escribe `▼` (U+25BC), que no está en ninguna de las tres fuentes servidas —tampoco en IBM

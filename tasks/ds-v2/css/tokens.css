@@ -1,75 +1,83 @@
-/* Genoma Games DS v2 — tokens. Sustituye la paleta emerald/indigo de v1. */
-:root {
-  /* Escala */
-  --navy-950: #02080B;
-  --navy-900: #0A0B1A;
-  --navy-850: #111226;
-  --navy-800: #15172E;
-  --navy-750: #181A33;
-  --navy-700: #1B1E3A;
-  --navy-650: #1D2040;
-  --navy-500: #2A2E55;
-  --navy-400: #3C4278;
-  --green-300: #A9F09A;
-  --green-400: #80E56C;
-  --green-500: #29B841;
-  --green-700: #17762B;
-  --lime-300: #C8FF7A;
-  --lime-400: #A6F045;
-  --purple-300: #A99CFF;
-  --purple-400: #8B7BFF;
-  --purple-600: #4F39F6;
-  --purple-800: #31219B;
-  --cyan-100: #DDF3F5;
-  --cyan-200: #BEEDED;
-  --cyan-400: #47D6E0;
-  --cyan-700: #17858F;
-  --amber-300: #FFD98A;
-  --amber-400: #FFC24B;
-  --amber-700: #9C6C0C;
-  --red-300: #FFA79C;
-  --red-400: #FF6B5B;
-  --red-600: #C63B2F;
-  --red-800: #8F241A;
-  --white: #EAF7F8;
-  --muted-400: #9AA3C8;
+/* Genoma Games DS v2 — tokens. Sustituye la paleta emerald/indigo de v1.
 
+   La escala va dentro de `@theme static` para que Tailwind genere sus utilidades
+   (`bg-navy-800`, `text-green-400`), y ahí los nombres llevan el prefijo
+   `--color-` que Tailwind exige: el token es `--color-navy-800`, no `--navy-800`.
+   Los semánticos se quedan en `:root` y la consumen ya con ese nombre. Quien
+   escriba `var(--navy-800)` no obtiene nada. */
+@theme static {
+  /* Escala */
+  --color-navy-950: #02080B;
+  --color-navy-900: #0A0B1A;
+  --color-navy-850: #111226;
+  --color-navy-800: #15172E;
+  --color-navy-750: #181A33;
+  --color-navy-700: #1B1E3A;
+  --color-navy-650: #1D2040;
+  --color-navy-500: #2A2E55;
+  --color-navy-400: #3C4278;
+  --color-green-300: #A9F09A;
+  --color-green-400: #80E56C;
+  --color-green-500: #29B841;
+  --color-green-700: #17762B;
+  --color-lime-300: #C8FF7A;
+  --color-lime-400: #A6F045;
+  --color-purple-300: #A99CFF;
+  --color-purple-400: #8B7BFF;
+  --color-purple-600: #4F39F6;
+  --color-purple-800: #31219B;
+  --color-cyan-100: #DDF3F5;
+  --color-cyan-200: #BEEDED;
+  --color-cyan-400: #47D6E0;
+  --color-cyan-700: #17858F;
+  --color-amber-300: #FFD98A;
+  --color-amber-400: #FFC24B;
+  --color-amber-700: #9C6C0C;
+  --color-red-300: #FFA79C;
+  --color-red-400: #FF6B5B;
+  --color-red-600: #C63B2F;
+  --color-red-800: #8F241A;
+  --color-white: #EAF7F8;
+  --color-muted-400: #9AA3C8;
+}
+
+:root {
   /* Semánticos — superficie */
-  --surface-page: var(--navy-950);
-  --surface-ground: var(--navy-850);
-  --surface-sunken: var(--navy-900);
-  --surface-raised: var(--navy-750);
-  --surface-control: var(--navy-700);
-  --surface-active: var(--navy-650);
-  --border-default: var(--navy-500);
-  --border-strong: var(--navy-400);
-  --surface-hi: var(--navy-400);   /* bisel luz */
-  --surface-lo: var(--navy-900);   /* bisel sombra */
+  --surface-page: var(--color-navy-950);
+  --surface-ground: var(--color-navy-850);
+  --surface-sunken: var(--color-navy-900);
+  --surface-raised: var(--color-navy-750);
+  --surface-control: var(--color-navy-700);
+  --surface-active: var(--color-navy-650);
+  --border-default: var(--color-navy-500);
+  --border-strong: var(--color-navy-400);
+  --surface-hi: var(--color-navy-400);   /* bisel luz */
+  --surface-lo: var(--color-navy-900);   /* bisel sombra */
 
   /* Semánticos — texto */
-  --text-primary: var(--white);
-  --text-secondary: var(--cyan-100);
-  --text-muted: var(--muted-400);
-  --text-on-accent: var(--navy-850);
+  --text-primary: var(--color-white);
+  --text-secondary: var(--color-cyan-100);
+  --text-muted: var(--color-muted-400);
+  --text-on-accent: var(--color-navy-850);
 
   /* Semánticos — acción */
-  --accent: var(--green-500);
-  --accent-hi: var(--green-400);
-  --accent-lo: var(--green-700);
-  --accent-text: var(--green-400);
-  --accent-2: var(--purple-600);       /* suscripción / secundario */
-  --accent-2-hi: var(--purple-400);
-  --accent-2-lo: var(--purple-800);
-  --link: var(--lime-400);
-  --link-hover: var(--lime-300);
-  --focus: var(--cyan-400);
+  --accent: var(--color-green-500);
+  --accent-hi: var(--color-green-400);
+  --accent-lo: var(--color-green-700);
+  --accent-text: var(--color-green-400);
+  --accent-2: var(--color-purple-600);       /* suscripción / secundario */
+  --accent-2-hi: var(--color-purple-400);
+  --accent-2-lo: var(--color-purple-800);
+  --link: var(--color-lime-400);
+  --link-hover: var(--color-lime-300);
+  --focus: var(--color-cyan-400);
 
   /* Semánticos — estado */
-  --info: var(--cyan-200);
-  --warning: var(--amber-400);
-  --danger: var(--red-400);
-  --danger-hi: var(--red-300);
-  --danger-lo: var(--red-800);
+  --info: var(--color-cyan-200);
+  --warning: var(--color-amber-400);
+  --danger: var(--color-red-400);
+  --danger-hi: var(--color-red-300);
+  --danger-lo: var(--color-red-800);
 
   /* Cristal y ranura */
   --glass-bg: rgba(17, 18, 38, .55);

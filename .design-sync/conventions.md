@@ -61,14 +61,16 @@ redefines `--color-white` and `--color-red-400`, so the bundle ships them a shad
 are v1 classes on their way out — reach for the v2 text roles below instead.
 
 **The set is no longer only v1.** The DS v2 foundations added 39 utilities of their own, and
-they are compiled too — the vocabulary above is what survives of v1, not the whole list:
+they are compiled too — the vocabulary above is what survives of v1, not the whole list. Why any
+of them looks the way it does is in the commit messages of
+[PR #42](https://github.com/GenomaGames/genomagames-web/pull/42):
 
 | Role | Classes |
 |---|---|
-| Type | `font-pixel` `font-display` `font-mono-ui` `text-crisp` `field-label` |
+| Type | `font-pixel` `font-display` `font-mono-ui` `field-label` `text-crisp` (no-op: the global already applies it) |
 | Text | `text-primary` `text-secondary` `text-muted` `text-accent` `text-danger` |
 | Surfaces | `bg-page` `bg-ground` `bg-sunken` `bg-raised` `bg-control` |
-| Inset rings | `inset-ring-2` `inset-ring-3` `inset-ring-strong` |
+| Inset rings | `inset-ring-2` `inset-ring-3` `inset-ring-strong` (the first two shadow Tailwind's stock utilities of the same name and win by emission order) |
 | Bevels | `bevel-raised` `bevel-sunken` `bevel-accent` `bevel-accent-2` `bevel-danger` |
 | Controls | `btn` `input` `chip` `chip-devlog` `chip-postmortem` `chip-tutorial` `chip-experience` `chip-status` |
 | Glass & groove | `glass` `glass-bezel` `groove` |

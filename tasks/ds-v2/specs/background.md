@@ -7,7 +7,7 @@ Canvas de células y partículas pixel que vive detrás de todas las secciones `
 | --- | --- | --- | --- |
 | `density` | number | 1 | multiplica células (~10) y motas (~22) por 420×760 de viewport interno |
 | `parallax` | boolean | true | desplaza cada partícula por su `z` con el scroll (wrap vertical) |
-| `colors` | string[] | `[--green-400, --green-500, --cyan-200]` | célula borde/núcleo + motas |
+| `colors` | string[] | `[--color-green-400, --color-green-500, --color-cyan-200]` | célula borde/núcleo + motas |
 | `fadeToFooter` | boolean | true | gradiente inferior a `--surface-sunken` que oculta partículas |
 
 ## Comportamiento
