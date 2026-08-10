@@ -20,10 +20,12 @@ contador de golpe en estado para reiniciar la animación (alternar duración .25
 `bg-control .inset-ring-2 text-muted`. `aria-pressed`, hover `brightness(1.18)`.
 
 ## SuccessPanel
-`bg-raised` + ring 3px del acento del flujo; título Silkscreen 13px («✓ MENSAJE ENVIADO»),
-cuerpo mono 12px `--text-muted`, acción secundaria como enlace subrayado (≥44px).
+`bg-raised` + ring 3px del acento del flujo; título Silkscreen 13px («MENSAJE ENVIADO»),
+precedido de `check.svg` de `icons/` a 16px y `aria-hidden` (Silkscreen no trae `✓`; ver
+«Símbolos que las fuentes pixel no traen» en `PLAN.md`). Cuerpo mono 12px `--text-muted`,
+acción secundaria como enlace subrayado (≥44px).
 
 ## AlphaSignUpForm — Migración v1 → v2
 - v1: input + botón emerald `rounded-md`, mensajes rojos `text-red-400`. v2: FieldLabel + `.input` + Button `bevel-accent-2` (morado, flujo suscripción), FieldError con `aria-live` y efecto daño.
-- Mantiene i18n interno y su lógica de submit; éxito → SuccessPanel morado con «✓ APUNTADO».
+- Mantiene i18n interno y su lógica de submit; éxito → SuccessPanel morado con «APUNTADO» y su `check.svg`.
 - Microcopy fijo: «Sin spam. Te vas cuando quieras.»

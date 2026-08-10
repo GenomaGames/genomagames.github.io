@@ -8,7 +8,7 @@ Chip de categoría + tag de proyecto (`font-mono-ui` 9px `--info`) · título Pi
 `--text-primary` · meta 10px `--text-muted` («hace X · N min»).
 
 ```jsx
-<a className="bg-raised inset-ring-2 focus-ring" href={url}>
+<a className="bg-raised inset-ring-2" href={url}>
   <span className="chip chip-devlog">DEVLOG</span>
   <span className="font-display text-primary">{title}</span>
   <span className="font-mono-ui text-muted">{meta}</span>

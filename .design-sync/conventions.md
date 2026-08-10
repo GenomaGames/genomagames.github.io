@@ -51,10 +51,30 @@ The vocabulary, in full families:
 | Gradients | `bg-linear-to-b` `bg-linear-to-br` `bg-linear-to-r` + `from-gray-900` `from-slate-800` `from-emerald-500` `from-emerald-900` `via-emerald-700` `to-black` `to-gray-900` `to-indigo-800` `to-indigo-900` |
 | Accent (actions, links) | `bg-emerald-600` `bg-emerald-800` `text-emerald-500` `text-emerald-200` `hover:bg-emerald-400` `focus:bg-emerald-400` |
 | Secondary accent | `bg-indigo-600` `bg-indigo-700` `hover:bg-indigo-500` `border-indigo-600` `focus:ring-indigo-400` |
-| Text | `text-slate-200` (body) `text-slate-300` `text-slate-400` (muted) `text-white` `text-red-400` (errors) `text-slate-900` (on emerald) |
+| Text | `text-slate-200` (body) `text-slate-300` `text-slate-400` (muted) `text-white`* `text-red-400`* (errors) `text-slate-900` (on emerald) |
 | Sizes | `text-xs` `text-sm` `text-base` `text-lg` `text-xl` `text-2xl` `text-3xl` |
 | Shape | `rounded-sm` `rounded-md` `rounded-lg` `drop-shadow-xl` `shadow-md` `shadow-black` |
 | Variants | `sm:` `md:` `lg:` `hover:` `focus:` `group-hover:` `group-focus:` `disabled:` |
+
+\* `text-white` and `text-red-400` no longer carry their Tailwind values: the v2 scale
+redefines `--color-white` and `--color-red-400`, so the bundle ships them a shade off. They
+are v1 classes on their way out — reach for the v2 text roles below instead.
+
+**The set is no longer only v1.** The DS v2 foundations added 39 utilities of their own, and
+they are compiled too — the vocabulary above is what survives of v1, not the whole list:
+
+| Role | Classes |
+|---|---|
+| Type | `font-pixel` `font-display` `font-mono-ui` `text-crisp` `field-label` |
+| Text | `text-primary` `text-secondary` `text-muted` `text-accent` `text-danger` |
+| Surfaces | `bg-page` `bg-ground` `bg-sunken` `bg-raised` `bg-control` |
+| Inset rings | `inset-ring-2` `inset-ring-3` `inset-ring-strong` |
+| Bevels | `bevel-raised` `bevel-sunken` `bevel-accent` `bevel-accent-2` `bevel-danger` |
+| Controls | `btn` `input` `chip` `chip-devlog` `chip-postmortem` `chip-tutorial` `chip-experience` `chip-status` |
+| Glass & groove | `glass` `glass-bezel` `groove` |
+| Image | `pixelated` |
+| Motion | `blink` `shake` `block-fade` |
+| Focus | `focus-ring` (no-op: the global `:focus-visible` already paints it) |
 
 Beyond that set, use inline styles with the theme custom properties, which ARE
 all defined: `--color-emerald-500`, `--color-slate-400`, `--color-gray-800`,

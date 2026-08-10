@@ -1,6 +1,9 @@
 # Aplicar DS v2 «Pixel» en `GenomaGames/genomagames-web`
 
-Plan archivo por archivo, verificado contra `main` (2026-08-08). Contexto del repo:
+Plan archivo por archivo, verificado contra `main` (2026-08-08), y reconciliado contra lo que el
+PR 1 construyó de verdad (2026-08-10): donde el paquete original y el código no coincidían, mandan
+estos documentos, y el porqué de cada decisión está en los mensajes de commit del
+[PR #42](https://github.com/GenomaGames/genomagames-web/pull/42). Contexto del repo:
 Next 16 · Tailwind 4 vía PostCSS **sin config JS** (tema stock, tokens van en `@theme`) ·
 next-intl · componentes en `src/components/*.tsx` · shell en `src/app/[locale]/(main)/layout.tsx` ·
 pipeline de sync en `.design-sync/`. Specs de referencia: `ds-v2/specs/*.md` de este proyecto.
@@ -26,6 +29,8 @@ pipeline de sync en `.design-sync/`. Specs de referencia: `ds-v2/specs/*.md` de 
 **Nuevos** (spec `navigation-shell.md` + `background.md`):
 - `src/components/particle-field.tsx` — `"use client"`, canvas cuantizado 2px/11fps, props `density/parallax/colors/fadeToFooter`, `prefers-reduced-motion` = frame estático.
 - `src/components/section-shell.tsx`, `groove-separator.tsx`, `game-over-bar.tsx`.
+- Iconos pixel: el GameOverBar ya necesita `arrow-up.svg`, así que la copia de `icons/` a
+  `public/icons/` (o como componentes) empieza aquí y no en el PR 3.
 
 **`src/app/[locale]/(main)/layout.tsx`**
 - `<html className>`: `bg-gray-900 bg-linear-to-b from-gray-900 to-black font-sans text-slate-200` → `bg-page font-mono-ui text-secondary` (+ scanlines).
@@ -35,9 +40,9 @@ pipeline de sync en `.design-sync/`. Specs de referencia: `ds-v2/specs/*.md` de 
 
 - `src/components/header.tsx` → **HeroMenu** (grid 2×2 en el hero de la home; fila compacta `glass` en páginas interiores). Fuera FontAwesome (`faGamepad`, `faXTwitter`) y `flag-icons`.
 - `src/components/language-selector.tsx`: el drawer entero se sustituye por el par ES/EN 44px con `aria-pressed` (spec). Desaparecen `flag-icons`, `faLanguage`, `faXmark` y el efecto de bloqueo de scroll.
-- `src/components/footer.tsx`: barra mínima `bg-sunken` (icono pixel + lema mono 10px + LanguageSelector); `mt-auto` se mantiene. El enlace `#top` (faArrowUp) pasa a ser el «↑ RESTART ↑» del GameOverBar.
+- `src/components/footer.tsx`: barra mínima `bg-sunken` (icono pixel + lema mono 10px + LanguageSelector); `mt-auto` se mantiene. El enlace `#top` (faArrowUp) pasa a ser el «RESTART» del GameOverBar, con sus dos flechas como icono pixel.
 - `package.json`: quitar `flag-icons`. FontAwesome aún no (lo usan post-item/footer/draft hasta PR 4–6).
-- Iconos pixel: copiar los SVG necesarios de `assets/icons/` de este proyecto (pixelarticons, MIT; Steam/Discord de simple-icons) a `public/icons/` o como componentes.
+- Iconos pixel: copiar los SVG necesarios de `icons/` de este proyecto (pixelarticons, MIT; Steam/Discord de simple-icons) a `public/icons/` o como componentes. El PR 2 ya trajo los primeros.
 
 ## PR 4 — Cards y listas
 
@@ -53,7 +58,7 @@ pipeline de sync en `.design-sync/`. Specs de referencia: `ds-v2/specs/*.md` de 
 - `src/components/alpha-sign-up-form.tsx` (24 KB): solo piel — lógica de submit, botid y next-intl intactos.
   - Nuevos `field-label` + `.input` (48px `bg-sunken` ring 2px) + `FieldError` (`role="status"`, min-height fija).
   - Botón `bevel-accent-2` (morado, flujo suscripción); validación fallida = efecto daño `.shake` + `bevel-danger` 300 ms (contador de golpe en estado).
-  - Éxito → SuccessPanel morado «✓ APUNTADO».
+  - Éxito → SuccessPanel morado «APUNTADO», con el check como icono pixel (`check.svg`).
 - `i18n/en.json` + `es.json`: claves nuevas para errores en tono de juego y el microcopy «Sin spam. Te vas cuando quieras.» — nada hardcodeado.
 
 ## PR 6 — Contenido markdown + limpieza final
@@ -76,6 +81,40 @@ pipeline de sync en `.design-sync/`. Specs de referencia: `ds-v2/specs/*.md` de 
 ## Reglas transversales en cada review
 
 Radius 0 · profundidad solo biseles inset 2px (nunca `border` ni sombra exterior) · texto de botón 14px · Silkscreen solo MAYÚSCULAS · hit targets ≥ 44px · `prefers-reduced-motion` congela blink/shake/fade y el canvas · foco 3px `--focus`.
+
+### Símbolos que las fuentes pixel no traen
+
+Silkscreen y Pixelify Sans no traen `✓` (U+2713), `↑` (U+2191) ni los glifos de bloque —
+comprobado sobre el cmap de los woff2 servidos; IBM Plex Mono sí. Los triángulos `▼` y `▲`
+(U+25BC, U+25B2) no están en **ninguna** de las tres: ahí ni siquiera hay red de seguridad
+dentro del sistema, la sirve una fuente del sistema operativo. Escritos como carácter, el
+navegador los serviría con otra tipografía en mitad de un texto pixel.
+
+**Ningún símbolo se escribe como carácter: se pone como pieza.** El texto que lo acompaña carga
+el significado, y la pieza va `aria-hidden`. Dos formas, por este orden:
+
+1. **El icono pixel del paquete**, si existe en `icons/` (pixelarticons, MIT): `check.svg`,
+   `arrow-up.svg` y compañía son rectángulos sobre un `viewBox` de 24 con `fill="currentColor"`,
+   así que heredan el color del texto. Es la vía por defecto.
+2. **Dibujarla**, cuando el set no la traiga — es lo que se hizo con el cursor del catálogo, un
+   bloque `<span aria-hidden>` porque no hay icono de bloque sólido.
+
+Descartadas: cambiar el copy (el símbolo aporta el gesto) y aceptar el salto de fuente (rompe la
+unidad tipográfica justo en las piezas más visibles). Una pieza dibujada, además, no necesita
+pareja ES/EN en `i18n/`.
+
+## El margen de alcance de cada entrega
+
+El PR 1 se declaró «solo CSS + fuentes, la UI v1 sigue en pie» y acabó tocando tres veces cosas
+que decía no tocar, las tres con permiso y por buenas razones: el formulario de alpha perdió su
+`focus:outline-none focus:ring-*` (mostraba el ring indigo v1 y el contorno cyan v2 a la vez), y
+el catálogo dejó de ser cien por cien estático (el ejemplo de daño es una isla de cliente,
+porque la animación se dispara una vez por golpe).
+
+No es un fallo del plan: es lo que pasa cuando una capa nueva destapa un conflicto en la vieja.
+Las entregas siguientes **declaran ese margen** en vez de prometer que no existe: tocar fuera de
+la lista de archivos es admisible cuando lo que se toca es un conflicto que la entrega misma
+provoca, se acuerda antes y queda en su mensaje de commit.
 
 ## Pospuesto
 

@@ -4,7 +4,9 @@
 /* Tipografía */
 .font-pixel { font-family: var(--font-pixel); }
 .font-display { font-family: var(--font-display); }
-.font-mono-ui { font-family: var(--font-mono); }
+.font-mono-ui { font-family: var(--font-mono-ui); }
+/* Sin efecto: el global ya aplica `-webkit-font-smoothing: none` y se hereda.
+   Se mantiene por fidelidad; nadie debería alcanzarla esperando que haga algo. */
 .text-crisp { -webkit-font-smoothing: none; }
 
 /* Color de texto y fondo */
@@ -19,7 +21,10 @@
 .bg-raised { background: var(--surface-raised); }
 .bg-control { background: var(--surface-control); }
 
-/* Contornos interiores (sustituyen a border para no mover el layout) */
+/* Contornos interiores (sustituyen a border para no mover el layout).
+   Ojo: `inset-ring-2` e `inset-ring-3` existen en el set stock de Tailwind y
+   hacen otra cosa. Estas ganan por orden de emisión, y es deliberado, pero es
+   frágil: reordenar las hojas las apaga. */
 .inset-ring-2 { box-shadow: inset 0 0 0 2px var(--border-default); }
 .inset-ring-3 { box-shadow: inset 0 0 0 3px var(--border-default); }
 .inset-ring-strong { box-shadow: inset 0 0 0 2px var(--border-strong); }
@@ -35,14 +40,19 @@
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 15px 16px; border: none; border-radius: 0; cursor: pointer; font: 700 14px var(--font-pixel); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; }
 .btn:hover { filter: brightness(1.12); }
 .btn:active { filter: brightness(.85); transform: translateY(2px); }
-.btn:disabled { opacity: .75; cursor: wait; }
+/* Dos estados donde el paquete traía uno. Apagado: el botón no se puede usar,
+   así que pierde el color y lo dice el cursor. Trabajando: el botón sí sirve y
+   está a lo suyo, así que conserva su color y solo se retira un poco. Va después
+   para ganar, porque un botón ocupado suele venir además deshabilitado. */
+.btn:disabled { opacity: .5; filter: saturate(.15); cursor: not-allowed; }
+.btn[aria-busy="true"] { opacity: .75; filter: none; cursor: wait; }
 .chip { display: inline-block; padding: 3px 6px; font: 700 9px var(--font-pixel); letter-spacing: .08em; text-transform: uppercase; }
 .chip-devlog { color: var(--accent-hi); box-shadow: inset 0 0 0 2px var(--accent); }
 .chip-postmortem { color: var(--warning); box-shadow: inset 0 0 0 2px var(--amber-700); }
 .chip-tutorial { color: var(--cyan-400); box-shadow: inset 0 0 0 2px var(--cyan-700); }
 .chip-experience { color: var(--purple-400); box-shadow: inset 0 0 0 2px var(--purple-600); }
 .chip-status { padding: 4px 7px; letter-spacing: .1em; }
-.input { min-height: 48px; background: var(--surface-sunken); border: none; border-radius: 0; box-shadow: inset 0 0 0 2px var(--border-default); padding: 0 12px; font: 400 12px var(--font-mono); color: var(--text-secondary); }
+.input { min-height: 48px; background: var(--surface-sunken); border: none; border-radius: 0; box-shadow: inset 0 0 0 2px var(--border-default); padding: 0 12px; font: 400 12px var(--font-mono-ui); color: var(--text-secondary); }
 .input[aria-invalid="true"] { box-shadow: inset 0 0 0 2px var(--danger); }
 .field-label { font: 700 10px var(--font-pixel); color: var(--text-muted); letter-spacing: .12em; text-transform: uppercase; }
 
@@ -58,12 +68,23 @@
 @keyframes gg-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 @keyframes gg-shake { 0%, 100% { transform: translateX(0); } 15% { transform: translateX(-10px); } 35% { transform: translateX(9px); } 55% { transform: translateX(-8px); } 75% { transform: translateX(7px); } 90% { transform: translateX(-4px); } }
 @keyframes gg-block-fade { 0%, 39% { opacity: 0; } 40%, 54% { opacity: .4; } 55%, 69% { opacity: .8; } 70%, 79% { opacity: 1; } 80%, 89% { opacity: .8; } 90%, 100% { opacity: .4; } }
-.blink { animation: gg-blink var(--dur-blink) steps(1, end) infinite; }
-.shake { animation: gg-shake var(--dur-shake) linear; }
-.block-fade { animation: gg-block-fade var(--dur-blocks) linear infinite; }
-
-/* Foco y reduced motion */
-.focus-ring:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
-@media (prefers-reduced-motion: reduce) {
-  .blink, .shake, .block-fade { animation: none; }
+/* La guarda de movimiento reducido va dentro de cada utilidad, no en una regla
+   suelta que las liste: así la heredan también las variantes (`hover:shake`,
+   `md:blink`), que una regla por nombre de clase no alcanza. */
+.blink {
+  animation: gg-blink var(--dur-blink) steps(1, end) infinite;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
 }
+.shake {
+  animation: gg-shake var(--dur-shake) linear;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+.block-fade {
+  animation: gg-block-fade var(--dur-blocks) linear infinite;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+/* Foco. Sin efecto: el global `:focus-visible` ya pinta este contorno en todo
+   el documento. Se mantiene por fidelidad, pero nadie debería alcanzarla
+   esperando que añada algo. */
+.focus-ring:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }

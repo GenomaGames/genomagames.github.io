@@ -4,6 +4,8 @@
 Uso: una acción principal por vista. Verde = acción, morado = suscripción, rojo = solo estado de daño.
 
 Props: `variant: "accent" | "accent2" | "outline"` · `damaged?: boolean` · `busy?: boolean`.
+`busy` se emite como `aria-busy="true"`, no como clase; el botón apagado es el `disabled` nativo.
+Son dos props independientes: un botón ocupado suele venir además deshabilitado.
 
 | Estado | Receta |
 | --- | --- |
@@ -11,13 +13,20 @@ Props: `variant: "accent" | "accent2" | "outline"` · `damaged?: boolean` · `bu
 | outline | `.btn bg-transparent .inset-ring-3 text-secondary`; hover: ring strong; active: `bg-raised` +2px |
 | hover | `filter: brightness(1.12)` |
 | active | bisel invertido + `translateY(2px)` + `brightness(.85)` |
-| busy | `opacity .75; cursor: wait` + label «…» |
+| disabled | `:disabled` → `opacity .5; filter: saturate(.15); cursor: not-allowed`. No se puede usar, así que pierde el color |
+| busy | `[aria-busy="true"]` → `opacity .75; cursor: wait` + label «…». Sirve, pero está a lo suyo: conserva el color. Gana al anterior |
 | damaged | `.bevel-danger .shake` durante 300 ms (ver forms-feedback) |
 
+El paquete traía un único estado (`opacity .75; cursor: wait` sobre `:disabled`), que apenas se
+distinguía del reposo. El porqué del corte está en el PR #42 de la web.
+
 ```jsx
-<button className="btn bevel-accent focus-ring" onClick={send}>ENVIAR</button>
-<a className="btn bg-transparent inset-ring-3 text-secondary focus-ring" href="/posts">TODAS LAS PUBLICACIONES</a>
+<button className="btn bevel-accent" onClick={send}>ENVIAR</button>
+<a className="btn bg-transparent inset-ring-3 text-secondary" href="/posts">TODAS LAS PUBLICACIONES</a>
 ```
+
+Sin `focus-ring`: el global `:focus-visible` ya pinta el contorno en todo el documento, y la
+utilidad no añade nada (ver `css/utilities.css`).
 
 ## Chip
 Categorías de contenido y estados de proyecto. `variant: "devlog" | "postmortem" | "tutorial" | "experience"` o `status` con color libre del set.

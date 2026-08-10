@@ -5,7 +5,11 @@
 48–50px, label Silkscreen 14px `--text-primary` + índice «01» mono 9px a la derecha.
 Cursor: triángulo verde 9px que **se mueve al item bajo hover/focus** (opacity por item,
 reset en `mouseleave`/`blur`). Active: bisel invertido + fondo `--navy-800` + 2px abajo.
-CTA «▼ START GAME ▼» Silkscreen 14px `--warning` con `.blink`.
+CTA «START GAME» Silkscreen 14px `--warning` con `.blink`, flanqueado por dos triángulos
+`--warning` de 9px, `aria-hidden`: el mismo triángulo dibujado del cursor de arriba, girado. No
+se escribe `▼` (U+25BC), que no está en ninguna de las tres fuentes servidas —tampoco en IBM
+Plex Mono, a diferencia del `✓` y el `↑`—; ver «Símbolos que las fuentes pixel no traen» en
+`PLAN.md`.
 
 ### Header — Migración v1 → v2
 - v1: barra fija translúcida con links. v2: menú del hero (arriba) — el `mt-16` de main desaparece; en páginas interiores el HeroMenu colapsa a una fila compacta `glass` pegada arriba.
@@ -22,8 +26,10 @@ Hendidura entre secciones de cristal: `.groove` (8px) extendida al ancho del blo
 (márgenes negativos hasta 1120px), `aria-hidden`.
 
 ## GameOverBar
-Franja `bg-sunken` centrada: «GAME OVER» Silkscreen 14px `--danger` + enlace «↑ RESTART ↑»
-`--text-muted` (solo el texto es clickable, padding 4px 10px); hover aclara, active verde.
+Franja `bg-sunken` centrada: «GAME OVER» Silkscreen 14px `--danger` + enlace «RESTART»
+`--text-muted` flanqueado por dos `arrow-up.svg` de `icons/` a 16px, `aria-hidden` (Silkscreen
+no trae `↑`; ver «Símbolos que las fuentes pixel no traen» en `PLAN.md`). Solo el texto es
+clickable, padding 4px 10px; hover aclara, active verde.
 
 ## Footer — Migración v1 → v2
 - v1: bloque oscuro con navegación repetida. v2: barra mínima `bg-sunken`: icono pixel 20px + lema mono 10px a la izquierda, LanguageSelector a la derecha. `mt-auto` se mantiene.

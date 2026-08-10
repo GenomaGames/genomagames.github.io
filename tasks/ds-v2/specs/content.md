@@ -12,6 +12,16 @@ h2/h3 Silkscreen verde/morado alternos; enlaces `--link`/`--link-hover` subrayad
 izquierdo 8px); imágenes `.pixelated .inset-ring-2`; hr = GrooveSeparator.
 `content` sigue siendo HTML compilado — solo cambia la hoja de estilos del scope.
 
+### La negrita del cuerpo es el peso 500
+Solo se sirven IBM Plex Mono 400 y 500. El `IBMPlexMono-SemiBold.ttf` del paquete **queda sin
+convertir a propósito**: añadir el 600 obligaba a volver a tocar las fundaciones, y el 500 da el
+contraste que el cuerpo necesita.
+
+Consecuencia para el PR 6: los `font-bold`/`font-semibold` de
+`src/styles/markdown-styles.module.css` se mapean a Silkscreen —los títulos, que esta spec ya
+manda— o al 500 real (`th`, `li::marker`, `strong`, resaltados de código). **Nunca se deja que
+el navegador sintetice la negrita**: emborrona el pixel, que es justo lo que el sistema evita.
+
 ## PostFooter — Migración v1 → v2
 - v1: enlaces de compartir con `rounded` + emerald. v2: fila de LinkAction (flecha pixel + mono 11px `--accent-text`) separada con `border-top 2px --border-default`.
 

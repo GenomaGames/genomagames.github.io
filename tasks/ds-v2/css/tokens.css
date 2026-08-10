@@ -83,13 +83,22 @@
   /* Tipografía (v1 Born2bSporty FS / Josefin Sans quedan retiradas) */
   --font-pixel: "Silkscreen", monospace;
   --font-display: "Pixelify Sans", sans-serif;
-  --font-mono: "IBM Plex Mono", monospace;
+  /* `--font-mono` a secas es una variable de tema de Tailwind: redefinirla
+     repintaría el `code` y el `pre` de todos los artículos. El sufijo -ui es el
+     mismo que el plan da a la utilidad. Quien escriba `var(--font-mono)`
+     apuntará al mono de Tailwind, no al del sistema. */
+  --font-mono-ui: "IBM Plex Mono", monospace;
 
   /* Motion */
   --dur-blink: 1.1s;
   --dur-shake: .25s;
   --dur-blocks: 1.5s;
+  /* Añadidos al vocabulario de este paquete: el foco engancha y luego respira. */
+  --dur-focus-snap: .15s;
+  --dur-focus-pulse: 1.2s;
 
-  /* Radios: el sistema es cuadrado */
+  /* Radios: el sistema es cuadrado. No lo lee nadie: las utilidades escriben
+     `border-radius: 0` literal. Queda como declaración de intenciones, no como
+     mecanismo. */
   --radius: 0px;
 }
