@@ -1,7 +1,5 @@
 # Cards — v2
 
-Reconciliada con lo que el PR 1 construyó: donde esta spec y el paquete original no coincidan, manda esta, y el porqué está en los mensajes de commit del [PR #42](https://github.com/GenomaGames/genomagames-web/pull/42).
-
 Base común: `bg-raised .inset-ring-2`, padding 14px, gap 6–10px; hover → ring strong;
 active → `bg-active` + `translateY(2px)`. Sin radius, sin sombra exterior.
 `bg-active` **todavía no existe en el código**: el PR 1 emitió cinco de las seis superficies de

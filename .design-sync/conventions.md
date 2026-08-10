@@ -62,8 +62,7 @@ are v1 classes on their way out — reach for the v2 text roles below instead.
 
 **The set is no longer only v1.** The DS v2 foundations added 39 utilities of their own, and
 they are compiled too — the vocabulary above is what survives of v1, not the whole list. Why any
-of them looks the way it does is in the commit messages of
-[PR #42](https://github.com/GenomaGames/genomagames-web/pull/42):
+of them looks the way it does is in `git log -p src/styles/`:
 
 | Role | Classes |
 |---|---|

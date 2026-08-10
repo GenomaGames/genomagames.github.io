@@ -18,8 +18,7 @@ Son dos props independientes: un botón ocupado suele venir además deshabilitad
 | damaged | `.bevel-danger .shake` durante 300 ms (ver forms-feedback) |
 
 El paquete traía un único estado (`opacity .75; cursor: wait` sobre `:disabled`), que apenas se
-distinguía del reposo. El porqué del corte está en los mensajes de commit del
-[PR #42](https://github.com/GenomaGames/genomagames-web/pull/42).
+distinguía del reposo.
 
 ```jsx
 <button className="btn bevel-accent" onClick={send}>ENVIAR</button>

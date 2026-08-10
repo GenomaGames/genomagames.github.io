@@ -1,7 +1,5 @@
 # Navigation & Shell — v2
 
-Reconciliada con lo que el PR 1 construyó: donde esta spec y el paquete original no coincidan, manda esta, y el porqué está en los mensajes de commit del [PR #42](https://github.com/GenomaGames/genomagames-web/pull/42).
-
 ## HeroMenu (sustituye al Header fijo v1)
 `<nav aria-label>` en grid 2×2 (≥820px) / 1 col (móvil): items `bg-control` bevel-raised,
 48–50px, label Silkscreen 14px `--text-primary` + índice «01» mono 9px a la derecha.

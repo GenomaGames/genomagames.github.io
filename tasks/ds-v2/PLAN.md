@@ -2,8 +2,8 @@
 
 Plan archivo por archivo, verificado contra `main` (2026-08-08), y reconciliado contra lo que el
 PR 1 construyó de verdad (2026-08-10): donde el paquete original y el código no coincidían, mandan
-estos documentos, y el porqué de cada decisión está en los mensajes de commit del
-[PR #42](https://github.com/GenomaGames/genomagames-web/pull/42). Contexto del repo:
+estos documentos. Cada decisión lleva escrito su porqué al lado; el detalle largo está en el
+historial de los ficheros —`git log -p src/styles/`—, que es donde se tomó. Contexto del repo:
 Next 16 · Tailwind 4 vía PostCSS **sin config JS** (tema stock, tokens van en `@theme`) ·
 next-intl · componentes en `src/components/*.tsx` · shell en `src/app/[locale]/(main)/layout.tsx` ·
 pipeline de sync en `.design-sync/`. Specs de referencia: `ds-v2/specs/*.md` de este proyecto.

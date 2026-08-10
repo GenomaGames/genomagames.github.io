@@ -5,9 +5,9 @@ Paquete para ejecutar la migración con **Claude Code** dentro del repo
 
 > **El PR 1 ya está construido y en `main`.** Estos documentos se reconciliaron después contra
 > lo que se construyó de verdad: donde el paquete original y el código no coincidían, mandan
-> estos documentos, y el porqué de cada decisión está en los mensajes de commit del
-> [PR #42](https://github.com/GenomaGames/genomagames-web/pull/42). Lo que queda por ejecutar es
-> del PR 2 en adelante.
+> estos documentos. Cada decisión lleva su porqué escrito al lado; el detalle largo está en el
+> historial de los ficheros que la tomaron —`git log -p src/styles/`—. Lo que queda por ejecutar
+> es del PR 2 en adelante.
 
 ## Cómo usarlo
 

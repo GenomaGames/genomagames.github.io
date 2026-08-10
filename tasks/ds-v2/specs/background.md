@@ -1,7 +1,5 @@
 # Background — v2 · ParticleField
 
-Reconciliada con lo que el PR 1 construyó: donde esta spec y el paquete original no coincidan, manda esta, y el porqué está en los mensajes de commit del [PR #42](https://github.com/GenomaGames/genomagames-web/pull/42).
-
 Canvas de células y partículas pixel que vive detrás de todas las secciones `glass`.
 
 ## Props

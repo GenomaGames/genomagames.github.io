@@ -1,9 +1,5 @@
 # Foundations — v2
 
-Reconciliada con lo que el PR 1 construyó. Donde esta spec y el paquete original no coincidan,
-manda esta: el porqué de cada decisión está en los mensajes de commit del
-[PR #42](https://github.com/GenomaGames/genomagames-web/pull/42).
-
 ## Color
 Roles semánticos sobre la escala (ver `tokens.css`). Regla: superficie navy, texto
 frío, un acento por bloque (verde = acción principal, morado = suscripción/alt,
